@@ -8,4 +8,4 @@ Make it easier to manage software projects by providing an easy to use and light
 
 ## Requirements
 * Java SE 9
-* JSON file according to specification (Look here for template)
+* JSON file according to specification ([Look here for template](https://github.com/bartekspitza/project-management/blob/master/template.json))
