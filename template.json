@@ -1,5 +1,5 @@
 {
-	"project_name": "Next facebook",
+    "project_name": "Next facebook",
     "engineer_salary": 30000,
     "start_week": 36,
     "end_week": 52,
@@ -21,41 +21,41 @@
                 {
                     "member_id": "#001",
                     "time_spent": 15,
-                    "percentage_of_work_completed": 35 
+                    "percentage_of_work_completed": 35
                 },
                 {
                     "member_id": "#003",
                     "time_spent": 6,
-                    "percentage_of_work_completed": 75 
+                    "percentage_of_work_completed": 75
                 }
             ]
         },
         {
-			"name": "Design landing page frontend",
-			"budgeted_hours": 20,
-			"contributions": [
-				{
-					"member_id": "#002",
+            "name": "Design landing page frontend",
+            "budgeted_hours": 20,
+            "contributions": [
+                {
+                    "member_id": "#002",
                     "time_spent": 14,
-                    "percentage_of_work_completed": 75 
-				}
-			]
+                    "percentage_of_work_completed": 75
+                }
+            ]
         },
         {
-			"name": "Fix signup bug",
-			"budgeted_hours": 10,
-			"contributions": [
-				{
-					"member_id": "#004",
+            "name": "Fix signup bug",
+            "budgeted_hours": 10,
+            "contributions": [
+                {
+                    "member_id": "#004",
                     "time_spent": 5,
-                    "percentage_of_work_completed": 45 
+                    "percentage_of_work_completed": 45
                 },
                 {
-					"member_id": "#005",
+                    "member_id": "#005",
                     "time_spent": 7,
-                    "percentage_of_work_completed": 50 
-				}
-			]
+                    "percentage_of_work_completed": 50
+                }
+            ]
         }
     ],
     "risk_matrix": [
@@ -74,5 +74,5 @@
             "probability": 1,
             "severity": 1
         }
-    ] 
+    ]
 }
