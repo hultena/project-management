@@ -15,14 +15,47 @@
     ],
     "tasks": [
         {
-            "name": "Do frontend",
-            "budgeted_hours": 32,
+            "name": "Setup landing page backend",
+            "budgeted_hours": 20,
             "contributions": [
                 {
                     "member_id": "#001",
-                    "time_spent": 120
+                    "time_spent": 15,
+                    "percentage_of_work_completed": 35 
+                },
+                {
+                    "member_id": "#003",
+                    "time_spent": 6,
+                    "percentage_of_work_completed": 75 
                 }
             ]
+        },
+        {
+			"name": "Design landing page frontend",
+			"budgeted_hours": 20,
+			"contributions": [
+				{
+					"member_id": "#002",
+                    "time_spent": 14,
+                    "percentage_of_work_completed": 75 
+				}
+			]
+        },
+        {
+			"name": "Fix signup bug",
+			"budgeted_hours": 10,
+			"contributions": [
+				{
+					"member_id": "#004",
+                    "time_spent": 5,
+                    "percentage_of_work_completed": 45 
+                },
+                {
+					"member_id": "#005",
+                    "time_spent": 7,
+                    "percentage_of_work_completed": 50 
+				}
+			]
         }
     ],
     "risk_matrix": [
