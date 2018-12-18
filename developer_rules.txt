@@ -1,0 +1,4 @@
+Indentation: tabs with length of 4
+No pushing of project specific files from the IDE, we only push the .java files/packages
+
+(Feel free to change)
