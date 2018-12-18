@@ -1,8 +1,10 @@
 {
-	"project_name": "Next facebook",
-	"engineer_salary": 30000,
-	"members": [
-		{
+    "project_name": "Next facebook",
+    "engineer_salary": 30000,
+    "start_week": 36,
+    "end_week": 52,
+    "members": [
+        {
 			"name": "Daniel",
 			"id": "#001"
 		},
