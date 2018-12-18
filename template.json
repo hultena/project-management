@@ -1,5 +1,5 @@
 {
-    "project_name": "Next facebook",
+	"project_name": "Next facebook",
     "engineer_salary": 30000,
     "start_week": 36,
     "end_week": 52,
@@ -26,11 +26,20 @@
         }
     ],
     "risk_matrix": [
-        ["Probability - 4", "Critical - 3", "Marginal - 2", "Negligible - 1"],
-        ["Frequent -5 ", "High - 20", "High - 15", "High - 10", "Medium - 5"],
-        ["Probable - 4", "High - 16", "High - 12", "Serious - 8", "Medium - 4"],
-        ["Occasional - 3", "High - 12", "Serious - 9", "Medium - 6", "Low - 3"],
-        ["Remote - 2", "Serious - 8", "Medium - 6", "Medium - 4", "Low - 2"],
-        ["Improbable - 1", "Medium - 4", "Low - 3", "Low - 3", "Low - 1"]
-    ]
+        {
+            "name": "People not showing up to meetings",
+            "probability": 3,
+            "severity": 4
+        },
+        {
+            "name": "Person dropping of project",
+            "probability": 2,
+            "severity": 4
+        },
+        {
+            "name": "Computer Malfunction",
+            "probability": 1,
+            "severity": 1
+        }
+    ] 
 }
