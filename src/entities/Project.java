@@ -13,6 +13,7 @@ public class Project {
     }
     public void addTask(String name, int budgetedHours){
         Task newTask = new Task(name,budgetedHours);
+        tasks.add(newTask);
     }
 
 }
