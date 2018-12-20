@@ -18,13 +18,13 @@ public class Task {
     public int getBudgetedHours() {
         return this.budgetedHours;
     }
-    public void addContribution(String id, int time){
+    public void addContribution(String id, int time, int percentageCompleted){
         Contribution i = findContribution(id);
         if(i!=null&&i.getId().equalsIgnoreCase(id)){
             i.addTime(time);
         }
         else{
-            Contribution newContribution = new Contribution(id, time);
+            Contribution newContribution = new Contribution(id, time, percentageCompleted);
             contributions.add(newContribution);
         }
     }
@@ -39,6 +39,13 @@ public class Task {
             }
         }
         return null;
+    }
+    public int printTime(String id){
+        int time = 0;
+        if(findContribution(id)!=null) {
+            time = findContribution(id).getTime();
+        }
+        return time;
     }
 
 }
