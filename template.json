@@ -17,6 +17,8 @@
         {
             "name": "Setup landing page backend",
             "budgeted_hours": 20,
+            "start_week": 40,
+            "end_week": 42,
             "contributions": [
                 {
                     "member_id": "#001",
@@ -33,6 +35,8 @@
         {
             "name": "Design landing page frontend",
             "budgeted_hours": 20,
+            "start_week": 44,
+            "end_week": 48,
             "contributions": [
                 {
                     "member_id": "#002",

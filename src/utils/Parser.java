@@ -17,7 +17,6 @@ public class Parser {
     public static void loadJSON() throws Exception {
         filename = "/home/maikzy/gitreps/project-management/template.json";
         byte[] jsonData = Files.readAllBytes(Paths.get(filename));
-        Map<String,String> myMap = new HashMap<String, String>();
 
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(jsonData);
