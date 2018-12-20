@@ -19,10 +19,26 @@ public class Task {
         return this.budgetedHours;
     }
     public void addContribution(String id, int time){
-        Contribution newContribution = new Contribution(id, time);
-        contributions.add(newContribution);
+        Contribution i = findContribution(id);
+        if(i!=null&&i.getId().equalsIgnoreCase(id)){
+            i.addTime(time);
+        }
+        else{
+            Contribution newContribution = new Contribution(id, time);
+            contributions.add(newContribution);
+        }
     }
     public List<Contribution> getContributions(){
         return contributions;
     }
+    public Contribution findContribution(String id) {
+
+        for (Contribution i : contributions) {
+            if (i.getId().equalsIgnoreCase(id)) {
+                return i;
+            }
+        }
+        return null;
+    }
+
 }
