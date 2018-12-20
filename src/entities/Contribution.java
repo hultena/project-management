@@ -16,6 +16,9 @@ public class Contribution {
     public int getTime(){
         return time;
     }
+    public int getPercentageCompleted(){
+        return percentageCompleted;
+    }
     public void addTime(int time){
         this.time+=time;
     }
@@ -24,7 +27,7 @@ public class Contribution {
     }
     public String toString() {
 
-        String contributions = "id: "+id+" time: "+ time+System.lineSeparator();
+        String contributions = "id: "+id+" time: "+ time+"percentage completed: "+System.lineSeparator();
 
         return contributions;
     }
