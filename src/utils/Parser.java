@@ -12,26 +12,20 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class Parser {
-    public static String filename;
 
-    public static void loadJSON() throws Exception {
-        filename = "/home/maikzy/gitreps/project-management/template.json";
+    private String filename;
+    private JsonNode data;
+
+    public void loadData() throws Exception {
+        this.filename = "/home/maikzy/gitreps/project-management/template.json";
         byte[] jsonData = Files.readAllBytes(Paths.get(filename));
-
         ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode rootNode = objectMapper.readTree(jsonData);
+        this.data = objectMapper.readTree(jsonData);
+        System.out.println(this.data.getClass().getName());
 
-        System.out.println(rootNode.get("tasks").get(1));
     }
 
-    public static List<Risk> loadRisks() {
-        // TODO: Implement real parsing of JSON data
-        List<Risk> risks = new ArrayList<Risk>();
-
-
-        Risk test1 = new Risk("People not showing up to meetings", (float) 0.5, 4);
-        risks.add(test1);
-
-        return risks;
+    public void setFilename(String name) {
+        this.filename = name;
     }
 }
