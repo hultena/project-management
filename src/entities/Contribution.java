@@ -8,6 +8,7 @@ public class Contribution {
     public Contribution(String id, int time, int percentageCompleted){
         this.id = id;
         this.time = time;
+        this.percentageCompleted = percentageCompleted;
     }
     public String getId(){
         return id;

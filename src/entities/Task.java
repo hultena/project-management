@@ -22,6 +22,7 @@ public class Task {
         Contribution i = findContribution(id);
         if(i!=null&&i.getId().equalsIgnoreCase(id)){
             i.addTime(time);
+            i.addPercentage(percentageCompleted);
         }
         else{
             Contribution newContribution = new Contribution(id, time, percentageCompleted);
