@@ -48,5 +48,12 @@ public class Task {
         }
         return time;
     }
+    public int printPercentage(String id){
+        int percentage = 0;
+        if(findContribution(id)!=null) {
+            percentage = findContribution(id).getTime();
+        }
+        return percentage;
+    }
 
 }
