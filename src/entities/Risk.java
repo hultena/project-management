@@ -24,4 +24,8 @@ public class Risk {
     public int getSeverity() {
         return severity;
     }
+    public float getImpact(){
+        float impact = severity*probability;
+        return impact;
+    }
 }
