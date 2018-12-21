@@ -2,7 +2,7 @@ package entities;
 
 public class Risk {
     private String name;
-    private float probability;
+    private int probability;
     private int severity;
 
     public Risk() {
@@ -10,20 +10,21 @@ public class Risk {
     }
 
     public String toString() {
-        return this.name;
+        return System.lineSeparator()+"| Name: "+this.name+" | Probability: "+this.probability+
+                " | Severity :"+this.severity+" | Impact : "+this.probability*this.severity+" | ";
     }
 
     public String getName() {
         return name;
     }
-    public float getProbability() {
+    public int getProbability() {
         return probability;
     }
     public int getSeverity() {
         return severity;
     }
-    public float getImpact(){
-        float impact = severity*probability;
+    public int getImpact(){
+        int impact = severity*probability;
         return impact;
     }
 }

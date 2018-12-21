@@ -25,7 +25,7 @@ public class Contribution {
     }
     public String toString() {
 
-        String contributions = "id: "+id+" time: "+ timeSpent+" percentage completed: "+System.lineSeparator();
+        String contributions = "Id: "+id+" | Time: "+ timeSpent+" | Percent completed: "+percentageCompleted+"%";
 
         return contributions;
     }

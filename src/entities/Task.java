@@ -9,7 +9,6 @@ public class Task {
     private List<Contribution> contributions;
 
     public Task() {
-
         contributions = new ArrayList<Contribution>();
     }
 
@@ -34,7 +33,6 @@ public class Task {
         return contributions;
     }
     public Contribution findContribution(String id) {
-
         for (Contribution i : contributions) {
             if (i.getId().equalsIgnoreCase(id)) {
                 return i;
@@ -80,5 +78,22 @@ public class Task {
     public int getStartWeek() {
         return startWeek;
     }
-
+    public int getCompletion(){
+        int completion = 0;
+        for(Contribution i : contributions){
+            completion+=i.getPercentageCompleted();
+        }
+        return completion;
+    }
+    public int getTimeSpent(){
+        int timeSpent = 0;
+        for(Contribution i : contributions){
+            timeSpent+=i.getTimeSpent();
+        }
+        return timeSpent;
+    }
+    public String toString(){
+        return System.lineSeparator()+" | Name: "+name+" | Budgeted hours: "+budgetedHours+" | Completion: "
+                +getCompletion()+"% | Time spent: "+getTimeSpent()+" hours. | ";
+    }
 }

@@ -8,6 +8,9 @@ public class Member {
     public Member() {
 
     }
+    public String toString(){
+        return System.lineSeparator()+" | Name: "+name+" | ID: "+id+" | ";
+    }
 
     public String getName() {
         return this.name;
