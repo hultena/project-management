@@ -4,11 +4,12 @@ import java.util.*;
 public class Task {
     private String name;
     private int budgetedHours;
+    private int startWeek;
+    private int endWeek;
     private List<Contribution> contributions;
 
-    public Task(String name, int budgetedHours) {
-        this.name = name;
-        this.budgetedHours = budgetedHours;
+    public Task() {
+
         contributions = new ArrayList<Contribution>();
     }
 
@@ -25,7 +26,7 @@ public class Task {
             i.addPercentage(percentageCompleted);
         }
         else{
-            Contribution newContribution = new Contribution(id, time, percentageCompleted);
+            Contribution newContribution = new Contribution();
             contributions.add(newContribution);
         }
     }
@@ -54,6 +55,30 @@ public class Task {
             percentage = findContribution(id).getTime();
         }
         return percentage;
+    }
+
+    public void setEndWeek(int endWeek) {
+        this.endWeek = endWeek;
+    }
+
+    public void setBudgetedHours(int budgetedHours) {
+        this.budgetedHours = budgetedHours;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setStartWeek(int startWeek) {
+        this.startWeek = startWeek;
+    }
+
+    public int getEndWeek() {
+        return endWeek;
+    }
+
+    public int getStartWeek() {
+        return startWeek;
     }
 
 }

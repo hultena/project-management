@@ -5,10 +5,8 @@ public class Risk {
     private float probability;
     private int severity;
 
-    public Risk(String name, float probability, int severity) {
-        this.name = name;
-        this.probability = probability;
-        this.severity = severity;
+    public Risk() {
+
     }
 
     public String toString() {

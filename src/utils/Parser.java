@@ -15,17 +15,22 @@ public class Parser {
 
     private String filename;
     private JsonNode data;
+    private String json;
 
     public void loadData() throws Exception {
         this.filename = "/home/maikzy/gitreps/project-management/template.json";
         byte[] jsonData = Files.readAllBytes(Paths.get(filename));
         ObjectMapper objectMapper = new ObjectMapper();
         this.data = objectMapper.readTree(jsonData);
-        System.out.println(this.data.getClass().getName());
+        Object json = objectMapper.readValue(data.toString(), Object.class);
+        this.json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(json);
 
     }
 
     public void setFilename(String name) {
         this.filename = name;
+    }
+    public String getJson(){
+        return json;
     }
 }
