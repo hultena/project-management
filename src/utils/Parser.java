@@ -15,6 +15,7 @@ public class Parser {
         // Need this when you run project from IDE
         if (this.filename == null) {
             this.filename = "/Users/bartek/gitreps/project-management/src/template.json";
+            System.out.println("No arguments received, using hardcoded path to json file");
         }
 
         byte[] jsonData = Files.readAllBytes(Paths.get(filename));
