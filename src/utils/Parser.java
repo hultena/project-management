@@ -1,15 +1,9 @@
 package utils;
 
-
-import java.util.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import entities.Risk;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class Parser {
 
@@ -18,7 +12,11 @@ public class Parser {
     private String json;
 
     public void loadData() throws Exception {
-        this.filename = "/home/maikzy/gitreps/project-management/template.json";
+        // Need this when you run project from IDE
+        if (this.filename == null) {
+            this.filename = "/Users/bartek/gitreps/project-management/src/template.json";
+        }
+
         byte[] jsonData = Files.readAllBytes(Paths.get(filename));
         ObjectMapper objectMapper = new ObjectMapper();
         this.data = objectMapper.readTree(jsonData);
@@ -27,8 +25,9 @@ public class Parser {
 
     }
 
-    public void setFilename(String name) {
-        this.filename = name;
+    public void setPathToJsonFile(String name) {
+        String workingDir = System.getProperty("user.dir");
+        this.filename = workingDir + "/" + name;
     }
     public String getJson(){
         return json;
