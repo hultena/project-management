@@ -5,23 +5,14 @@ import entities.Project;
 public class ProjectManager {
 
     public static void main(String[] args) throws Exception {
-        Parser parser = new Parser();
-
         if (args.length > 0) {
-            parser.setPathToJsonFile(args[0]);
+            Parser.setPathToJsonFile(args[0]);
         }
-        parser.loadData();
-        String json2 = parser.getJson();
-        ObjectMapper mp = new ObjectMapper();
+        Project project = Parser.loadData();
 
-        Project p1 = mp.readValue(json2, Project.class);
-        System.out.println(p1.getEndWeek());
-        System.out.println(p1.engineerSalary);
-        System.out.println(p1.riskMatrix.toString());
-        System.out.println(p1.members.toString());
-        System.out.println(p1.tasks.get(1).getContributions());
-
-
-
+        System.out.println(project.getMembers());
+        System.out.println(project.projectDuration);
+        System.out.println(project.getProjectName());
+        System.out.println(project.getEngineerSalary());
     }
 }
