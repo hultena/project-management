@@ -1,9 +1,10 @@
 {
-    "project_name": "Next facebook",
-    "engineer_salary": 30000,
-    "start_week": 36,
-    "end_week": 52,
-    "members": [
+    "projectName": "Next facebook",
+    "engineerSalary": 30000,
+    "projectDuration": 16,
+    "startWeek": 36,
+    "endWeek": 52,
+"members": [
         {
             "name": "Daniel",
             "id": "#001"
@@ -16,53 +17,65 @@
     "tasks": [
         {
             "name": "Setup landing page backend",
+<<<<<<< HEAD:template.json
             "budgeted_hours": 20,
             "start_week": 40,
             "end_week": 42,
+=======
+            "budgetedHours": 20,
+            "startWeek": 40,
+            "endWeek": 42,
+>>>>>>> develop:src/template.json
             "contributions": [
                 {
-                    "member_id": "#001",
-                    "time_spent": 15,
-                    "percentage_of_work_completed": 35
+                    "id": "#001",
+                    "timeSpent": 15,
+                    "percentageCompleted": 35
                 },
                 {
-                    "member_id": "#003",
-                    "time_spent": 6,
-                    "percentage_of_work_completed": 75
+                    "id": "#003",
+                    "timeSpent": 6,
+                    "percentageCompleted": 75
                 }
             ]
         },
         {
             "name": "Design landing page frontend",
+<<<<<<< HEAD:template.json
             "budgeted_hours": 20,
             "start_week": 44,
             "end_week": 48,
+=======
+            "budgetedHours": 20,
+            "startWeek": 44,
+            "endWeek": 48,
+>>>>>>> develop:src/template.json
             "contributions": [
                 {
-                    "member_id": "#002",
-                    "time_spent": 14,
-                    "percentage_of_work_completed": 75
+                    "id": "#002",
+                    "timeSpent": 14,
+                    "percentageCompleted": 75
                 }
             ]
         },
         {
             "name": "Fix signup bug",
-            "budgeted_hours": 10,
+            "budgetedHours": 10,
             "contributions": [
                 {
-                    "member_id": "#004",
-                    "time_spent": 5,
-                    "percentage_of_work_completed": 45
+                    "id": "#004",
+                    "timeSpent": 5,
+                    "percentageCompleted": 45
                 },
                 {
-                    "member_id": "#005",
-                    "time_spent": 7,
-                    "percentage_of_work_completed": 50
+                    "id": "#005",
+                    "timeSpent": 7,
+                    "percentageCompleted": 50
                 }
             ]
         }
     ],
-    "risk_matrix": [
+    "riskMatrix": [
         {
             "name": "People not showing up to meetings",
             "probability": 3,
