@@ -5,35 +5,32 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import entities.Project;
 
 public class Parser {
+    private static String FILENAME;
+    private static JsonNode JSON;
 
-    private String filename;
-    private JsonNode data;
-
-    private String json;
-
-    public void loadData() throws Exception {
+    public static Project loadData() throws Exception {
         // Need this when you run project from IDE
-        if (this.filename == null) {
-            this.filename = "/home/maikzygit /gitreps/project-management/src/template.json";
+        if (FILENAME == null) {
+            FILENAME = "/home/maikzy/gitreps/project-management/src/template.json";
             System.out.println("No arguments received, using hardcoded path to json file");
         }
 
-        byte[] jsonData = Files.readAllBytes(Paths.get(filename));
+        byte[] jsonData = Files.readAllBytes(Paths.get(FILENAME));
         ObjectMapper objectMapper = new ObjectMapper();
-        this.data = objectMapper.readTree(jsonData);
-        Object json = objectMapper.readValue(data.toString(), Object.class);
-        this.json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(json);
+        JSON = objectMapper.readTree(jsonData);
 
+        return objectMapper.readValue(JSON.toString(), Project.class);
     }
 
-    public void setPathToJsonFile(String name) {
+    public static void setPathToJsonFile(String name) {
         String workingDir = System.getProperty("user.dir");
-        this.filename = workingDir + "/" + name;
+        FILENAME = workingDir + "/" + name;
     }
-    public String getJson(){
-        return json;
 
+    public JsonNode getJson() {
+        return JSON;
     }
 }

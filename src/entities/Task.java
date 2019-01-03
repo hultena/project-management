@@ -9,9 +9,7 @@ public class Task {
     private int endWeek;
     private List<Contribution> contributions;
 
-    public Task(String name, int budgetedHours) {
-        this.name = name;
-        this.budgetedHours = budgetedHours;
+    public Task() {
         contributions = new ArrayList<Contribution>();
     }
 

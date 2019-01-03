@@ -4,7 +4,7 @@
     "projectDuration": 16,
     "startWeek": 36,
     "endWeek": 52,
-"members": [
+    "members": [
         {
             "name": "Daniel",
             "id": "#001"
@@ -17,15 +17,9 @@
     "tasks": [
         {
             "name": "Setup landing page backend",
-<<<<<<< HEAD:template.json
-            "budgeted_hours": 20,
-            "start_week": 40,
-            "end_week": 42,
-=======
             "budgetedHours": 20,
             "startWeek": 40,
             "endWeek": 42,
->>>>>>> develop:src/template.json
             "contributions": [
                 {
                     "id": "#001",
@@ -41,15 +35,9 @@
         },
         {
             "name": "Design landing page frontend",
-<<<<<<< HEAD:template.json
-            "budgeted_hours": 20,
-            "start_week": 44,
-            "end_week": 48,
-=======
             "budgetedHours": 20,
             "startWeek": 44,
             "endWeek": 48,
->>>>>>> develop:src/template.json
             "contributions": [
                 {
                     "id": "#002",
