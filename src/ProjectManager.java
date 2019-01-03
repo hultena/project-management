@@ -1,24 +1,11 @@
-<<<<<<< HEAD
-=======
+
 import com.fasterxml.jackson.databind.ObjectMapper;
->>>>>>> develop
 import utils.Parser;
 import entities.Project;
 
 public class ProjectManager {
 
     public static void main(String[] args) throws Exception {
-<<<<<<< HEAD
-
-        Parser parser = new Parser();
-        // Following block should give the Parser the path of the json file
-        if (args.length > 0) { // prevents crash when executed without command line arguments
-            parser.setFilename(args[0]);
-        }
-        parser.loadData();
-
-        Project project = new Project();
-=======
         Parser parser = new Parser();
 
         if (args.length > 0) {
@@ -34,9 +21,5 @@ public class ProjectManager {
         System.out.println(p1.riskMatrix.toString());
         System.out.println(p1.members.toString());
         System.out.println(p1.tasks.get(1).getContributions());
->>>>>>> develop
-
-
-
     }
 }
