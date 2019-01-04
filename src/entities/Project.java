@@ -36,7 +36,11 @@ public class Project {
 
     public void addMember(String name, String id) {
         if (this.findMember(id) == null) {
-            this.members.add(new Member());
+            Member newMember = new Member();
+            newMember.setId(id);
+            newMember.setName(name);
+            this.members.add(newMember);
+            System.out.println("Member successfully added.");
         } else {
             System.out.println("A member already exists with the ID: " + id);
         }
@@ -46,6 +50,7 @@ public class Project {
         Member memberToRemove = this.findMember(id);
         if (memberToRemove != null) {
             this.members.remove(memberToRemove);
+            System.out.println("Member successfully removed.");
         } else {
             System.out.println("No member exists with the ID: " + id);
         }
