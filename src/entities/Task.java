@@ -93,7 +93,7 @@ public class Task {
         return timeSpent;
     }
     public String toString(){
-        return System.lineSeparator()+" | Name: "+name+" | Budgeted hours: "+budgetedHours+" | Completion: "
-                +getCompletion()+"% | Time spent: "+getTimeSpent()+" hours. | ";
+        return System.lineSeparator()+" | Name: "+name+" | Budgeted hours: "+budgetedHours+" | Start week: "+startWeek
+                +" | End week: "+endWeek+" | Completion: " +getCompletion()+"% | Time spent: "+getTimeSpent()+" hours. | ";
     }
 }

@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class ProjectManager {
     private static final int RISK_MATRIX = 1;
     private static final int HANDLE_MEMBERS = 2;
+    private static final int HANDLE_TASKS = 3;
     private static final int QUIT = 10;
 
     public static void main(String[] args) throws Exception {
@@ -27,9 +28,9 @@ public class ProjectManager {
                     break;
                 case HANDLE_MEMBERS:
                     Output.printHandleTeamMembers();
-                    int choice = scanner.nextInt();
+                    chosenOption = scanner.nextInt();
 
-                    if(choice==1){
+                    if(chosenOption==1){
                         scanner.nextLine();
                         Output.memberName();
                         String name = scanner.nextLine();
@@ -38,27 +39,59 @@ public class ProjectManager {
                         project.addMember(name, id);
                         Output.waitForAnyKey();
 
-                    }else if(choice==2){
+                    }else if(chosenOption==2){
                         scanner.nextLine();
                         Output.memberId();
                         String id = scanner.nextLine();
                         System.out.println(project.findMember(id));
                         Output.waitForAnyKey();
 
-                    }else if(choice==3){
+                    }else if(chosenOption==3){
                         scanner.nextLine();
                         Output.memberId();
                         String id = scanner.nextLine();
                         project.removeMember(id);
                         Output.waitForAnyKey();
 
-                    }else if(choice==4){
+                    }else if(chosenOption==4){
                         Output.printAllMembers(project.members);
                         Output.waitForAnyKey();
                     }else{
                         Output.incorrectInput();
+                        Output.waitForAnyKey();
                     }
                     break;
+                case HANDLE_TASKS:
+                    Output.printHandleTasks();
+                    chosenOption = scanner.nextInt();
+                    if(chosenOption==1){
+                        //add task
+                        scanner.nextLine();
+                        Output.taskName();
+                        String name = scanner.nextLine();
+                        Output.taskBudgetedHours();
+                        int budgetedHours = scanner.nextInt();
+                        Output.taskStartWeek();
+                        int startWeek = scanner.nextInt();
+                        Output.taskEndWeek();
+                        int endWeek = scanner.nextInt();
+                        project.addTask(name, budgetedHours, startWeek, endWeek);
+                        Output.waitForAnyKey();
+                    }else if(chosenOption==2){
+                        //TODO: task contribution
+                        scanner.nextLine();
+                        Output.taskName();
+                        String name = scanner.nextLine();
+
+                    }else if(chosenOption==3){
+                        Output.printAllTasks(project.tasks);
+                        Output.waitForAnyKey();
+                    }else{
+                        Output.incorrectInput();
+                        Output.waitForAnyKey();
+                    }
+                    break;
+
                 case QUIT:
                     Output.printGoodBye();
             }

@@ -21,8 +21,12 @@ public class Project {
         this.members = new ArrayList<Member>();
 
     }
-    public void addTask(String name, int budgetedHours){
+    public void addTask(String name, int budgetedHours, int startWeek, int endWeek){
         Task newTask = new Task();
+        newTask.setName(name);
+        newTask.setBudgetedHours(budgetedHours);
+        newTask.setStartWeek(startWeek);
+        newTask.setEndWeek(endWeek);
         tasks.add(newTask);
     }
 
