@@ -42,6 +42,7 @@ public class Output {
         System.out.println("1. Add a task");
         System.out.println("2. Add task contribution");
         System.out.println("3. Print all tasks");
+        System.out.println("4. Print all unfinished tasks");
     }
     public static void taskName(){
         System.out.println("Enter name of task");
@@ -56,8 +57,17 @@ public class Output {
         System.out.println("Enter the end week of the task");
     }
     public static void printAllTasks(List<Task> tasks){
+        int i = 0;
         for(Task task : tasks){
-            System.out.println(task);
+            System.out.println(i+": "+task);
+            i++;
+        }
+    }
+    public static void printAllUncompletedTasks(List<Task> tasks){
+        for (Task task : tasks){
+            if(task.getCompletion()<100){
+                System.out.println(task);
+            }
         }
     }
     public static void incorrectInput(){

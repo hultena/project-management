@@ -26,6 +26,9 @@ public class Task {
         }
         else{
             Contribution newContribution = new Contribution();
+            newContribution.setId(id);
+            newContribution.setTimeSpent(time);
+            newContribution.setPercentageCompleted(percentageCompleted);
             contributions.add(newContribution);
         }
     }
@@ -93,7 +96,7 @@ public class Task {
         return timeSpent;
     }
     public String toString(){
-        return System.lineSeparator()+" | Name: "+name+" | Budgeted hours: "+budgetedHours+" | Start week: "+startWeek
-                +" | End week: "+endWeek+" | Completion: " +getCompletion()+"% | Time spent: "+getTimeSpent()+" hours. | ";
+        return "| Name: "+name+" | Budgeted hours: "+budgetedHours+" | Start week: "+startWeek
+                +" | End week: "+endWeek+" | Completion: " +getCompletion()+"% | Time spent: "+getTimeSpent()+" hours. | "+System.lineSeparator();
     }
 }

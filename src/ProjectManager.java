@@ -1,3 +1,4 @@
+import entities.Task;
 import utils.*;
 import entities.Project;
 import java.util.Scanner;
@@ -80,11 +81,27 @@ public class ProjectManager {
                     }else if(chosenOption==2){
                         //TODO: task contribution
                         scanner.nextLine();
-                        Output.taskName();
-                        String name = scanner.nextLine();
+                        Output.printAllTasks(project.tasks);
+                        System.out.println("Choose task number");
+                        chosenOption = scanner.nextInt();
+                        Task chosenTask = project.tasks.get(chosenOption);
+                        scanner.nextLine();
+                        Output.memberId();
+                        String id = scanner.nextLine();
+                        System.out.println("enter time");
+                        int time = scanner.nextInt();
+                        System.out.println("enter percentage");
+                        int percentageCompleted = scanner.nextInt();
+                        chosenTask.addContribution(id,time,percentageCompleted);
+                        System.out.println(chosenTask);
+                        Output.waitForAnyKey();
 
                     }else if(chosenOption==3){
                         Output.printAllTasks(project.tasks);
+                        Output.waitForAnyKey();
+                    }else if(chosenOption==4){
+                        //show uncompleted tasks
+                        Output.printAllUncompletedTasks(project.tasks);
                         Output.waitForAnyKey();
                     }else{
                         Output.incorrectInput();
