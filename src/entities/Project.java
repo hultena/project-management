@@ -22,9 +22,12 @@ public class Project {
         this.members = new ArrayList<Member>();
 
     }
-    public void addTask(String name, int budgetedHours){
+    public void addTask(String name, int budgetedHours, int startWeek, int endWeek){
         Task newTask = new Task();
-
+        newTask.setName(name);
+        newTask.setBudgetedHours(budgetedHours);
+        newTask.setStartWeek(startWeek);
+        newTask.setEndWeek(endWeek);
         tasks.add(newTask);
     }
 
@@ -38,7 +41,11 @@ public class Project {
 
     public void addMember(String name, String id) {
         if (this.findMember(id) == null) {
-            this.members.add(new Member());
+            Member newMember = new Member();
+            newMember.setId(id);
+            newMember.setName(name);
+            this.members.add(newMember);
+            System.out.println("Member successfully added.");
         } else {
             System.out.println("A member already exists with the ID: " + id);
         }
@@ -48,6 +55,7 @@ public class Project {
         Member memberToRemove = this.findMember(id);
         if (memberToRemove != null) {
             this.members.remove(memberToRemove);
+            System.out.println("Member successfully removed.");
         } else {
             System.out.println("No member exists with the ID: " + id);
         }

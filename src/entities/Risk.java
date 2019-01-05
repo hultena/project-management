@@ -10,8 +10,8 @@ public class Risk {
     }
 
     public String toString() {
-        return System.lineSeparator()+"| Name: "+this.name+" | Probability: "+this.probability+
-                " | Severity :"+this.severity+" | Impact : "+this.probability*this.severity+" | ";
+        return "| Name: "+this.name+" | Probability: "+this.probability+
+                " | Severity :"+this.severity+" | Impact : "+this.probability*this.severity+" | "+System.lineSeparator();
     }
 
     public String getName() {

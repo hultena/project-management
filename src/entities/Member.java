@@ -9,7 +9,7 @@ public class Member {
 
     }
     public String toString(){
-        return System.lineSeparator()+" | Name: "+name+" | ID: "+id+" | ";
+        return "| ID: "+id+" | Name: "+name+" | "+System.lineSeparator();
     }
 
     public String getName() {

@@ -25,9 +25,7 @@ public class Contribution {
         this.percentageCompleted+=percentage;
     }
     public String toString() {
-        String contributions = "Id: "+id+" | Time: "+ timeSpent+" | Percent completed: "+percentageCompleted+"%";
-
-        return contributions;
+        return "ID: "+id+" | Time: "+ timeSpent+" | Percent completed: "+percentageCompleted+"%";
     }
 
     public int getTimeSpent() {
