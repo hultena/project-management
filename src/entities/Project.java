@@ -21,6 +21,7 @@ public class Project {
         this.members = new ArrayList<Member>();
 
     }
+
     public void addTask(String name, int budgetedHours, int startWeek, int endWeek){
         Task newTask = new Task();
         newTask.setName(name);
@@ -69,6 +70,11 @@ public class Project {
         }
         return foundMember;
     }
+
+	public double calculateEV(budgetAtCompletion){
+
+		return 0;
+	}
 
     public void setEndWeek(int endWeek) {
         this.endWeek = endWeek;
