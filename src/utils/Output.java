@@ -120,11 +120,11 @@ public class Output {
 	public static void printProgress(Project project){
 		System.out.println("\n");
 		System.out.println("*****************************************");
-		System.out.println("*Earned Value: " + project.calculateEV + " *");
+		System.out.println("*Earned Value: " + project.calculateEV() + " *");
 		System.out.println("*****************************************");
-		System.out.println("*Schedule Variance: " + project.calculateSV	+ " *");
+		System.out.println("*Schedule Variance: " + project.calculateSV()	+ " *");
 		System.out.println("*****************************************");
-		System.out.println("*Cost Variance: " + project.calculateCV + " *");
+		System.out.println("*Cost Variance: " + project.calculateCV() + " *");
 		System.out.println("*****************************************");
 	}
 
@@ -132,7 +132,7 @@ public class Output {
 	public static void printDuration(Project project){
 		System.out.println("\n");
 		System.out.println("***********************");
-		SYstem.out.println("*Project Duration: " + project.calculateDuration + " *");
+		System.out.println("*Project Duration: " + project.calculateDuration() + " *");
 		System.out.println("***********************");
 	}
 }
