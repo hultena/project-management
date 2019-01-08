@@ -100,8 +100,9 @@ public class Output {
 
 	//Printing for the schedule
 	public static void printTaskSchedule(Task task) {
-            System.out.println(task.getName() +
-			"			w:" + task.getStartWeek() + "		w:" + task.getEndWeek());
+		System.out.println("\n");
+        System.out.println(task.getName() +
+		"			w:" + task.getStartWeek() + "		w:" + task.getEndWeek());
     }
    
 
@@ -113,4 +114,17 @@ public class Output {
 			printTaskSchedule(task);
         }
     }
+
+	//Printing EV, CV, and SV (Project progress)
+
+	public static void printProgress(Project project){
+		System.out.println("\n");
+		System.out.println("*****************************************");
+		System.out.println("*Earned Value: " + project.calculateEV + " *");
+		System.out.println("*****************************************");
+		System.out.println("*Schedule Variance: " + project.calculateSV	+ " *");
+		System.out.println("*****************************************");
+		System.out.println("*Cost Variance: " + project.calculateCV + " *");
+		System.out.println("*****************************************");
+	}
 }
