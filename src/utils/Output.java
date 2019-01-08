@@ -5,6 +5,7 @@ import java.util.*;
 import entities.Member;
 import entities.Risk;
 import entities.Task;
+import entities.Project;
 
 public class Output {
 
@@ -99,17 +100,17 @@ public class Output {
 
 	//Printing for the schedule
 	public static void printTaskSchedule(Task task) {
-            System.out.println(task.getName + "			w:" + task.getStartWeek + "		w:" + task.getEndWeek);
-        }
+            System.out.println(task.getName() +
+			"			w:" + task.getStartWeek() + "		w:" + task.getEndWeek());
     }
+   
 
 	//Printing for the schedule
 	public static void printSchedule(List<Task> tasks) {
         System.out.println("\n");
         System.out.println("Task       Start Week          End Week");
         for (Task task : tasks) {
-			printTaskSchedule(task)
+			printTaskSchedule(task);
         }
     }
-
 }
