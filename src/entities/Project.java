@@ -147,6 +147,19 @@ public class Project {
 		return costVariance;
 	}
 
+	//Calculating the project duration.
+
+	public int calculateDuration(){
+	int duration = 0;
+	if(startWeek < endWeek){
+		duration = endWeek - startWeek;
+	} else if(startWeek > endWeek){
+		duration = (endWeek - startWeek) + 52;
+	} 
+	return duration;
+	}
+
+
     public void setEndWeek(int endWeek) {
         this.endWeek = endWeek;
     }
