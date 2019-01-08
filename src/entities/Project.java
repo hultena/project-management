@@ -71,6 +71,37 @@ public class Project {
         return foundMember;
     }
 
+	/*Calculating the mean percentage of the tasks completed to
+	get an estimate for the entire project*/
+
+	public double meanPercentage(){
+	double totalPercent = 0;
+	int numberOfTasks = 0;
+	double meanPercentage = 0;
+	for (Task task : tasks) {
+			totalPercent = totalPercent + task.getCompletion();
+			numberOfTasks += 1;
+        }
+		if (numberOfTasks != 0) {
+		meanPercentage = totalPercent/numberOfTasks;
+		}
+		return meanPercentage;
+	}
+
+	//Calculating the earned value with the mean percentage for the tasks.
+
+	public double calculateEV(){
+	double EV = 0;
+	double completedPercent = meanPercentage();
+	double BAC = costOfPerformed();
+
+	if(BAC != 0){
+	EV = completedPercent/BAC;	
+	}
+		return EV;
+	}
+
+
 	//Calculating the total cost of the work performed for the tasks.
 
 	public double costOfPerformed(){
@@ -79,8 +110,8 @@ public class Project {
 		for(Task task : tasks) {
 			hoursSpent = hoursSpent + task.getTimeSpent();
 		}
-		totalPay = hoursSpent * engineerSalary;
-		return totalPay;
+		actualTotalPay = hoursSpent * engineerSalary;
+		return actualTotalPay;
 	}
 
 	//Calculating the scheduled total cost of the tasks.
