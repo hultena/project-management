@@ -8,6 +8,7 @@ public class ProjectManager {
     private static final int RISK_MATRIX = 1;
     private static final int HANDLE_MEMBERS = 2;
     private static final int HANDLE_TASKS = 3;
+	private static final int PROJECT_PROGRESS = 4;
     private static final int QUIT = 10;
 
     public static void main(String[] args) throws Exception {
@@ -108,6 +109,11 @@ public class ProjectManager {
                         Output.waitForAnyKey();
                     }
                     break;
+
+				case PROJECT_PROGRESS:
+					Output.printProgress(project);
+					Output.printSchedule(project.tasks)
+					break;
 
                 case QUIT:
                     Output.printGoodBye();
