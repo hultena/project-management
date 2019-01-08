@@ -113,7 +113,7 @@ public class ProjectManager {
 				case PROJECT_PROGRESS:
 					Output.printDuration(project);
 					Output.printProgress(project);
-					Output.printSchedule(project.tasks)
+					Output.printSchedule(project.tasks);
 					break;
 
                 case QUIT:
