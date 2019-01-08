@@ -115,7 +115,7 @@ public class Output {
         }
     }
 
-	//Printing EV, CV, and SV (Project progress)
+	//Printing EV, CV, and SV (Project progress).
 
 	public static void printProgress(Project project){
 		System.out.println("\n");
@@ -126,5 +126,13 @@ public class Output {
 		System.out.println("*****************************************");
 		System.out.println("*Cost Variance: " + project.calculateCV + " *");
 		System.out.println("*****************************************");
+	}
+
+	//Printing the project duration.
+	public static void printDuration(Project project){
+		System.out.println("\n");
+		System.out.println("***********************");
+		SYstem.out.println("*Project Duration: " + project.calculateDuration + " *");
+		System.out.println("***********************");
 	}
 }
