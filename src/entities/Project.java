@@ -71,9 +71,49 @@ public class Project {
         return foundMember;
     }
 
-	public double calculateEV(budgetAtCompletion){
+	//Calculating the total cost of the work performed for the tasks.
 
-		return 0;
+	public double costOfPerformed(){
+		int hoursSpent = 0;
+		double actualTotalPay = 0;
+		for(Task task : tasks) {
+			hoursSpent = hoursSpent + task.getTimeSpent();
+		}
+		totalPay = hoursSpent * engineerSalary;
+		return totalPay;
+	}
+
+	//Calculating the scheduled total cost of the tasks.
+
+	public double costOfScheduled(){
+		double plannedTotalPay = 0;
+		int totalHoursPlanned = 0;
+
+		for(Task task: tasks) {
+			totalHoursPlanned = totalHoursPlanned + task.getBudgetedHours();
+		}
+		plannedTotalPay = totalHoursPlanned * engineerSalary;
+		return plannedTotalPay;
+	}
+
+	//Calculating the schedule variance.
+
+	public double calculateSV(){
+		double scheduleVariance = 0;
+		double workPerformed = costOfPerformed();
+		double workScheduled = costOfScheduled();
+		scheduleVariance = workPerformed - workScheduled;
+		return scheduleVariance;
+	}
+
+	//Calculating the cost variance.
+
+	public double calculateCV(){
+		double costVariance = 0;
+		double actualCost = costOfPerformed();
+		double budgetedCost = costOfScheduled();
+		costVariance = budgetedCost - actualCost;
+		return costVariance;
 	}
 
     public void setEndWeek(int endWeek) {
