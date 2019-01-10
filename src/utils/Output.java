@@ -22,7 +22,7 @@ public class Output {
             System.out.println(risk);
         }
     }
-    public static void printHandleTeamMembers(){
+    public static void printHandleTeamMembersSubMenu(){
         System.out.println("1. Add team member");
         System.out.println("2. View team member");
         System.out.println("3. Remove team member");
@@ -39,14 +39,14 @@ public class Output {
             System.out.println(member);
         }
     }
-    public static void printHandleTasks(){
+    public static void printHandleTasksSubMenu(){
         System.out.println("1. Add a task");
         System.out.println("2. Add task contribution");
         System.out.println("3. Print all tasks");
         System.out.println("4. Print all unfinished tasks");
     }
 
-    public static void printProjectProgress() {
+    public static void printProjectProgressSubMenu() {
         System.out.println("1. Duration");
         System.out.println("2. Progress");
         System.out.println("3. Schedule");
@@ -81,11 +81,8 @@ public class Output {
         System.out.println("Incorrect input");
     }
 
-    public static void waitForAnyKey() {
+    public static void waitForKeyPress() {
         System.out.println("\n(Press enter to continue)");
-        /* This is to prevent the menu printing before
-        the user has had the time to read the risk matrix
-         */
         scanner.nextLine();
     }
 
@@ -105,15 +102,12 @@ public class Output {
         System.out.println("10. Quit");
     }
 
-	//Printing for the schedule
 	public static void printTaskSchedule(Task task) {
 		System.out.println("\n");
         System.out.println(task.getName() +
 		"			w:" + task.getStartWeek() + "		w:" + task.getEndWeek());
     }
    
-
-	//Printing for the schedule
 	public static void printSchedule(List<Task> tasks) {
         System.out.println("\n");
         System.out.println("Task       Start Week          End Week");
@@ -121,8 +115,6 @@ public class Output {
 			printTaskSchedule(task);
         }
     }
-
-	//Printing EV, CV, and SV (Project progress).
 
 	public static void printProgress(Project project){
 		System.out.println("\n");
@@ -135,7 +127,6 @@ public class Output {
 		System.out.println("*****************************************");
 	}
 
-	//Printing the project duration.
 	public static void printDuration(Project project){
 		System.out.println("\n");
 		System.out.println("***********************");
