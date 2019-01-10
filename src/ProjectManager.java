@@ -111,10 +111,21 @@ public class ProjectManager {
                     break;
 
 				case PROJECT_PROGRESS:
-					Output.printDuration(project);
-					Output.printProgress(project);
-					Output.printSchedule(project.tasks);
-					break;
+				    Output.printProjectProgress();
+
+				    chosenOption = scanner.nextInt();
+				    if (chosenOption==1){
+                        Output.printDuration(project);
+                    }else if(chosenOption==2){
+				        Output.printProgress(project);
+                    }else if(chosenOption==3){
+                        Output.printSchedule(project.tasks);
+                    }else{
+                        Output.incorrectInput();
+                    }
+
+                    Output.waitForAnyKey();
+                    break;
 
                 case QUIT:
                     Output.printGoodBye();

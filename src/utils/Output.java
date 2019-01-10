@@ -45,6 +45,12 @@ public class Output {
         System.out.println("3. Print all tasks");
         System.out.println("4. Print all unfinished tasks");
     }
+
+    public static void printProjectProgress() {
+        System.out.println("1. Duration");
+        System.out.println("2. Progress");
+        System.out.println("3. Schedule");
+    }
     public static void taskName(){
         System.out.println("Enter name of task");
     }
@@ -95,6 +101,7 @@ public class Output {
         System.out.println("1.  Project risk matrix");
         System.out.println("2.  Handle team members");
         System.out.println("3.  Handle tasks");
+        System.out.println("4.  Project progress");
         System.out.println("10. Quit");
     }
 
