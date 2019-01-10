@@ -28,11 +28,11 @@ public class Output {
         header += new String(new char[longestNameLength]).replace("\0", " ");
         header += "Probability     Severity     Impact";
 
-        String astericks = new String(new char[longestNameLength + 15 + 11 + 8 + 6]).replace("\0", "*");
+        String asterisks = new String(new char[longestNameLength + 15 + 11 + 8 + 6]).replace("\0", "*");
 
-        System.out.println("\n" + astericks);
+        System.out.println("\n" + asterisks);
         System.out.println(header);
-        System.out.println(astericks);
+        System.out.println(asterisks);
         for (Risk risk : riskMatrix) {
             String row = risk.getName();
             row += new String(new char[(4 + longestNameLength) - row.length()]).replace("\0"," ");
@@ -53,9 +53,24 @@ public class Output {
     public static void memberId(){
         System.out.println("Enter id");
     }
+
     public static void printAllMembers(List<Member> members){
+        int longestMemberName = 0;
+
         for(Member member : members){
-            System.out.println(member);
+            if (member.getName().length() > longestMemberName) {
+                longestMemberName = member.getName().length();
+            }
+        }
+        String asterisks = new String(new char[longestMemberName + 7]).replace("\0", "*");
+        System.out.println("\n" + asterisks);
+        System.out.println("ID     Name");
+        System.out.println(asterisks);
+
+        for (Member member: members) {
+            String row = member.getId();
+            row += "   " + member.getName();
+            System.out.println(row);
         }
     }
     public static void printHandleTasksSubMenu(){
@@ -82,17 +97,49 @@ public class Output {
     public static void taskEndWeek(){
         System.out.println("Enter the end week of the task");
     }
-    public static void printAllTasks(List<Task> tasks){
-        int i = 0;
-        for(Task task : tasks){
-            System.out.println(i+": "+task);
-            i++;
+    public static void printTasks(List<Task> tasks, boolean onlyUnfinishedTasks){
+        int longestNameLength = 0;
+
+        for (Task task : tasks) {
+            if (onlyUnfinishedTasks && task.getCompletion() < 100) {
+                 if (task.getName().length() > longestNameLength) {
+                     longestNameLength = task.getName().length();
+                 }
+            } else if (!onlyUnfinishedTasks){
+                if (task.getName().length() > longestNameLength) {
+                     longestNameLength = task.getName().length();
+                }
+            }
         }
-    }
-    public static void printAllUncompletedTasks(List<Task> tasks){
-        for (Task task : tasks){
-            if(task.getCompletion()<100){
-                System.out.println(task);
+
+        String header = "Name";
+        header += new String(new char[longestNameLength]).replace("\0", " ");
+        header += "Budgeted hours     Start week     End week     Completion(%)     Hours spent";
+
+        String asterisks = new String(new char[longestNameLength + 80]).replace("\0", "*");
+
+        System.out.println("\n" + asterisks);
+        System.out.println(header);
+        System.out.println(asterisks);
+
+        for (Task task : tasks) {
+            boolean shouldIncludetask = true;
+
+            if (onlyUnfinishedTasks && task.getCompletion() > 100) {
+               shouldIncludetask = false;
+            }
+
+            if (shouldIncludetask) {
+                String row = task.getName();
+
+                row += new String(new char[(4 + longestNameLength) - row.length()]).replace("\0"," ");
+                row += task.getBudgetedHours();
+                row += new String(new char[(longestNameLength + 23) - row.length()]).replace("\0", " ") + task.getStartWeek();
+                row += new String(new char[(longestNameLength + 23 + 15) - row.length()]).replace("\0", " ") + task.getEndWeek();
+                row += new String(new char[(longestNameLength + 23 + 15 + 13) - row.length()]).replace("\0", " ") + task.getCompletion();
+                row += new String(new char[(longestNameLength + 23 + 15 + 13 + 18) - row.length()]).replace("\0", " ") + task.getTimeSpent();
+
+                System.out.println(row);
             }
         }
     }

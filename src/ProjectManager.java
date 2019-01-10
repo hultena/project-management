@@ -75,7 +75,7 @@ public class ProjectManager {
                     }else if(chosenOption==2){
                         //TODO: task contribution
                         scanner.nextLine();
-                        Output.printAllTasks(project.tasks);
+                        Output.printTasks(project.tasks, false);
                         System.out.println("Choose task number");
                         chosenOption = scanner.nextInt();
                         Task chosenTask = project.tasks.get(chosenOption);
@@ -89,9 +89,9 @@ public class ProjectManager {
                         chosenTask.addContribution(id,time,percentageCompleted);
                         System.out.println(chosenTask);
                     }else if(chosenOption==3){
-                        Output.printAllTasks(project.tasks);
+                        Output.printTasks(project.tasks, false);
                     }else if(chosenOption==4){
-                        Output.printAllUncompletedTasks(project.tasks);
+                        Output.printTasks(project.tasks, true);
                     }else{
                         Output.incorrectInput();
                     }
