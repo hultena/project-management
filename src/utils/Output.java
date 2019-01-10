@@ -16,10 +16,29 @@ public class Output {
     }
 
     public static void printRiskMatrix(List<Risk> riskMatrix) {
-        System.out.println("\n");
-        System.out.println("Risk       Probability          Severity        Impact");
+        int longestNameLength = 0;
+
         for (Risk risk : riskMatrix) {
-            System.out.println(risk);
+            if (risk.getName().length() > longestNameLength) {
+                longestNameLength = risk.getName().length();
+            }
+        }
+
+        String header = "Risk";
+        header += new String(new char[longestNameLength]).replace("\0", " ");
+        header += "Probability     Severity     Impact";
+
+        String astericks = new String(new char[longestNameLength + 15 + 11 + 8 + 6]).replace("\0", "*");
+
+        System.out.println("\n" + astericks);
+        System.out.println(header);
+        System.out.println(astericks);
+        for (Risk risk : riskMatrix) {
+            String row = risk.getName();
+            row += new String(new char[(4 + longestNameLength) - row.length()]).replace("\0"," ");
+            row += risk.getProbability() + "               " + risk.getSeverity() + "            " + risk.getImpact();
+
+            System.out.println(row);
         }
     }
     public static void printHandleTeamMembersSubMenu(){
