@@ -47,12 +47,6 @@ public class Output {
         System.out.println("3. Remove team member");
         System.out.println("4. View all team members");
     }
-    public static void memberName(){
-        System.out.println("Enter name");
-    }
-    public static void memberId(){
-        System.out.println("Enter id");
-    }
 
     public static void printAllMembers(List<Member> members){
         int longestMemberName = 0;
@@ -85,18 +79,7 @@ public class Output {
         System.out.println("2. Progress");
         System.out.println("3. Schedule");
     }
-    public static void taskName(){
-        System.out.println("Enter name of task");
-    }
-    public static void taskBudgetedHours(){
-        System.out.println("Enter the task's budgeted hours");
-    }
-    public static void taskStartWeek(){
-        System.out.println("Enter the start week of the task");
-    }
-    public static void taskEndWeek(){
-        System.out.println("Enter the end week of the task");
-    }
+
     public static void printTasks(List<Task> tasks, boolean onlyUnfinishedTasks){
         int longestNameLength = 0;
 

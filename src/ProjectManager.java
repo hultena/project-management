@@ -34,19 +34,20 @@ public class ProjectManager {
 
                     if(chosenOption==1){
                         scanner.nextLine();
-                        Output.memberName();
+                        System.out.println("Enter name");
                         String name = scanner.nextLine();
-                        Output.memberId();
+                        System.out.println("Enter id");
                         String id = scanner.nextLine();
                         project.addMember(name, id);
+
                     }else if(chosenOption==2){
                         scanner.nextLine();
-                        Output.memberId();
+                        System.out.println("Enter id");
                         String id = scanner.nextLine();
                         System.out.println(project.findMember(id));
                     }else if(chosenOption==3){
                         scanner.nextLine();
-                        Output.memberId();
+                        System.out.println("Enter id");
                         String id = scanner.nextLine();
                         project.removeMember(id);
                     }else if(chosenOption==4){
@@ -63,13 +64,13 @@ public class ProjectManager {
                     if(chosenOption==1){
                         //add task
                         scanner.nextLine();
-                        Output.taskName();
+                        System.out.println("Enter name of task");
                         String name = scanner.nextLine();
-                        Output.taskBudgetedHours();
+                        System.out.println("Enter the task's budgeted hours");
                         int budgetedHours = scanner.nextInt();
-                        Output.taskStartWeek();
+                        System.out.println("Enter the start week of the task");
                         int startWeek = scanner.nextInt();
-                        Output.taskEndWeek();
+                        System.out.println("Enter the end week of the task");
                         int endWeek = scanner.nextInt();
                         project.addTask(name, budgetedHours, startWeek, endWeek);
                     }else if(chosenOption==2){
@@ -80,7 +81,7 @@ public class ProjectManager {
                         chosenOption = scanner.nextInt();
                         Task chosenTask = project.tasks.get(chosenOption);
                         scanner.nextLine();
-                        Output.memberId();
+                        System.out.println("Enter id");
                         String id = scanner.nextLine();
                         System.out.println("enter time");
                         int time = scanner.nextInt();
