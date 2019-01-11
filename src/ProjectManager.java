@@ -155,6 +155,7 @@ public class ProjectManager {
                     break;
 
                 case QUIT:
+                    Parser.saveJson(project);
                     Output.printGoodBye();
             }
         } while (chosenOption != QUIT);
