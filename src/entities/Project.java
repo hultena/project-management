@@ -30,6 +30,13 @@ public class Project {
         newTask.setEndWeek(endWeek);
         tasks.add(newTask);
     }
+    public void addRisk(String name,int severity,int probability){
+        Risk newRisk = new Risk();
+        newRisk.setName(name);
+        newRisk.setSeverity(severity);
+        newRisk.setProbability(probability);
+        riskMatrix.add(newRisk);
+    }
 
     public void setProjectDuration(int projectDurationWeeks) {
         this.projectDuration = projectDurationWeeks;
@@ -134,6 +141,7 @@ public class Project {
 	} 
 	return duration;
 	}
+
 
 
     public void setEndWeek(int endWeek) {

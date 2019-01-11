@@ -8,7 +8,8 @@ public class ProjectManager {
     private static final int RISK_MATRIX = 1;
     private static final int HANDLE_MEMBERS = 2;
     private static final int HANDLE_TASKS = 3;
-	private static final int PROJECT_PROGRESS = 4;
+    private static final int PROJECT_PROGRESS = 4;
+    private static final int HANDLE_RISKS = 5;
     private static final int QUIT = 10;
 
     public static void main(String[] args) throws Exception {
@@ -24,6 +25,8 @@ public class ProjectManager {
             chosenOption = scanner.nextInt();
 
             switch (chosenOption) {
+
+
                 case RISK_MATRIX:
                     Output.printRiskMatrix(project.riskMatrix);
                     Output.waitForKeyPress();
@@ -100,14 +103,14 @@ public class ProjectManager {
                     Output.waitForKeyPress();
                     break;
 
-				case PROJECT_PROGRESS:
-				    Output.printProjectProgressSubMenu();
+                case PROJECT_PROGRESS:
+                    Output.printProjectProgressSubMenu();
 
-				    chosenOption = scanner.nextInt();
-				    if (chosenOption==1){
+                    chosenOption = scanner.nextInt();
+                    if (chosenOption==1){
                         Output.printDuration(project);
                     }else if(chosenOption==2){
-				        Output.printProgress(project);
+                        Output.printProgress(project);
                     }else if(chosenOption==3){
                         Output.printSchedule(project.tasks);
                     }else{
@@ -115,6 +118,32 @@ public class ProjectManager {
                     }
 
                     Output.waitForKeyPress();
+                    break;
+
+                case HANDLE_RISKS:
+                    Output.printRiskMenu();
+                    chosenOption=scanner.nextInt();
+                    if(chosenOption==1){
+                        //add risk
+                        scanner.nextLine();
+                        Output.riskName();
+                        String name = scanner.nextLine();
+                        Output.riskSeverity();
+                        int severity = scanner.nextInt();
+                        Output.riskProbability();
+                        int probability = scanner.nextInt();
+                        project.addRisk(name,severity,probability);
+
+                    }else if(chosenOption==2){
+                        //remove risk
+                        scanner.nextLine();
+                        Output.printRiskMatrix(project.riskMatrix);
+                        System.out.println("\n");
+                        System.out.println("Pick risk number.");
+                        chosenOption = scanner.nextInt();
+                        project.riskMatrix.remove(chosenOption);
+
+                    }
                     break;
 
                 case QUIT:

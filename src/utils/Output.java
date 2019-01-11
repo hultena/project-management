@@ -33,12 +33,14 @@ public class Output {
         System.out.println("\n" + asterisks);
         System.out.println(header);
         System.out.println(asterisks);
+        int index = 0;
         for (Risk risk : riskMatrix) {
             String row = risk.getName();
             row += new String(new char[(4 + longestNameLength) - row.length()]).replace("\0"," ");
             row += risk.getProbability() + "               " + risk.getSeverity() + "            " + risk.getImpact();
 
-            System.out.println(row);
+            System.out.println(index+": "+row);
+            index++;
         }
     }
     public static void printHandleTeamMembersSubMenu(){
@@ -85,12 +87,12 @@ public class Output {
 
         for (Task task : tasks) {
             if (onlyUnfinishedTasks && task.getCompletion() < 100) {
-                 if (task.getName().length() > longestNameLength) {
-                     longestNameLength = task.getName().length();
-                 }
+                if (task.getName().length() > longestNameLength) {
+                    longestNameLength = task.getName().length();
+                }
             } else if (!onlyUnfinishedTasks){
                 if (task.getName().length() > longestNameLength) {
-                     longestNameLength = task.getName().length();
+                    longestNameLength = task.getName().length();
                 }
             }
         }
@@ -109,7 +111,7 @@ public class Output {
             boolean shouldIncludetask = true;
 
             if (onlyUnfinishedTasks && task.getCompletion() > 100) {
-               shouldIncludetask = false;
+                shouldIncludetask = false;
             }
 
             if (shouldIncludetask) {
@@ -148,38 +150,56 @@ public class Output {
         System.out.println("2.  Handle team members");
         System.out.println("3.  Handle tasks");
         System.out.println("4.  Project progress");
+        System.out.println("5.  Handle risks");
         System.out.println("10. Quit");
     }
 
-	public static void printTaskSchedule(Task task) {
-		System.out.println("\n");
+    public static void printTaskSchedule(Task task) {
+        System.out.println("\n");
         System.out.println(task.getName() +
-		"			w:" + task.getStartWeek() + "		w:" + task.getEndWeek());
+                "			w:" + task.getStartWeek() + "		w:" + task.getEndWeek());
     }
-   
-	public static void printSchedule(List<Task> tasks) {
+
+    public static void printSchedule(List<Task> tasks) {
         System.out.println("\n");
         System.out.println("Task       Start Week          End Week");
         for (Task task : tasks) {
-			printTaskSchedule(task);
+            printTaskSchedule(task);
         }
     }
 
-	public static void printProgress(Project project){
-		System.out.println("\n");
-		System.out.println("*****************************************");
-		System.out.println("*Earned Value: " + project.calculateEV() + " *");
-		System.out.println("*****************************************");
-		System.out.println("*Schedule Variance: " + project.calculateSV()	+ " *");
-		System.out.println("*****************************************");
-		System.out.println("*Cost Variance: " + project.calculateCV() + " *");
-		System.out.println("*****************************************");
-	}
+    public static void printProgress(Project project){
+        System.out.println("\n");
+        System.out.println("*****************************************");
+        System.out.println("*Earned Value: " + project.calculateEV() + " *");
+        System.out.println("*****************************************");
+        System.out.println("*Schedule Variance: " + project.calculateSV()	+ " *");
+        System.out.println("*****************************************");
+        System.out.println("*Cost Variance: " + project.calculateCV() + " *");
+        System.out.println("*****************************************");
+    }
 
-	public static void printDuration(Project project){
-		System.out.println("\n");
-		System.out.println("***********************");
-		System.out.println("*Project Duration: " + project.calculateDuration() + " *");
-		System.out.println("***********************");
-	}
+    public static void printDuration(Project project){
+        System.out.println("\n");
+        System.out.println("***********************");
+        System.out.println("*Project Duration: " + project.calculateDuration() + " *");
+        System.out.println("***********************");
+    }
+    public static void printRiskMenu(){
+        System.out.println("\n");
+        System.out.println("*** Handle risks ***");
+        System.out.println("1. Add risk");
+        System.out.println("2. Remove risk");
+
+
+    }
+    public static void riskName(){
+        System.out.println("Please enter risk name.");
+    }
+    public static void riskSeverity(){
+        System.out.println("Please enter risk severity.");
+    }
+    public static void riskProbability(){
+        System.out.println("Please enter risk probability.");
+    }
 }

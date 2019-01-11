@@ -27,4 +27,13 @@ public class Risk {
         int impact = severity*probability;
         return impact;
     }
+    public void setName(String name){
+        this.name = name;
+    }
+    public void setProbability(int probability){
+        this.probability=probability;
+    }
+    public void setSeverity(int severity){
+        this.severity=severity;
+    }
 }
