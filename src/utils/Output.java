@@ -74,6 +74,7 @@ public class Output {
         System.out.println("2. Add task contribution");
         System.out.println("3. Print all tasks");
         System.out.println("4. Print all unfinished tasks");
+        System.out.println("5. Remove tasks");
     }
 
     public static void printProjectProgressSubMenu() {
@@ -106,7 +107,7 @@ public class Output {
         System.out.println("\n" + asterisks);
         System.out.println(header);
         System.out.println(asterisks);
-
+        int index = 0;
         for (Task task : tasks) {
             boolean shouldIncludetask = true;
 
@@ -124,8 +125,9 @@ public class Output {
                 row += new String(new char[(longestNameLength + 23 + 15 + 13) - row.length()]).replace("\0", " ") + task.getCompletion();
                 row += new String(new char[(longestNameLength + 23 + 15 + 13 + 18) - row.length()]).replace("\0", " ") + task.getTimeSpent();
 
-                System.out.println(row);
+                System.out.println(index+": "+row);
             }
+            index++;
         }
     }
     public static void incorrectInput(){
