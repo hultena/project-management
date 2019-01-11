@@ -96,10 +96,16 @@ public class ProjectManager {
                         Output.printTasks(project.tasks, false);
                     }else if(chosenOption==4){
                         Output.printTasks(project.tasks, true);
+                    }else if(chosenOption==5){
+                        scanner.nextLine();
+                        Output.printTasks(project.tasks, false);
+                        System.out.println("\n");
+                        System.out.println("Pick task number");
+                        chosenOption=scanner.nextInt();
+                        project.tasks.remove(chosenOption);
                     }else{
                         Output.incorrectInput();
                     }
-
                     Output.waitForKeyPress();
                     break;
 
@@ -142,8 +148,10 @@ public class ProjectManager {
                         System.out.println("Pick risk number.");
                         chosenOption = scanner.nextInt();
                         project.riskMatrix.remove(chosenOption);
-
+                    }else{
+                        Output.incorrectInput();
                     }
+                    Output.waitForKeyPress();
                     break;
 
                 case QUIT:
