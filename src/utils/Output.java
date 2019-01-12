@@ -204,4 +204,9 @@ public class Output {
     public static void riskProbability(){
         System.out.println("Please enter risk probability.");
     }
+    public static void printProjectOptions(){
+        System.out.println("1. Print risk matrix");
+        System.out.println("2. Project progress");
+        System.out.println("3. Project schedule");
+    }
 }

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 
 public class ProjectManager {
-    private static final int RISK_MATRIX = 1;
+    private static final int HANDLE_PROJECT = 1;
     private static final int HANDLE_MEMBERS = 2;
     private static final int HANDLE_TASKS = 3;
     private static final int PROJECT_PROGRESS = 4;
@@ -27,9 +27,22 @@ public class ProjectManager {
             switch (chosenOption) {
 
 
-                case RISK_MATRIX:
-                    Output.printRiskMatrix(project.riskMatrix);
-                    Output.waitForKeyPress();
+                case HANDLE_PROJECT:
+                    scanner.nextLine();
+                    Output.printProjectOptions();
+                    chosenOption=scanner.nextInt();
+                    if(chosenOption==1){
+                        Output.printRiskMatrix(project.riskMatrix);
+                        Output.waitForKeyPress();
+                    }else if(chosenOption==2){
+                        //project progress
+                        System.out.println("project progress");
+                    }else if(chosenOption==3){
+                        //project schedule
+                        System.out.println("project schedule");
+                    }else{
+                        Output.incorrectInput();
+                    }
                     break;
                 case HANDLE_MEMBERS:
                     Output.printHandleTeamMembersSubMenu();
