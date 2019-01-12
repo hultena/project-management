@@ -78,69 +78,69 @@ public class Project {
         return foundMember;
     }
 
-	public double meanPercentage(){
+    public double meanPercentage(){
         double totalPercent = 0;
         int numberOfTasks = 0;
         double meanPercentage = 0;
 
         for (Task task : tasks) {
-                totalPercent = totalPercent + task.getCompletion();
-                numberOfTasks += 1;
-            }
-
-        if (numberOfTasks != 0) {
-        meanPercentage = totalPercent/numberOfTasks;
+            totalPercent = totalPercent + task.completion();
+            numberOfTasks += 1;
         }
 
-		return meanPercentage;
-	}
+        if (numberOfTasks != 0) {
+            meanPercentage = totalPercent/numberOfTasks;
+        }
 
-	public double calculateEV(){
+        return meanPercentage;
+    }
+
+    public double calculateEV(){
         double EV = 0;
         double completedPercent = meanPercentage();
         double BAC = costOfPerformed();
 
         if(BAC != 0){
-        EV = completedPercent/BAC;
+            EV = completedPercent/BAC;
         }
-		return EV;
-	}
+        return EV;
+    }
 
-	public double costOfPerformed(){
-		int hoursSpent = 0;
+    public double costOfPerformed(){
+        int hoursSpent = 0;
 
-		for(Task task : this.tasks) {
-			hoursSpent += task.getTimeSpent();
-		}
-		return hoursSpent * engineerSalary;
-	}
+        for(Task task : this.tasks) {
+            hoursSpent += task.getTimeSpent();
+        }
+        return hoursSpent * engineerSalary;
+    }
 
-	public double costOfScheduled(){
-		int totalHoursPlanned = 0;
+    public double costOfScheduled(){
+        int totalHoursPlanned = 0;
 
-		for(Task task: this.tasks) {
-			totalHoursPlanned += task.getBudgetedHours();
-		}
-		return totalHoursPlanned * engineerSalary;
-	}
+        for(Task task: this.tasks) {
+            totalHoursPlanned += task.getBudgetedHours();
+        }
+        return totalHoursPlanned * engineerSalary;
+    }
 
-	public double calculateSV(){
-		return this.costOfPerformed() - this.costOfScheduled();
-	}
+    public double calculateSV(){
+        return this.costOfPerformed() - this.costOfScheduled();
+    }
 
-	public double calculateCV(){
-		return this.costOfScheduled() - this.costOfPerformed();
-	}
+    public double calculateCV(){
+        return this.costOfScheduled() - this.costOfPerformed();
+    }
 
-	public int calculateDuration(){
-	int duration = 0;
-	if(startWeek < endWeek){
-		duration = endWeek - startWeek;
-	} else if(startWeek > endWeek){
-		duration = (endWeek - startWeek) + 52;
-	} 
-	return duration;
-	}
+    public int calculateDuration(){
+        int duration = 0;
+        if(startWeek < endWeek){
+            duration = endWeek - startWeek;
+        } else if(startWeek > endWeek){
+            duration = (endWeek - startWeek) + 52;
+        }
+        return duration;
+    }
 
 
 

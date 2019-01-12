@@ -37,7 +37,7 @@ public class Output {
         for (Risk risk : riskMatrix) {
             String row = risk.getName();
             row += new String(new char[(4 + longestNameLength) - row.length()]).replace("\0"," ");
-            row += risk.getProbability() + "               " + risk.getSeverity() + "            " + risk.getImpact();
+            row += risk.getProbability() + "               " + risk.getSeverity() + "            " + risk.impact();
 
             System.out.println(index+": "+row);
             index++;
@@ -87,7 +87,7 @@ public class Output {
         int longestNameLength = 0;
 
         for (Task task : tasks) {
-            if (onlyUnfinishedTasks && task.getCompletion() < 100) {
+            if (onlyUnfinishedTasks && task.completion() < 100) {
                 if (task.getName().length() > longestNameLength) {
                     longestNameLength = task.getName().length();
                 }
@@ -111,7 +111,7 @@ public class Output {
         for (Task task : tasks) {
             boolean shouldIncludetask = true;
 
-            if (onlyUnfinishedTasks && task.getCompletion() > 100) {
+            if (onlyUnfinishedTasks && task.completion() > 100) {
                 shouldIncludetask = false;
             }
 
@@ -122,7 +122,7 @@ public class Output {
                 row += task.getBudgetedHours();
                 row += new String(new char[(longestNameLength + 23) - row.length()]).replace("\0", " ") + task.getStartWeek();
                 row += new String(new char[(longestNameLength + 23 + 15) - row.length()]).replace("\0", " ") + task.getEndWeek();
-                row += new String(new char[(longestNameLength + 23 + 15 + 13) - row.length()]).replace("\0", " ") + task.getCompletion();
+                row += new String(new char[(longestNameLength + 23 + 15 + 13) - row.length()]).replace("\0", " ") + task.completion();
                 row += new String(new char[(longestNameLength + 23 + 15 + 13 + 18) - row.length()]).replace("\0", " ") + task.getTimeSpent();
 
                 System.out.println(index+": "+row);

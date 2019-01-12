@@ -46,14 +46,14 @@ public class Task {
     public int printTime(String id){
         int time = 0;
         if(findContribution(id)!=null) {
-            time = findContribution(id).getTime();
+            time = findContribution(id).getTimeSpent();
         }
         return time;
     }
     public int printPercentage(String id){
         int percentage = 0;
         if(findContribution(id)!=null) {
-            percentage = findContribution(id).getTime();
+            percentage = findContribution(id).getTimeSpent();
         }
         return percentage;
     }
@@ -81,7 +81,7 @@ public class Task {
     public int getStartWeek() {
         return startWeek;
     }
-    public int getCompletion(){
+    public int completion(){
         int completion = 0;
         for(Contribution i : contributions){
             completion+=i.getPercentageCompleted();
@@ -97,6 +97,6 @@ public class Task {
     }
     public String toString(){
         return "| Name: "+name+" | Budgeted hours: "+budgetedHours+" | Start week: "+startWeek
-                +" | End week: "+endWeek+" | Completion: " +getCompletion()+"% | Time spent: "+getTimeSpent()+" hours. | "+System.lineSeparator();
+                +" | End week: "+endWeek+" | Completion: " +completion()+"% | Time spent: "+getTimeSpent()+" hours. | "+System.lineSeparator();
     }
 }

@@ -23,7 +23,7 @@ public class Risk {
     public int getSeverity() {
         return severity;
     }
-    public int getImpact(){
+    public int impact(){
         int impact = severity*probability;
         return impact;
     }

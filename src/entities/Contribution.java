@@ -11,9 +11,7 @@ public class Contribution {
     public String getId(){
         return id;
     }
-    public int getTime(){
-        return timeSpent;
-    }
+
     public int getPercentageCompleted(){
         return percentageCompleted;
     }
