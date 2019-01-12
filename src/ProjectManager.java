@@ -36,23 +36,13 @@ public class ProjectManager {
                     }else if(chosenOption==2){
                         //project progress
                         System.out.println("project progress");
-                        Output.printProjectProgressSubMenu();
-
-                        chosenOption = scanner.nextInt();
-                        if (chosenOption==1){
-                            Output.printDuration(project);
-                        }else if(chosenOption==2){
-                            Output.printProgress(project);
-                        }else if(chosenOption==3){
-                            Output.printSchedule(project.tasks);
-                        }else{
-                            Output.incorrectInput();
-                        }
-
+                        Output.printProgress(project);
                         Output.waitForKeyPress();
                     }else if(chosenOption==3){
                         //project schedule
                         System.out.println("project schedule");
+                        Output.printSchedule(project.tasks);
+                        Output.waitForKeyPress();
                     }else{
                         Output.incorrectInput();
                     }
