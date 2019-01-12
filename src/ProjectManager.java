@@ -8,8 +8,7 @@ public class ProjectManager {
     private static final int HANDLE_PROJECT = 1;
     private static final int HANDLE_MEMBERS = 2;
     private static final int HANDLE_TASKS = 3;
-    private static final int PROJECT_PROGRESS = 4;
-    private static final int HANDLE_RISKS = 5;
+    private static final int HANDLE_RISKS = 4;
     private static final int QUIT = 10;
 
     public static void main(String[] args) throws Exception {
@@ -37,6 +36,20 @@ public class ProjectManager {
                     }else if(chosenOption==2){
                         //project progress
                         System.out.println("project progress");
+                        Output.printProjectProgressSubMenu();
+
+                        chosenOption = scanner.nextInt();
+                        if (chosenOption==1){
+                            Output.printDuration(project);
+                        }else if(chosenOption==2){
+                            Output.printProgress(project);
+                        }else if(chosenOption==3){
+                            Output.printSchedule(project.tasks);
+                        }else{
+                            Output.incorrectInput();
+                        }
+
+                        Output.waitForKeyPress();
                     }else if(chosenOption==3){
                         //project schedule
                         System.out.println("project schedule");
@@ -119,23 +132,6 @@ public class ProjectManager {
                     }else{
                         Output.incorrectInput();
                     }
-                    Output.waitForKeyPress();
-                    break;
-
-                case PROJECT_PROGRESS:
-                    Output.printProjectProgressSubMenu();
-
-                    chosenOption = scanner.nextInt();
-                    if (chosenOption==1){
-                        Output.printDuration(project);
-                    }else if(chosenOption==2){
-                        Output.printProgress(project);
-                    }else if(chosenOption==3){
-                        Output.printSchedule(project.tasks);
-                    }else{
-                        Output.incorrectInput();
-                    }
-
                     Output.waitForKeyPress();
                     break;
 

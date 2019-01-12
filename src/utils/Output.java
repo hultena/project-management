@@ -148,11 +148,10 @@ public class Output {
     public static void printMenu() {
         System.out.println("\n");
         System.out.println("*** Project-management ***");
-        System.out.println("1.  Project risk matrix");
+        System.out.println("1.  Handle project");
         System.out.println("2.  Handle team members");
         System.out.println("3.  Handle tasks");
-        System.out.println("4.  Project progress");
-        System.out.println("5.  Handle risks");
+        System.out.println("4.  Handle risks");
         System.out.println("10. Quit");
     }
 
