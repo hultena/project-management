@@ -85,12 +85,6 @@ public class Output {
         System.out.println("10. Back to menu");
     }
 
-    public static void printProjectProgressSubMenu() {
-        System.out.println("1. Duration");
-        System.out.println("2. Progress");
-        System.out.println("3. Schedule");
-    }
-
     public static void printTasks(List<Task> tasks, boolean onlyUnfinishedTasks){
         int longestNameLength = 0;
 
@@ -218,5 +212,8 @@ public class Output {
         System.out.println("1. Print risk matrix");
         System.out.println("2. Project progress");
         System.out.println("3. Project schedule");
+    }
+    public static void printContributions(Task task,String id){
+        System.out.println("Task name: "+task.getName()+" | Time spent: "+task.printTime(id)+" hours. | Percentage completed: "+task.printPercentage(id)+"%");
     }
 }

@@ -1,7 +1,7 @@
 package entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import utils.Parser;
+import utils.Output;
+
 import java.util.*;
 
 public class Project {
@@ -169,5 +169,11 @@ public class Project {
     }
     public void setEngineerSalary(int engineerSalary) {
         this.engineerSalary = engineerSalary;
+    }
+    public void findContributions(String id){
+        for(Task i : tasks){
+            if(i.findContribution(id)!=null)
+                Output.printContributions(i,id);
+        }
     }
 }

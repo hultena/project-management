@@ -66,6 +66,10 @@ public class ProjectManager {
                         System.out.println("Enter id");
                         String id = scanner.nextLine();
                         System.out.println(project.findMember(id));
+                        System.out.println("Contributions");
+                        project.findContributions(id);
+
+
                     }else if(option==3){
                         scanner.nextLine();
                         System.out.println("Enter id");

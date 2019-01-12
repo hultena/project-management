@@ -53,7 +53,7 @@ public class Task {
     public int printPercentage(String id){
         int percentage = 0;
         if(findContribution(id)!=null) {
-            percentage = findContribution(id).getTimeSpent();
+            percentage = findContribution(id).getPercentageCompleted();
         }
         return percentage;
     }
@@ -99,4 +99,5 @@ public class Task {
         return "| Name: "+name+" | Budgeted hours: "+budgetedHours+" | Start week: "+startWeek
                 +" | End week: "+endWeek+" | Completion: " +completion()+"% | Time spent: "+timeSpent()+" hours. | "+System.lineSeparator();
     }
+
 }
