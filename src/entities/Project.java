@@ -3,7 +3,6 @@ package entities;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import utils.Parser;
 import java.util.*;
-@JsonIgnoreProperties(ignoreUnknown = true)
 
 public class Project {
     public List<Risk> riskMatrix;

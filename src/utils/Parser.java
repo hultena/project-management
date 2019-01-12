@@ -41,7 +41,7 @@ public class Parser {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
         try{
-            objectWriter.writeValue(new File("/Users/bartek/gitreps/project-management/src/template.json"), project);
+            objectWriter.writeValue(new File(FILENAME), project);
         }catch (IOException e) {
             e.printStackTrace();
         }
