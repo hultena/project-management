@@ -51,9 +51,9 @@ public class ProjectManager {
                 case HANDLE_MEMBERS:
                     Output.printAllMembers(project.members);
                     Output.printHandleTeamMembersSubMenu();
-                    chosenOption = scanner.nextInt();
+                    int option = scanner.nextInt();
 
-                    if(chosenOption==1){
+                    if(option==1){
                         scanner.nextLine();
                         System.out.println("Enter name");
                         String name = scanner.nextLine();
@@ -61,29 +61,28 @@ public class ProjectManager {
                         String id = scanner.nextLine();
                         project.addMember(name, id);
 
-                    }else if(chosenOption==2){
+                    }else if(option==2){
                         scanner.nextLine();
                         System.out.println("Enter id");
                         String id = scanner.nextLine();
                         System.out.println(project.findMember(id));
-                    }else if(chosenOption==3){
+                    }else if(option==3){
                         scanner.nextLine();
                         System.out.println("Enter id");
                         String id = scanner.nextLine();
                         project.removeMember(id);
-                    }else if(chosenOption==4){
+                    }else if(option==4) {
                         Output.printAllMembers(project.members);
-                    }else{
+                    }else if (option!=10) {
                         Output.incorrectInput();
                     }
 
-                    Output.waitForKeyPress();
                     break;
                 case HANDLE_TASKS:
                     Output.printTasks(project.tasks, false);
                     Output.printHandleTasksSubMenu();
-                    chosenOption = scanner.nextInt();
-                    if(chosenOption==1){
+                    option = scanner.nextInt();
+                    if(option==1){
                         //add task
                         scanner.nextLine();
                         System.out.println("Enter name of task");
@@ -95,7 +94,7 @@ public class ProjectManager {
                         System.out.println("Enter the end week of the task");
                         int endWeek = scanner.nextInt();
                         project.addTask(name, budgetedHours, startWeek, endWeek);
-                    }else if(chosenOption==2){
+                    }else if(option==2){
                         //TODO: task contribution
                         scanner.nextLine();
                         Output.printTasks(project.tasks, false);
@@ -111,28 +110,27 @@ public class ProjectManager {
                         int percentageCompleted = scanner.nextInt();
                         chosenTask.addContribution(id,time,percentageCompleted);
                         System.out.println(chosenTask);
-                    }else if(chosenOption==3){
+                    }else if(option==3){
                         Output.printTasks(project.tasks, false);
-                    }else if(chosenOption==4){
+                    }else if(option==4){
                         Output.printTasks(project.tasks, true);
-                    }else if(chosenOption==5){
+                    }else if(option==5){
                         scanner.nextLine();
                         Output.printTasks(project.tasks, false);
                         System.out.println("\n");
                         System.out.println("Pick task number");
-                        chosenOption=scanner.nextInt();
-                        project.tasks.remove(chosenOption - 1);
-                    }else{
+                        option=scanner.nextInt();
+                        project.tasks.remove(option - 1);
+                    }else if (option!=10) {
                         Output.incorrectInput();
                     }
-                    Output.waitForKeyPress();
                     break;
 
                 case HANDLE_RISKS:
                     Output.printRiskMatrix(project.riskMatrix);
                     Output.printRiskMenu();
-                    chosenOption=scanner.nextInt();
-                    if(chosenOption==1){
+                    option = scanner.nextInt();
+                    if(option==1){
                         //add risk
                         scanner.nextLine();
                         Output.riskName();
@@ -143,18 +141,17 @@ public class ProjectManager {
                         int probability = scanner.nextInt();
                         project.addRisk(name,severity,probability);
 
-                    }else if(chosenOption==2){
+                    }else if(option==2){
                         //remove risk
                         scanner.nextLine();
                         Output.printRiskMatrix(project.riskMatrix);
                         System.out.println("\n");
                         System.out.println("Pick risk number.");
-                        chosenOption = scanner.nextInt();
-                        project.riskMatrix.remove(chosenOption - 1);
-                    }else{
+                        option = scanner.nextInt();
+                        project.riskMatrix.remove(option - 1);
+                    }else if (option!= 10){
                         Output.incorrectInput();
                     }
-                    Output.waitForKeyPress();
                     break;
 
                 case QUIT:

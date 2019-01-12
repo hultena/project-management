@@ -45,11 +45,13 @@ public class Output {
     }
     public static void printHandleTeamMembersSubMenu(){
         System.out.println("\n*** Manage members ***");
-        System.out.println("1. Add team member");
-        System.out.println("2. View team member");
-        System.out.println("3. Remove team member");
-        System.out.println("4. View all team members");
+        System.out.println("1.  Add team member");
+        System.out.println("2.  View team member");
+        System.out.println("3.  Remove team member");
+        System.out.println("4.  View all team members");
+        System.out.println("10. Back to menu");
     }
+
 
     public static void printAllMembers(List<Member> members){
         int longestMemberName = 0;
@@ -72,11 +74,12 @@ public class Output {
     }
     public static void printHandleTasksSubMenu(){
         System.out.println("\n*** Manage tasks ***");
-        System.out.println("1. Add task");
-        System.out.println("2. Add task contribution");
-        System.out.println("3. Print all tasks");
-        System.out.println("4. Print all unfinished tasks");
-        System.out.println("5. Remove tasks");
+        System.out.println("1.  Add task");
+        System.out.println("2.  Add task contribution");
+        System.out.println("3.  Print all tasks");
+        System.out.println("4.  Print all unfinished tasks");
+        System.out.println("5.  Remove tasks");
+        System.out.println("10. Back to menu");
     }
 
     public static void printProjectProgressSubMenu() {
@@ -191,10 +194,9 @@ public class Output {
     public static void printRiskMenu(){
         System.out.println("\n");
         System.out.println("*** Manage risks ***");
-        System.out.println("1. Add risk");
-        System.out.println("2. Remove risk");
-
-
+        System.out.println("1.  Add risk");
+        System.out.println("2.  Remove risk");
+        System.out.println("10. Back to menu");
     }
     public static void riskName(){
         System.out.println("Please enter risk name.");
