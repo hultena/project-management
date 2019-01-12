@@ -68,6 +68,8 @@ public class ProjectManager {
                         System.out.println(project.findMember(id));
                         System.out.println("Contributions");
                         project.findContributions(id);
+                        //total worked time
+                        System.out.println(project.totalTimeWorked(id)+" hours total work time.");
 
 
                     }else if(option==3){

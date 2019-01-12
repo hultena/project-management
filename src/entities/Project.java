@@ -176,4 +176,12 @@ public class Project {
                 Output.printContributions(i,id);
         }
     }
+    public int totalTimeWorked(String id){
+        int time = 0;
+        for (Task i : tasks){
+            if(i.findContribution(id)!=null){
+                time+=i.printTime(id);
+            }
+        }return time;
+    }
 }
