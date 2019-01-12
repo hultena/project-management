@@ -123,7 +123,7 @@ public class Output {
                 row += new String(new char[(longestNameLength + 23) - row.length()]).replace("\0", " ") + task.getStartWeek();
                 row += new String(new char[(longestNameLength + 23 + 15) - row.length()]).replace("\0", " ") + task.getEndWeek();
                 row += new String(new char[(longestNameLength + 23 + 15 + 13) - row.length()]).replace("\0", " ") + task.completion();
-                row += new String(new char[(longestNameLength + 23 + 15 + 13 + 18) - row.length()]).replace("\0", " ") + task.getTimeSpent();
+                row += new String(new char[(longestNameLength + 23 + 15 + 13 + 18) - row.length()]).replace("\0", " ") + task.timeSpent();
 
                 System.out.println(index+": "+row);
             }

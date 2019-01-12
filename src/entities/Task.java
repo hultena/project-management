@@ -88,7 +88,7 @@ public class Task {
         }
         return completion;
     }
-    public int getTimeSpent(){
+    public int timeSpent(){
         int timeSpent = 0;
         for(Contribution i : contributions){
             timeSpent+=i.getTimeSpent();
@@ -97,6 +97,6 @@ public class Task {
     }
     public String toString(){
         return "| Name: "+name+" | Budgeted hours: "+budgetedHours+" | Start week: "+startWeek
-                +" | End week: "+endWeek+" | Completion: " +completion()+"% | Time spent: "+getTimeSpent()+" hours. | "+System.lineSeparator();
+                +" | End week: "+endWeek+" | Completion: " +completion()+"% | Time spent: "+timeSpent()+" hours. | "+System.lineSeparator();
     }
 }

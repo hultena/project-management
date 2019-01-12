@@ -110,7 +110,7 @@ public class Project {
         int hoursSpent = 0;
 
         for(Task task : this.tasks) {
-            hoursSpent += task.getTimeSpent();
+            hoursSpent += task.timeSpent();
         }
         return hoursSpent * engineerSalary;
     }
