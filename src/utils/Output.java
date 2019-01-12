@@ -33,7 +33,7 @@ public class Output {
         System.out.println("\n" + asterisks);
         System.out.println(header);
         System.out.println(asterisks);
-        int index = 0;
+        int index = 1;
         for (Risk risk : riskMatrix) {
             String row = risk.getName();
             row += new String(new char[(4 + longestNameLength) - row.length()]).replace("\0"," ");
@@ -44,6 +44,7 @@ public class Output {
         }
     }
     public static void printHandleTeamMembersSubMenu(){
+        System.out.println("\n*** Manage members ***");
         System.out.println("1. Add team member");
         System.out.println("2. View team member");
         System.out.println("3. Remove team member");
@@ -70,7 +71,8 @@ public class Output {
         }
     }
     public static void printHandleTasksSubMenu(){
-        System.out.println("1. Add a task");
+        System.out.println("\n*** Manage tasks ***");
+        System.out.println("1. Add task");
         System.out.println("2. Add task contribution");
         System.out.println("3. Print all tasks");
         System.out.println("4. Print all unfinished tasks");
@@ -107,7 +109,7 @@ public class Output {
         System.out.println("\n" + asterisks);
         System.out.println(header);
         System.out.println(asterisks);
-        int index = 0;
+        int index = 1;
         for (Task task : tasks) {
             boolean shouldIncludetask = true;
 
@@ -143,16 +145,16 @@ public class Output {
         System.out.println("\n");
         System.out.println("Thank you for using our software");
         System.out.println("Bye!");
-        System.exit(0);
     }
     public static void printMenu() {
         System.out.println("\n");
         System.out.println("*** Project-management ***");
-        System.out.println("1.  Handle project");
-        System.out.println("2.  Handle team members");
-        System.out.println("3.  Handle tasks");
-        System.out.println("4.  Handle risks");
-        System.out.println("10. Quit");
+        System.out.println("1.  Manage project");
+        System.out.println("2.  Manage team members");
+        System.out.println("3.  Manage tasks");
+        System.out.println("4.  Manage risks");
+        System.out.println("10. Quit without saving");
+        System.out.println("11. Quit and save");
     }
 
     public static void printTaskSchedule(Task task) {
@@ -188,7 +190,7 @@ public class Output {
     }
     public static void printRiskMenu(){
         System.out.println("\n");
-        System.out.println("*** Handle risks ***");
+        System.out.println("*** Manage risks ***");
         System.out.println("1. Add risk");
         System.out.println("2. Remove risk");
 

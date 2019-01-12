@@ -10,6 +10,7 @@ public class ProjectManager {
     private static final int HANDLE_TASKS = 3;
     private static final int HANDLE_RISKS = 4;
     private static final int QUIT = 10;
+    private static final int QUIT_AND_SAVE = 11;
 
     public static void main(String[] args) throws Exception {
         if (args.length > 0) {
@@ -48,6 +49,7 @@ public class ProjectManager {
                     }
                     break;
                 case HANDLE_MEMBERS:
+                    Output.printAllMembers(project.members);
                     Output.printHandleTeamMembersSubMenu();
                     chosenOption = scanner.nextInt();
 
@@ -78,6 +80,7 @@ public class ProjectManager {
                     Output.waitForKeyPress();
                     break;
                 case HANDLE_TASKS:
+                    Output.printTasks(project.tasks, false);
                     Output.printHandleTasksSubMenu();
                     chosenOption = scanner.nextInt();
                     if(chosenOption==1){
@@ -118,7 +121,7 @@ public class ProjectManager {
                         System.out.println("\n");
                         System.out.println("Pick task number");
                         chosenOption=scanner.nextInt();
-                        project.tasks.remove(chosenOption);
+                        project.tasks.remove(chosenOption - 1);
                     }else{
                         Output.incorrectInput();
                     }
@@ -126,6 +129,7 @@ public class ProjectManager {
                     break;
 
                 case HANDLE_RISKS:
+                    Output.printRiskMatrix(project.riskMatrix);
                     Output.printRiskMenu();
                     chosenOption=scanner.nextInt();
                     if(chosenOption==1){
@@ -146,7 +150,7 @@ public class ProjectManager {
                         System.out.println("\n");
                         System.out.println("Pick risk number.");
                         chosenOption = scanner.nextInt();
-                        project.riskMatrix.remove(chosenOption);
+                        project.riskMatrix.remove(chosenOption - 1);
                     }else{
                         Output.incorrectInput();
                     }
@@ -154,8 +158,14 @@ public class ProjectManager {
                     break;
 
                 case QUIT:
+                    Output.printGoodBye();
+                    System.exit(0);
+                    break;
+
+                case QUIT_AND_SAVE:
                     Parser.saveJson(project);
                     Output.printGoodBye();
+                    System.exit(0);
             }
         } while (chosenOption != QUIT);
     }
