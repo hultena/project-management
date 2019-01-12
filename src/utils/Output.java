@@ -11,9 +11,11 @@ import entities.Project;
 public class Output {
 
     static Scanner scanner;
+    static ColoredPrinter colorPrinter;
 
     static {
         scanner = new Scanner(System.in);
+        colorPrinter = new ColoredPrinter.Builder(1, false).foreground(Ansi.FColor.WHITE).background(Ansi.BColor.BLUE).build();
     }
 
     public static void printRiskMatrix(List<Risk> riskMatrix) {
@@ -152,15 +154,17 @@ public class Output {
     }
     public static void printMenu() {
         System.out.println("\n");
-        System.out.println("*************************************\n");
-        System.out.println("****   Project-management v1.0   ****");
-        System.out.println("*************************************\n");
+
+        colorPrinter.println("************************************", Ansi.Attribute.BOLD, Ansi.FColor.GREEN, Ansi.BColor.NONE);
+        colorPrinter.println("***   Project-management v1.0   ****", Ansi.Attribute.BOLD, Ansi.FColor.GREEN, Ansi.BColor.NONE);
+        colorPrinter.println("************************************", Ansi.Attribute.BOLD, Ansi.FColor.GREEN, Ansi.BColor.NONE);
         System.out.println("1.  Manage project");
         System.out.println("2.  Manage team members");
         System.out.println("3.  Manage tasks");
         System.out.println("4.  Manage risks");
         System.out.println("10. Quit without saving");
         System.out.println("11. Quit and save");
+        colorPrinter.clear();
     }
 
     public static void printTaskSchedule(Task task) {
