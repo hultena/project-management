@@ -1,7 +1,8 @@
 package utils;
 
 import java.util.*;
-
+import com.diogonunes.jcdp.color.*;
+import com.diogonunes.jcdp.color.api.Ansi;
 import entities.Member;
 import entities.Risk;
 import entities.Task;
@@ -151,7 +152,9 @@ public class Output {
     }
     public static void printMenu() {
         System.out.println("\n");
-        System.out.println("*** Project-management ***");
+        System.out.println("*************************************\n");
+        System.out.println("****   Project-management v1.0   ****");
+        System.out.println("*************************************\n");
         System.out.println("1.  Manage project");
         System.out.println("2.  Manage team members");
         System.out.println("3.  Manage tasks");
