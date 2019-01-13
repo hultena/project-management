@@ -37,10 +37,6 @@ public class Project {
         riskMatrix.add(newRisk);
     }
 
-    public void setProjectDuration(int projectDurationWeeks) {
-        this.projectDuration = projectDurationWeeks;
-    }
-
     public List<Member> getMembers() {
         return this.members;
     }
@@ -128,7 +124,7 @@ public class Project {
     }
 
     public double calculateCV(){
-        return this.costOfScheduled() - this.costOfPerformed();
+        return calculateEV()-costOfPerformed();
     }
 
     public int calculateDuration(){
@@ -170,18 +166,25 @@ public class Project {
     public void setEngineerSalary(int engineerSalary) {
         this.engineerSalary = engineerSalary;
     }
-    public void findContributions(String id){
-        for(Task i : tasks){
-            if(i.findContribution(id)!=null)
-                Output.printContributions(i,id);
-        }
-    }
     public int totalTimeWorked(String id){
         int time = 0;
         for (Task i : tasks){
-            if(i.findContribution(id)!=null){
-                time+=i.printTime(id);
+            List<Contribution> contributions = i.getContributions();
+            for(Contribution j : contributions){
+                if(j.getId().equalsIgnoreCase(id)){
+                    time+=j.getTimeSpent();
+                }
             }
         }return time;
+    }
+    public void printAllContributions(String id){
+        for(Task i : tasks){
+            List<Contribution> contributions = i.getContributions();
+            for(Contribution j : contributions){
+                if(j.getId().equalsIgnoreCase(id)){
+                    Output.testPrint(j,i);
+                }
+            }
+        }
     }
 }

@@ -67,7 +67,7 @@ public class ProjectManager {
                         String id = scanner.nextLine();
                         System.out.println(project.findMember(id));
                         System.out.println("Contributions");
-                        project.findContributions(id);
+                        project.printAllContributions(id);
                         //total worked time
                         System.out.println(project.totalTimeWorked(id)+" hours total work time.");
 
@@ -101,7 +101,6 @@ public class ProjectManager {
                         int endWeek = scanner.nextInt();
                         project.addTask(name, budgetedHours, startWeek, endWeek);
                     }else if(option==2){
-                        //TODO: task contribution
                         scanner.nextLine();
                         Output.printTasks(project.tasks, false);
                         System.out.println("Choose task number");
@@ -110,11 +109,13 @@ public class ProjectManager {
                         scanner.nextLine();
                         System.out.println("Enter id");
                         String id = scanner.nextLine();
-                        System.out.println("enter time");
+                        System.out.println("Enter time");
                         int time = scanner.nextInt();
-                        System.out.println("enter percentage");
+                        System.out.println("Enter percentage");
                         int percentageCompleted = scanner.nextInt();
-                        chosenTask.addContribution(id,time,percentageCompleted);
+                        System.out.println("Enter week");
+                        int week = scanner.nextInt();
+                        chosenTask.addContribution(id,time,percentageCompleted,week);
                         System.out.println(chosenTask);
                     }else if(option==3){
                         Output.printTasks(project.tasks, false);

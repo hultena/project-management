@@ -3,10 +3,7 @@ package utils;
 import java.util.*;
 import com.diogonunes.jcdp.color.*;
 import com.diogonunes.jcdp.color.api.Ansi;
-import entities.Member;
-import entities.Risk;
-import entities.Task;
-import entities.Project;
+import entities.*;
 
 public class Output {
 
@@ -213,7 +210,8 @@ public class Output {
         System.out.println("2. Project progress");
         System.out.println("3. Project schedule");
     }
-    public static void printContributions(Task task,String id){
-        System.out.println("Task name: "+task.getName()+" | Time spent: "+task.printTime(id)+" hours. | Percentage completed: "+task.printPercentage(id)+"%");
+
+    public static void testPrint(Contribution contribution,Task task){
+        System.out.println("Task name: "+task.getName()+" | Week: "+contribution.getWeek()+" | Time spent: "+contribution.getTimeSpent()+" hours. | Percentage completed: "+contribution.getPercentageCompleted()+"%");
     }
 }
