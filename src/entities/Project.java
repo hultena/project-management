@@ -1,9 +1,8 @@
 package entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import utils.Parser;
+import utils.Output;
+
 import java.util.*;
-@JsonIgnoreProperties(ignoreUnknown = true)
 
 public class Project {
     public List<Risk> riskMatrix;
@@ -31,9 +30,12 @@ public class Project {
         newTask.setEndWeek(endWeek);
         tasks.add(newTask);
     }
-
-    public void setProjectDuration(int projectDurationWeeks) {
-        this.projectDuration = projectDurationWeeks;
+    public void addRisk(String name,int severity,int probability){
+        Risk newRisk = new Risk();
+        newRisk.setName(name);
+        newRisk.setSeverity(severity);
+        newRisk.setProbability(probability);
+        riskMatrix.add(newRisk);
     }
 
     public List<Member> getMembers() {
@@ -72,93 +74,70 @@ public class Project {
         return foundMember;
     }
 
-	/*Calculating the mean percentage of the tasks completed to
-	get an estimate for the entire project*/
+    public double meanPercentage(){
+        double totalPercent = 0;
+        int numberOfTasks = 0;
+        double meanPercentage = 0;
 
-	public double meanPercentage(){
-	double totalPercent = 0;
-	int numberOfTasks = 0;
-	double meanPercentage = 0;
-	for (Task task : tasks) {
-			totalPercent = totalPercent + task.getCompletion();
-			numberOfTasks += 1;
+        for (Task task : tasks) {
+            totalPercent = totalPercent + task.completion();
+            numberOfTasks += 1;
         }
-		if (numberOfTasks != 0) {
-		meanPercentage = totalPercent/numberOfTasks;
-		}
-		return meanPercentage;
-	}
 
-	//Calculating the earned value with the mean percentage for the tasks.
+        if (numberOfTasks != 0) {
+            meanPercentage = totalPercent/numberOfTasks;
+        }
 
-	public double calculateEV(){
-	double EV = 0;
-	double completedPercent = meanPercentage();
-	double BAC = costOfPerformed();
+        return meanPercentage;
+    }
 
-	if(BAC != 0){
-	EV = completedPercent/BAC;	
-	}
-		return EV;
-	}
+    public double calculateEV(){
+        double EV = 0;
+        double completedPercent = meanPercentage();
+        double BAC = costOfPerformed();
 
+        if(BAC != 0){
+            EV = completedPercent/BAC;
+        }
+        return EV;
+    }
 
-	//Calculating the total cost of the work performed for the tasks.
+    public double costOfPerformed(){
+        int hoursSpent = 0;
 
-	public double costOfPerformed(){
-		int hoursSpent = 0;
-		double actualTotalPay = 0;
-		for(Task task : tasks) {
-			hoursSpent = hoursSpent + task.getTimeSpent();
-		}
-		actualTotalPay = hoursSpent * engineerSalary;
-		return actualTotalPay;
-	}
+        for(Task task : this.tasks) {
+            hoursSpent += task.timeSpent();
+        }
+        return hoursSpent * engineerSalary;
+    }
 
-	//Calculating the scheduled total cost of the tasks.
+    public double costOfScheduled(){
+        int totalHoursPlanned = 0;
 
-	public double costOfScheduled(){
-		double plannedTotalPay = 0;
-		int totalHoursPlanned = 0;
+        for(Task task: this.tasks) {
+            totalHoursPlanned += task.getBudgetedHours();
+        }
+        return totalHoursPlanned * engineerSalary;
+    }
 
-		for(Task task: tasks) {
-			totalHoursPlanned = totalHoursPlanned + task.getBudgetedHours();
-		}
-		plannedTotalPay = totalHoursPlanned * engineerSalary;
-		return plannedTotalPay;
-	}
+    public double calculateSV(){
+        return this.costOfPerformed() - this.costOfScheduled();
+    }
 
-	//Calculating the schedule variance.
+    public double calculateCV(){
+        return calculateEV()-costOfPerformed();
+    }
 
-	public double calculateSV(){
-		double scheduleVariance = 0;
-		double workPerformed = costOfPerformed();
-		double workScheduled = costOfScheduled();
-		scheduleVariance = workPerformed - workScheduled;
-		return scheduleVariance;
-	}
+    public int calculateDuration(){
+        int duration = 0;
+        if(startWeek < endWeek){
+            duration = endWeek - startWeek;
+        } else if(startWeek > endWeek){
+            duration = (endWeek - startWeek) + 52;
+        }
+        return duration;
+    }
 
-	//Calculating the cost variance.
-
-	public double calculateCV(){
-		double costVariance = 0;
-		double actualCost = costOfPerformed();
-		double budgetedCost = costOfScheduled();
-		costVariance = budgetedCost - actualCost;
-		return costVariance;
-	}
-
-	//Calculating the project duration.
-
-	public int calculateDuration(){
-	int duration = 0;
-	if(startWeek < endWeek){
-		duration = endWeek - startWeek;
-	} else if(startWeek > endWeek){
-		duration = (endWeek - startWeek) + 52;
-	} 
-	return duration;
-	}
 
 
     public void setEndWeek(int endWeek) {
@@ -187,5 +166,26 @@ public class Project {
     }
     public void setEngineerSalary(int engineerSalary) {
         this.engineerSalary = engineerSalary;
+    }
+    public int totalTimeWorked(String id){
+        int time = 0;
+        for (Task i : tasks){
+            List<Contribution> contributions = i.getContributions();
+            for(Contribution j : contributions){
+                if(j.getId().equalsIgnoreCase(id)){
+                    time+=j.getTimeSpent();
+                }
+            }
+        }return time;
+    }
+    public void printAllContributions(String id){
+        for(Task i : tasks){
+            List<Contribution> contributions = i.getContributions();
+            for(Contribution j : contributions){
+                if(j.getId().equalsIgnoreCase(id)){
+                    Output.testPrint(j,i);
+                }
+            }
+        }
     }
 }

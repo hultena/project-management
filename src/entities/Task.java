@@ -19,47 +19,18 @@ public class Task {
     public int getBudgetedHours() {
         return this.budgetedHours;
     }
-    public void addContribution(String id, int time, int percentageCompleted){
-        Contribution i = findContribution(id);
-        if(i!=null&&i.getId().equalsIgnoreCase(id)){
-            i.addTime(time);
-            i.addPercentage(percentageCompleted);
-        }
-        else{
-            Contribution newContribution = new Contribution();
-            newContribution.setId(id);
-            newContribution.setTimeSpent(time);
-            newContribution.setPercentageCompleted(percentageCompleted);
-            contributions.add(newContribution);
-        }
+    public void addContribution(String id, int time, int percentageCompleted, int week){
+        Contribution newContribution = new Contribution();
+        newContribution.setId(id);
+        newContribution.setTimeSpent(time);
+        newContribution.setPercentageCompleted(percentageCompleted);
+        newContribution.setWeek(week);
+        contributions.add(newContribution);
+
     }
     public List<Contribution> getContributions(){
         return contributions;
     }
-    public Contribution findContribution(String id) {
-
-        for (Contribution i : contributions) {
-            if (i.getId().equalsIgnoreCase(id)) {
-                return i;
-            }
-        }
-        return null;
-    }
-    public int printTime(String id){
-        int time = 0;
-        if(findContribution(id)!=null) {
-            time = findContribution(id).getTime();
-        }
-        return time;
-    }
-    public int printPercentage(String id){
-        int percentage = 0;
-        if(findContribution(id)!=null) {
-            percentage = findContribution(id).getTime();
-        }
-        return percentage;
-    }
-
     public void setEndWeek(int endWeek) {
         this.endWeek = endWeek;
     }
@@ -83,14 +54,14 @@ public class Task {
     public int getStartWeek() {
         return startWeek;
     }
-    public int getCompletion(){
+    public int completion(){
         int completion = 0;
         for(Contribution i : contributions){
             completion+=i.getPercentageCompleted();
         }
         return completion;
     }
-    public int getTimeSpent(){
+    public int timeSpent(){
         int timeSpent = 0;
         for(Contribution i : contributions){
             timeSpent+=i.getTimeSpent();
@@ -99,7 +70,13 @@ public class Task {
     }
     public String toString(){
         return "| Name: "+name+" | Budgeted hours: "+budgetedHours+" | Start week: "+startWeek
-                +" | End week: "+endWeek+" | Completion: " +getCompletion()+"% | Time spent: "+getTimeSpent()+" hours. | "+System.lineSeparator();
+                +" | End week: "+endWeek+" | Completion: " +completion()+"% | Time spent: "+timeSpent()+" hours. | "+System.lineSeparator();
     }
-
+    public int calculateTimeSpan(){
+        if(startWeek<endWeek){
+            return endWeek-startWeek;
+        }else{
+            return endWeek-startWeek+52;
+        }
+    }
 }

@@ -1,64 +1,117 @@
 {
     "projectName": "Next facebook",
-    "engineerSalary": 197,
+    "engineerSalary": 250,
     "projectDuration": 16,
     "startWeek": 36,
     "endWeek": 52,
     "members": [
         {
-            "name": "Daniel",
+            "name": "Bartek",
             "id": "#001"
         },
         {
             "name": "Kalle",
             "id": "#002"
+        },
+        {
+            "name": "Alex",
+            "id": "#003"
+        },
+        {
+            "name": "Oscar",
+            "id": "#004"
+        },
+        {
+            "name": "Hannes",
+            "id": "#005"
+        },
+        {
+            "name": "Shomitro",
+            "id": "#006"
         }
     ],
     "tasks": [
         {
-            "name": "Setup landing page backend",
-            "budgetedHours": 20,
+            "name": "Implement parser",
+            "budgetedHours": 2,
             "startWeek": 40,
-            "endWeek": 42,
+            "endWeek": 41,
             "contributions": [
                 {
                     "id": "#001",
-                    "timeSpent": 15,
-                    "percentageCompleted": 35
+                    "timeSpent": 1,
+                    "percentageCompleted": 50
                 },
                 {
                     "id": "#003",
-                    "timeSpent": 6,
-                    "percentageCompleted": 75
+                    "timeSpent": 1,
+                    "percentageCompleted": 50
                 }
             ]
         },
         {
-            "name": "Design landing page frontend",
+            "name": "Implement project functionality",
             "budgetedHours": 20,
             "startWeek": 44,
             "endWeek": 48,
             "contributions": [
                 {
+                    "id": "#001",
+                    "timeSpent": 5,
+                    "percentageCompleted": 30
+                },
+                {
                     "id": "#002",
-                    "timeSpent": 14,
-                    "percentageCompleted": 75
+                    "timeSpent": 5,
+                    "percentageCompleted": 30
+                },
+                {
+                    "id": "#003",
+                    "timeSpent": 2,
+                    "percentageCompleted": 20
+                },
+                {
+                    "id": "#004",
+                    "timeSpent": 2,
+                    "percentageCompleted": 10
+                },
+                {
+                    "id": "#005",
+                    "timeSpent": 2,
+                    "percentageCompleted": 10
                 }
             ]
         },
         {
-            "name": "Fix signup bug",
-            "budgetedHours": 10,
+            "name": "Work on the interface",
+            "budgetedHours": 20,
+            "startWeek": 48,
+            "endWeek": 50,
             "contributions": [
                 {
+                    "id": "#001",
+                    "timeSpent": 2,
+                    "percentageCompleted": 10
+                },
+                {
+                    "id": "#002",
+                    "timeSpent": 2,
+                    "percentageCompleted": 10
+                },
+                {
+                    "id": "#003",
+                    "timeSpent": 2,
+                    "percentageCompleted": 20
+                },
+                {
                     "id": "#004",
-                    "timeSpent": 5,
-                    "percentageCompleted": 45
+                    "timeSpent": 2,
+                    "percentageCompleted": 30
                 },
                 {
                     "id": "#005",
-                    "timeSpent": 7,
-                    "percentageCompleted": 50
+                    "timeSpent": 2,
+                    "percentageCompleted": 30
                 }
             ]
         }
@@ -75,9 +128,14 @@
             "severity": 4
         },
         {
-            "name": "Computer Malfunction",
+            "name": "Poor teamwork",
             "probability": 1,
             "severity": 1
+        },
+        {
+            "name": "Poor code quality",
+            "probability": 2,
+            "severity": 3
         }
     ]
 }

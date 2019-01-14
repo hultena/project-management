@@ -1,10 +1,14 @@
 package utils;
 
-
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import entities.Project;
 
 public class Parser {
@@ -32,5 +36,14 @@ public class Parser {
 
     public JsonNode getJson() {
         return JSON;
+    }
+    public static void saveJson(Project project){
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
+        try{
+            objectWriter.writeValue(new File(FILENAME), project);
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

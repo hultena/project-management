@@ -5,6 +5,7 @@ public class Contribution {
 
     private int timeSpent;
     private int percentageCompleted;
+    private int week;
 
     public Contribution(){
 
@@ -12,20 +13,13 @@ public class Contribution {
     public String getId(){
         return id;
     }
-    public int getTime(){
-        return timeSpent;
-    }
+
     public int getPercentageCompleted(){
         return percentageCompleted;
     }
-    public void addTime(int time){
-        this.timeSpent+=time;
-    }
-    public void addPercentage(int percentage){
-        this.percentageCompleted+=percentage;
-    }
+
     public String toString() {
-        return "ID: "+id+" | Time: "+ timeSpent+" | Percent completed: "+percentageCompleted+"%";
+        return "ID: "+id+" | Time: "+ timeSpent+" | Percent completed: "+percentageCompleted+"% | Week added: "+week;
     }
 
     public int getTimeSpent() {
@@ -42,6 +36,13 @@ public class Contribution {
 
     public void setTimeSpent(int timeSpent) {
         this.timeSpent = timeSpent;
+    }
+
+    public void setWeek(int week){
+        this.week = week;
+    }
+    public int getWeek(){
+        return week;
     }
 
 }
