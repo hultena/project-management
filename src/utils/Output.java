@@ -17,6 +17,18 @@ public class Output {
     }
 
     public static void printRiskMatrix(List<Risk> riskMatrix) {
+        colorPrinter.clear();
+        Collections.sort(riskMatrix, new Comparator<Risk>() {
+            public int compare(Risk b1, Risk b2) {
+                if (b1.impact() > b2.impact()) {
+                    return -1;
+                } else if(b1.impact() < b2.impact()) {
+                    return 1;
+                }else {
+                    return 0;
+                }
+            }
+        });
         int longestNameLength = 0;
 
         for (Risk risk : riskMatrix) {
@@ -55,12 +67,13 @@ public class Output {
         colorPrinter.clear();
     }
     public static void printHandleTeamMembersSubMenu(){
-        System.out.println("\n*** Manage members ***");
+        colorPrinter.println("\n*** Manage members ***", Ansi.Attribute.NONE, Ansi.FColor.GREEN, Ansi.BColor.NONE);
         System.out.println("1.  Add team member");
         System.out.println("2.  View team member");
         System.out.println("3.  Remove team member");
         System.out.println("4.  View all team members");
         System.out.println("10. Back to menu");
+        colorPrinter.clear();
     }
 
 
@@ -73,9 +86,10 @@ public class Output {
             }
         }
         String asterisks = new String(new char[longestMemberName + 7]).replace("\0", "*");
-        System.out.println("\n" + asterisks);
+        colorPrinter.println("\n" + asterisks, Ansi.Attribute.BOLD, Ansi.FColor.CYAN, Ansi.BColor.NONE);
         System.out.println("ID     Name");
         System.out.println(asterisks);
+        colorPrinter.clear();
 
         for (Member member: members) {
             String row = member.getId();
@@ -84,13 +98,14 @@ public class Output {
         }
     }
     public static void printHandleTasksSubMenu(){
-        System.out.println("\n*** Manage tasks ***");
+        colorPrinter.println("\n*** Manage tasks ***", Ansi.Attribute.NONE, Ansi.FColor.GREEN, Ansi.BColor.NONE);
         System.out.println("1.  Add task");
         System.out.println("2.  Add task contribution");
         System.out.println("3.  Print all tasks");
         System.out.println("4.  Print all unfinished tasks");
         System.out.println("5.  Remove tasks");
         System.out.println("10. Back to menu");
+        colorPrinter.clear();
     }
 
     public static void printTasks(List<Task> tasks, boolean onlyUnfinishedTasks){
@@ -113,10 +128,10 @@ public class Output {
         header += "Budgeted hours     Start week     End week     Completion(%)     Hours spent";
 
         String asterisks = new String(new char[longestNameLength + 80]).replace("\0", "*");
-
-        System.out.println("\n" + asterisks);
+        colorPrinter.println("\n" + asterisks, Ansi.Attribute.NONE, Ansi.FColor.CYAN, Ansi.BColor.NONE);
         System.out.println(header);
         System.out.println(asterisks);
+        colorPrinter.clear();
         int index = 1;
         for (Task task : tasks) {
             boolean shouldIncludeTask = true;
