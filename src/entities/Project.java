@@ -158,15 +158,19 @@ public class Project {
             }
         }return time;
     }
-    public void printAllContributions(String id){
-        for(Task i : tasks){
-            List<Contribution> contributions = i.getContributions();
-            for(Contribution j : contributions){
-                if(j.getId().equalsIgnoreCase(id)){
-                    Output.printTaskContributions(j,i);
+    public void printAllContributionsByMember(String id){
+        List<Contribution> memberContributions = new ArrayList<Contribution>();
+        List<Task> memberTasks = new ArrayList<Task>();
+        for(Task task : tasks){
+            List<Contribution> contributions = task.getContributions();
+            for(Contribution cont : contributions){
+                if(cont.getId().equalsIgnoreCase(id)){
+                    memberContributions.add(cont);
+                    memberTasks.add(task);
                 }
             }
         }
+        Output.printAllContributions(memberContributions, memberTasks);
     }
 
     public int getBudget(){

@@ -249,8 +249,40 @@ public class Output {
         System.out.println("____________________________________________________________");
         System.out.println("              Software project management tool              ");
     }
-    public static void printTaskContributions(Contribution contribution,Task task){
-        System.out.println("Task name: "+task.getName()+" | Week: "+contribution.getDate()+" | Time spent: "+contribution.getTimeSpent()+" hours. | Percentage completed: "+contribution.getPercentageCompleted()+"%");
+    public static void printAllContributions(List<Contribution> contributions, List<Task> tasks){
+        int longestNameLength = 0;
+
+        for (Task task : tasks) {
+            if (task.getName().length() > longestNameLength) {
+                longestNameLength = task.getName().length();
+            }
+        }
+
+        String header = "Name";
+        header += new String(new char[longestNameLength]).replace("\0", " ");
+        header += "   Date of adding    Hours spent    Completion(%)";
+
+        String asterisks = new String(new char[longestNameLength + 80]).replace("\0", "*");
+        colorPrinter.println("\n" + asterisks, Ansi.Attribute.NONE, Ansi.FColor.CYAN, Ansi.BColor.NONE);
+        System.out.println(header);
+        System.out.println(asterisks);
+        colorPrinter.clear();
+        int index = 1;
+
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
+            Contribution cont = contributions.get(i);
+
+            String row = task.getName();
+
+            row += new String(new char[(4 + longestNameLength) - row.length()]).replace("\0"," ");
+            row += cont.getDate();
+            row += new String(new char[(longestNameLength + 22) - row.length()]).replace("\0", " ") + cont.getTimeSpent();
+            row += new String(new char[(longestNameLength + 22 + 15) - row.length()]).replace("\0", " ") + cont.getPercentageCompleted();
+
+            System.out.println(index+": "+row);
+            index++;
+        }
     }
     public static LocalDate printDateChoice(){
         LocalDate date = null;

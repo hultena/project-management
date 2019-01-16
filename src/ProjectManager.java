@@ -22,6 +22,7 @@ public class ProjectManager {
         Scanner scanner = new Scanner(System.in);
         int chosenOption;
         Output.printLogoAndVersion();
+
         do {
             Output.printMenu();
             chosenOption = scanner.nextInt();
@@ -75,7 +76,7 @@ public class ProjectManager {
                         String id = scanner.nextLine();
                         System.out.println(project.findMember(id));
                         System.out.println("Contributions");
-                        project.printAllContributions(id);
+                        project.printAllContributionsByMember(id);
                         //total worked time
                         System.out.println(project.totalTimeWorked(id)+" hours total work time.");
 
