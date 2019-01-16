@@ -1,10 +1,12 @@
 package entities;
 
+import java.time.LocalDate;
+
 public class Contribution {
     private String id;
     private int timeSpent;
     private int percentageCompleted;
-    private int week;
+    private LocalDate date;
 
     public Contribution(){
 
@@ -18,7 +20,7 @@ public class Contribution {
     }
 
     public String toString() {
-        return "ID: "+id+" | Time: "+ timeSpent+" | Percent completed: "+percentageCompleted+"% | Week added: "+week;
+        return "ID: "+id+" | Time: "+ timeSpent+" | Percent completed: "+percentageCompleted+"% | Week added: "+date;
     }
 
     public int getTimeSpent() {
@@ -37,11 +39,11 @@ public class Contribution {
         this.timeSpent = timeSpent;
     }
 
-    public void setWeek(int week){
-        this.week = week;
+    public void setDate(LocalDate date){
+        this.date = date;
     }
-    public int getWeek(){
-        return week;
+    public LocalDate getDate(){
+        return date;
     }
 
 }

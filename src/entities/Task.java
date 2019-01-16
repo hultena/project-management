@@ -1,11 +1,13 @@
 package entities;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class Task {
     private String name;
     private int budgetedHours;
-    private int startWeek;
-    private int endWeek;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private List<Contribution> contributions;
 
     public Task() {
@@ -18,12 +20,12 @@ public class Task {
     public int getBudgetedHours() {
         return this.budgetedHours;
     }
-    public void addContribution(String id, int time, int percentageCompleted, int week){
+    public void addContribution(String id, int time, int percentageCompleted, LocalDate date){
         Contribution newContribution = new Contribution();
         newContribution.setId(id);
         newContribution.setTimeSpent(time);
         newContribution.setPercentageCompleted(percentageCompleted);
-        newContribution.setWeek(week);
+        newContribution.setDate(date);
         contributions.add(newContribution);
 
     }
@@ -31,8 +33,8 @@ public class Task {
         return contributions;
     }
 
-    public void setEndWeek(int endWeek) {
-        this.endWeek = endWeek;
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public void setBudgetedHours(int budgetedHours) {
@@ -43,16 +45,16 @@ public class Task {
         this.name = name;
     }
 
-    public void setStartWeek(int startWeek) {
-        this.startWeek = startWeek;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 
-    public int getEndWeek() {
-        return endWeek;
+    public LocalDate getEndDate() {
+        return endDate;
     }
 
-    public int getStartWeek() {
-        return startWeek;
+    public LocalDate getStartDate() {
+        return startDate;
     }
     public int completion(){
         int completion = 0;
@@ -61,23 +63,38 @@ public class Task {
         }
         return completion;
     }
-    public int timeSpent(){
+    public int timeSpent(LocalDate date){
         int timeSpent = 0;
         for(Contribution i : contributions){
-            timeSpent+=i.getTimeSpent();
+            if(date.isAfter(i.getDate()))
+                timeSpent+=i.getTimeSpent();
         }
         return timeSpent;
     }
     public String toString(){
-        return "| Name: "+name+" | Budgeted hours: "+budgetedHours+" | Start week: "+startWeek
-                +" | End week: "+endWeek+" | Completion: " +completion()+"% | Time spent: "+timeSpent()+" hours. | "+System.lineSeparator();
+        return "| Name: "+name+" | Budgeted hours: "+budgetedHours+" | Start week: "+startDate
+                +" | End week: "+endDate+" | Completion: " +completion()+"% | Time spent: "+timeSpent(LocalDate.now())+" hours. | "+System.lineSeparator();
     }
-    public int calculateTimeSpan(){
-        if(startWeek<endWeek){
-            return endWeek-startWeek;
-        }else{
-            return endWeek-startWeek+52;
-        }
+    public long calculateDuration(){
+        return ChronoUnit.DAYS.between(startDate,endDate);
+    }
+    public double plannedPercentage(LocalDate date){
+        long span = ChronoUnit.DAYS.between(startDate,date);
+        return 100.0/span;
+    }
+    public double actualPercentageCompleted(LocalDate date){
+        int percentageCompleted = 0;
+        for(Contribution contribution: contributions){
+            if(contribution.getDate().isBefore(date)){
+                percentageCompleted+=contribution.getPercentageCompleted();
+            }
+        }return percentageCompleted;
+    }
+    public double calculateSvTask(LocalDate date){
+        return actualPercentageCompleted(date)-plannedPercentage(date);
+    }
+    public double calculateEvTask(LocalDate date){
+        return calculateDuration()*actualPercentageCompleted(date);
     }
 
 }

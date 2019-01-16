@@ -1,6 +1,8 @@
 import entities.Task;
 import utils.*;
 import entities.Project;
+
+import java.time.LocalDate;
 import java.util.Scanner;
 
 
@@ -36,13 +38,27 @@ public class ProjectManager {
                         Output.waitForKeyPress();
                     }else if(chosenOption==2){
                         //project progress
+                        LocalDate date = null;
+                        System.out.println("Choose current date or specify date");
+                        System.out.println("1. Current date");
+                        System.out.println("2. Specify date");
+                        chosenOption = scanner.nextInt();
+                        if(chosenOption==1){
+                            date = LocalDate.now();
+                        }else if(chosenOption==2){
+                            scanner.nextLine();
+                            System.out.println("Enter date as YYYYMMDD");
+                            String input = scanner.nextLine();
+                            date =project.createDate(input);
+                        }else System.out.println("Wrong input");
                         System.out.println("project progress");
-                        Output.printProgress(project);
+                        Output.printProgress(project,date);
                         Output.waitForKeyPress();
                     }else if(chosenOption==3){
                         //project schedule
                         System.out.println("project schedule");
                         Output.printSchedule(project.tasks);
+
                         Output.waitForKeyPress();
                     }else{
                         Output.incorrectInput();
@@ -95,16 +111,19 @@ public class ProjectManager {
                         String name = scanner.nextLine();
                         System.out.println("Enter the task's budgeted hours");
                         int budgetedHours = scanner.nextInt();
-                        System.out.println("Enter the start week of the task");
-                        int startWeek = scanner.nextInt();
-                        System.out.println("Enter the end week of the task");
-                        int endWeek = scanner.nextInt();
-                        project.addTask(name, budgetedHours, startWeek, endWeek);
+                        scanner.nextLine();
+                        System.out.println("Enter the start date of the task in the format YYYYMMDD");
+                        String input = scanner.nextLine();
+                        LocalDate startDate = project.createDate(input);
+                        System.out.println("Enter the end date of the task in the format YYYYMMDD");
+                        input = scanner.nextLine();
+                        LocalDate endDate = project.createDate(input);
+                        project.addTask(name, budgetedHours, startDate, endDate);
                     }else if(option==2){
                         scanner.nextLine();
                         Output.printTasks(project.tasks, false);
                         System.out.println("Choose task number");
-                        chosenOption = scanner.nextInt();
+                        chosenOption = scanner.nextInt()-1;
                         Task chosenTask = project.tasks.get(chosenOption);
                         scanner.nextLine();
                         System.out.println("Enter id");
@@ -113,9 +132,8 @@ public class ProjectManager {
                         int time = scanner.nextInt();
                         System.out.println("Enter percentage");
                         int percentageCompleted = scanner.nextInt();
-                        System.out.println("Enter week");
-                        int week = scanner.nextInt();
-                        chosenTask.addContribution(id,time,percentageCompleted,week);
+                        LocalDate date = LocalDate.now();
+                        chosenTask.addContribution(id,time,percentageCompleted,date);
                         System.out.println(chosenTask);
                     }else if(option==3){
                         Output.printTasks(project.tasks, false);
@@ -173,4 +191,5 @@ public class ProjectManager {
             }
         } while (chosenOption != QUIT);
     }
+
 }

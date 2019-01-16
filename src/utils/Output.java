@@ -1,5 +1,6 @@
 package utils;
 
+import java.time.LocalDate;
 import java.util.*;
 import com.diogonunes.jcdp.color.*;
 import com.diogonunes.jcdp.color.api.Ansi;
@@ -108,21 +109,21 @@ public class Output {
         System.out.println(asterisks);
         int index = 1;
         for (Task task : tasks) {
-            boolean shouldIncludetask = true;
+            boolean shouldIncludeTask = true;
 
             if (onlyUnfinishedTasks && task.completion() > 100) {
-                shouldIncludetask = false;
+                shouldIncludeTask = false;
             }
 
-            if (shouldIncludetask) {
+            if (shouldIncludeTask) {
                 String row = task.getName();
 
                 row += new String(new char[(4 + longestNameLength) - row.length()]).replace("\0"," ");
                 row += task.getBudgetedHours();
-                row += new String(new char[(longestNameLength + 23) - row.length()]).replace("\0", " ") + task.getStartWeek();
-                row += new String(new char[(longestNameLength + 23 + 15) - row.length()]).replace("\0", " ") + task.getEndWeek();
+                row += new String(new char[(longestNameLength + 23) - row.length()]).replace("\0", " ") + task.getStartDate();
+                row += new String(new char[(longestNameLength + 23 + 15) - row.length()]).replace("\0", " ") + task.getEndDate();
                 row += new String(new char[(longestNameLength + 23 + 15 + 13) - row.length()]).replace("\0", " ") + task.completion();
-                row += new String(new char[(longestNameLength + 23 + 15 + 13 + 18) - row.length()]).replace("\0", " ") + task.timeSpent();
+                row += new String(new char[(longestNameLength + 23 + 15 + 13 + 18) - row.length()]).replace("\0", " ") + task.timeSpent(LocalDate.now());
 
                 System.out.println(index+": "+row);
             }
@@ -161,7 +162,7 @@ public class Output {
     public static void printTaskSchedule(Task task) {
         System.out.println("\n");
         System.out.println(task.getName() +
-                "			w:" + task.getStartWeek() + "		w:" + task.getEndWeek());
+                "			w:" + task.getStartDate() + "		w:" + task.getEndDate());
     }
 
     public static void printSchedule(List<Task> tasks) {
@@ -172,14 +173,14 @@ public class Output {
         }
     }
 
-    public static void printProgress(Project project){
+    public static void printProgress(Project project, LocalDate date){
         System.out.println("\n");
         System.out.println("*****************************************");
-        System.out.println("*Earned Value: " + project.calculateEV() + " *");
+        System.out.println("*Earned Value: " + project.calculateEV(date) + " *");
         System.out.println("*****************************************");
-        System.out.println("*Schedule Variance: " + project.calculateSV()	+ " *");
+        System.out.println("*Schedule Variance: " + project.calculateSV(date)	+ " *");
         System.out.println("*****************************************");
-        System.out.println("*Cost Variance: " + project.calculateCV() + " *");
+        System.out.println("*Cost Variance: " + project.calculateCV(date) + " *");
         System.out.println("*****************************************");
     }
 
@@ -212,6 +213,6 @@ public class Output {
     }
 
     public static void testPrint(Contribution contribution,Task task){
-        System.out.println("Task name: "+task.getName()+" | Week: "+contribution.getWeek()+" | Time spent: "+contribution.getTimeSpent()+" hours. | Percentage completed: "+contribution.getPercentageCompleted()+"%");
+        System.out.println("Task name: "+task.getName()+" | Week: "+contribution.getDate()+" | Time spent: "+contribution.getTimeSpent()+" hours. | Percentage completed: "+contribution.getPercentageCompleted()+"%");
     }
 }
