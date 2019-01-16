@@ -11,12 +11,12 @@ Make it easier to manage software projects by providing an easy to use and light
 
 #### Unix:
 
-    chmod +x project-management.sh
-    ./project-management.sh YOUR_DATA.json
+    chmod +x softman.sh
+    ./softman.sh YOUR_DATA.json
 
 #### Windows:
 
-    project-management-win.bat YOUR_DATA.json
+    softman.bat YOUR_DATA.json
     
 
 ## Requirements
