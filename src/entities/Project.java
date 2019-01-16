@@ -170,7 +170,7 @@ public class Project {
                 }
             }
         }
-        Output.printAllContributions(memberContributions, memberTasks);
+        Output.printAllContributions(memberContributions, memberTasks, this.findMember(id).getName());
     }
 
     public int getBudget(){

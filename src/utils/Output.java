@@ -249,7 +249,7 @@ public class Output {
         System.out.println("____________________________________________________________");
         System.out.println("              Software project management tool              ");
     }
-    public static void printAllContributions(List<Contribution> contributions, List<Task> tasks){
+    public static void printAllContributions(List<Contribution> contributions, List<Task> tasks, String memberName){
         int longestNameLength = 0;
 
         for (Task task : tasks) {
@@ -262,8 +262,13 @@ public class Output {
         header += new String(new char[longestNameLength]).replace("\0", " ");
         header += "   Date of adding    Hours spent    Completion(%)";
 
+        int totalHours = 0;
+        for (Contribution cont : contributions) {
+            totalHours += cont.getTimeSpent();
+        }
         String asterisks = new String(new char[longestNameLength + 80]).replace("\0", "*");
-        colorPrinter.println("\n" + asterisks, Ansi.Attribute.NONE, Ansi.FColor.CYAN, Ansi.BColor.NONE);
+        colorPrinter.println("\n" + memberName + "'s contributions: " + totalHours + " hours total work-time", Ansi.Attribute.NONE, Ansi.FColor.CYAN, Ansi.BColor.NONE);
+        System.out.println(asterisks);
         System.out.println(header);
         System.out.println(asterisks);
         colorPrinter.clear();
