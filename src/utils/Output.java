@@ -233,6 +233,7 @@ public class Output {
         System.out.println("1. Print risk matrix");
         System.out.println("2. Project progress");
         System.out.println("3. Project schedule");
+        System.out.println("4. Project budget");
     }
 
     public static void testPrint(Contribution contribution,Task task){
@@ -247,5 +248,28 @@ public class Output {
         colorPrinter.println(" |____/ \\___/|_|  \\__|_|  |_|\\__,_|_| |_|    |_| (_)  \\___/ ", Ansi.Attribute.NONE, Ansi.FColor.MAGENTA, Ansi.BColor.NONE);
         System.out.println("____________________________________________________________");
         System.out.println("              Software project management tool              ");
+    }
+    public static void printTaskContributions(Contribution contribution,Task task){
+        System.out.println("Task name: "+task.getName()+" | Week: "+contribution.getDate()+" | Time spent: "+contribution.getTimeSpent()+" hours. | Percentage completed: "+contribution.getPercentageCompleted()+"%");
+    }
+    public static LocalDate printDateChoice(){
+        LocalDate date = null;
+        System.out.println("Choose current date or specify date");
+        System.out.println("1. Current date");
+        System.out.println("2. Specify date");
+        int chosenOption = scanner.nextInt();
+        if(chosenOption==1){
+            scanner.nextLine();
+            date = LocalDate.now();
+        }else if(chosenOption==2){
+            scanner.nextLine();
+            System.out.println("Enter date as YYYYMMDD");
+            String input = scanner.nextLine();
+            date = Project.createDate(input);
+        }else{
+            Output.incorrectInput();
+            Output.waitForKeyPress();
+        }
+        return date;
     }
 }

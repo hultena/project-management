@@ -94,17 +94,6 @@
       "percentageCompleted" : 30,
       "date" : [ 2019, 1, 3 ]
     } ]
-  }, {
-    "name" : "Kuk",
-    "budgetedHours" : 20,
-    "startDate" : [ 2019, 1, 1 ],
-    "endDate" : [ 2019, 2, 2 ],
-    "contributions" : [ {
-      "id" : "#003",
-      "timeSpent" : 5,
-      "percentageCompleted" : 10,
-      "date" : [ 2019, 1, 16 ]
-    } ]
   } ],
   "members" : [ {
     "name" : "Bartek",
@@ -128,5 +117,6 @@
   "projectName" : "Next facebook",
   "startDate" : [ 1970, 2, 6 ],
   "endDate" : [ 1970, 2, 22 ],
-  "engineerSalary" : 250
+  "engineerSalary" : 250,
+  "budget" : 10000
 }

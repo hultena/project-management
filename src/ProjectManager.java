@@ -1,7 +1,6 @@
 import entities.Task;
 import utils.*;
 import entities.Project;
-
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -22,7 +21,6 @@ public class ProjectManager {
 
         Scanner scanner = new Scanner(System.in);
         int chosenOption;
-        Output.printLogoAndVersion();
         do {
             Output.printMenu();
             chosenOption = scanner.nextInt();
@@ -39,19 +37,7 @@ public class ProjectManager {
                         Output.waitForKeyPress();
                     }else if(chosenOption==2){
                         //project progress
-                        LocalDate date = null;
-                        System.out.println("Choose current date or specify date");
-                        System.out.println("1. Current date");
-                        System.out.println("2. Specify date");
-                        chosenOption = scanner.nextInt();
-                        if(chosenOption==1){
-                            date = LocalDate.now();
-                        }else if(chosenOption==2){
-                            scanner.nextLine();
-                            System.out.println("Enter date as YYYYMMDD");
-                            String input = scanner.nextLine();
-                            date =project.createDate(input);
-                        }else System.out.println("Wrong input");
+                        LocalDate date = Output.printDateChoice();
                         System.out.println("project progress");
                         Output.printProgress(project,date);
                         Output.waitForKeyPress();
@@ -59,7 +45,11 @@ public class ProjectManager {
                         //project schedule
                         System.out.println("project schedule");
                         Output.printSchedule(project.tasks);
-
+                        Output.waitForKeyPress();
+                    }else if(chosenOption==4) {
+                        System.out.println("project budget");
+                        LocalDate date = Output.printDateChoice();
+                        System.out.println(project.moneySpent(date));
                         Output.waitForKeyPress();
                     }else{
                         Output.incorrectInput();

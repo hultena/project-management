@@ -8,10 +8,11 @@ public class Project {
     public List<Risk> riskMatrix;
     public List<Task> tasks;
     public List<Member> members;
-    public String projectName;
-    public LocalDate startDate;
-    public LocalDate endDate;
-    public int engineerSalary;
+    private String projectName;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private int engineerSalary;
+    private int budget;
 
     public Project() {
         this.riskMatrix = new ArrayList<Risk>();
@@ -162,12 +163,31 @@ public class Project {
             List<Contribution> contributions = i.getContributions();
             for(Contribution j : contributions){
                 if(j.getId().equalsIgnoreCase(id)){
-                    Output.testPrint(j,i);
+                    Output.printTaskContributions(j,i);
                 }
             }
         }
     }
-    public LocalDate createDate(String input){
+
+    public int getBudget(){
+        return budget;
+    }
+    public void setBudget(int budget){
+        this.budget=budget;
+    }
+    public int moneySpent(LocalDate date){
+        int time = 0;
+        for(Task task : tasks){
+            List<Contribution> contributions = task.getContributions();
+            for(Contribution contribution : contributions){
+                if(contribution.getDate().isBefore(date)) {
+                    time += contribution.getTimeSpent();
+                }
+            }
+        }
+        return time*engineerSalary;
+    }
+    public static LocalDate createDate(String input){
         int year = Integer.parseInt(input.substring(0,4));
         int month = Integer.parseInt(input.substring(4,6));
         int day = Integer.parseInt(input.substring(6,8));
