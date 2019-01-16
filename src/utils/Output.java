@@ -31,18 +31,28 @@ public class Output {
 
         String asterisks = new String(new char[longestNameLength + 15 + 11 + 8 + 6]).replace("\0", "*");
 
-        System.out.println("\n" + asterisks);
+        colorPrinter.println("\n" + asterisks, Ansi.Attribute.NONE, Ansi.FColor.CYAN, Ansi.BColor.NONE);
         System.out.println(header);
         System.out.println(asterisks);
         int index = 1;
         for (Risk risk : riskMatrix) {
-            String row = risk.getName();
-            row += new String(new char[(4 + longestNameLength) - row.length()]).replace("\0"," ");
-            row += risk.getProbability() + "               " + risk.getSeverity() + "            " + risk.impact();
+            String riskName = risk.getName();
+            riskName += new String(new char[(4 + longestNameLength) - riskName.length()]).replace("\0"," ");
+            colorPrinter.print(riskName, Ansi.Attribute.NONE, Ansi.FColor.WHITE, Ansi.BColor.NONE);
 
-            System.out.println(index+": "+row);
+            String numbers = risk.getProbability() + "               " + risk.getSeverity() + "            " + risk.impact();
+
+            if (risk.impact() < 6) {
+               colorPrinter.println(numbers, Ansi.Attribute.NONE, Ansi.FColor.GREEN, Ansi.BColor.NONE);
+            }else if (risk.impact() < 10) {
+               colorPrinter.println(numbers, Ansi.Attribute.NONE, Ansi.FColor.YELLOW, Ansi.BColor.NONE);
+            }else  {
+               colorPrinter.println(numbers, Ansi.Attribute.NONE, Ansi.FColor.RED, Ansi.BColor.NONE);
+            }
+
             index++;
         }
+        colorPrinter.clear();
     }
     public static void printHandleTeamMembersSubMenu(){
         System.out.println("\n*** Manage members ***");
@@ -147,10 +157,7 @@ public class Output {
     public static void printMenu() {
         System.out.println("\n");
 
-        colorPrinter.println("************************************", Ansi.Attribute.BOLD, Ansi.FColor.GREEN, Ansi.BColor.NONE);
-        colorPrinter.println("***   Project-management v1.0   ****", Ansi.Attribute.BOLD, Ansi.FColor.GREEN, Ansi.BColor.NONE);
-        colorPrinter.println("************************************", Ansi.Attribute.BOLD, Ansi.FColor.GREEN, Ansi.BColor.NONE);
-        System.out.println("1.  Manage project");
+        colorPrinter.println("1.  Manage project", Ansi.Attribute.BOLD, Ansi.FColor.GREEN, Ansi.BColor.NONE);
         System.out.println("2.  Manage team members");
         System.out.println("3.  Manage tasks");
         System.out.println("4.  Manage risks");
@@ -191,11 +198,12 @@ public class Output {
         System.out.println("***********************");
     }
     public static void printRiskMenu(){
-        System.out.println("\n");
+        colorPrinter.println("\n", Ansi.Attribute.NONE, Ansi.FColor.GREEN, Ansi.BColor.NONE);
         System.out.println("*** Manage risks ***");
         System.out.println("1.  Add risk");
         System.out.println("2.  Remove risk");
         System.out.println("10. Back to menu");
+        colorPrinter.clear();
     }
     public static void riskName(){
         System.out.println("Please enter risk name.");
@@ -214,5 +222,15 @@ public class Output {
 
     public static void testPrint(Contribution contribution,Task task){
         System.out.println("Task name: "+task.getName()+" | Week: "+contribution.getDate()+" | Time spent: "+contribution.getTimeSpent()+" hours. | Percentage completed: "+contribution.getPercentageCompleted()+"%");
+    }
+
+    public static void printLogoAndVersion() {
+        colorPrinter.println("  ____         __ _   __  __                  _        ___ ", Ansi.Attribute.NONE, Ansi.FColor.MAGENTA, Ansi.BColor.NONE);
+        colorPrinter.println(" / ___|  ___  / _| |_|  \\/  | __ _ _ __      / |      / _ \\ ", Ansi.Attribute.NONE, Ansi.FColor.MAGENTA, Ansi.BColor.NONE);
+        colorPrinter.println(" \\___ \\ / _ \\| |_| __| |\\/| |/ _` | '_ \\     | |     | | | |", Ansi.Attribute.NONE, Ansi.FColor.MAGENTA, Ansi.BColor.NONE);
+        colorPrinter.println("  ___) | (_) |  _| |_| |  | | (_| | | | |    | |  _  | |_| |", Ansi.Attribute.NONE, Ansi.FColor.MAGENTA, Ansi.BColor.NONE);
+        colorPrinter.println(" |____/ \\___/|_|  \\__|_|  |_|\\__,_|_| |_|    |_| (_)  \\___/ ", Ansi.Attribute.NONE, Ansi.FColor.MAGENTA, Ansi.BColor.NONE);
+        System.out.println("____________________________________________________________");
+        System.out.println("              Software project management tool              ");
     }
 }

@@ -22,6 +22,7 @@ public class ProjectManager {
 
         Scanner scanner = new Scanner(System.in);
         int chosenOption;
+        Output.printLogoAndVersion();
         do {
             Output.printMenu();
             chosenOption = scanner.nextInt();
