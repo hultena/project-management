@@ -188,10 +188,11 @@ public class Output {
         String header = "Task name";
         header += new String(new char[longestNameLength]).replace("\0", " ");
         header += "Start week   End week";
-        System.out.println("Project Schedule");
+        colorPrinter.println("\n", Ansi.Attribute.NONE, Ansi.FColor.CYAN, Ansi.BColor.NONE);
         System.out.println(asterisks);
         System.out.println(header);
         System.out.println(asterisks);
+        colorPrinter.clear();
         for (Task task : tasks) {
             String row = task.getName();
             row += new String(new char[(longestNameLength+9) - row.length()]).replace("\0"," ")+convertDateToWeek(task.getStartDate());
