@@ -41,11 +41,7 @@ public class ProjectManager {
                     }else if(option==2) {
                         System.out.println("project budget");
                         LocalDate date = Output.printDateChoice();
-                        System.out.println("ac "+project.costOfPerformed(date));
-                        System.out.println("ev "+project.calculateEV(date));
-                        System.out.println("cv "+project.calculateCV(date));
-                        System.out.println("sv "+project.calculateSV(date));
-                        System.out.println("pv "+project.calculatePV(date));
+                        Output.printProjectBudgetInformation(project,date);
                         Output.waitForKeyPress();
                     }else if(option!=10){
                         Output.incorrectInput();

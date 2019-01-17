@@ -1,5 +1,6 @@
 package utils;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.temporal.TemporalField;
 import java.time.temporal.WeekFields;
@@ -317,5 +318,13 @@ public class Output {
         System.out.println(project.getEndDate());
 
         colorPrinter.print(asterisks, Ansi.Attribute.NONE, Ansi.FColor.CYAN, Ansi.BColor.NONE);
+    }
+    public static void printProjectBudgetInformation(Project project,LocalDate date){
+        DecimalFormat decimalFormat = new DecimalFormat("#");
+        System.out.println("Actual Cost: "+decimalFormat.format(project.costOfPerformed(date)));
+        System.out.println("Earned Value: "+decimalFormat.format(project.calculateEV(date)));
+        System.out.println("Cost Variance: "+decimalFormat.format(project.calculateCV(date)));
+        System.out.println("Schedule Variance: "+decimalFormat.format(project.calculateSV(date)));
+        System.out.println("Planned Value: "+decimalFormat.format(project.calculatePV(date)));
     }
 }
