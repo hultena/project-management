@@ -33,22 +33,12 @@ public class ProjectManager {
                 case HANDLE_PROJECT:
                     scanner.nextLine();
                     Output.printProjectInformation(project);
-                    Output.printProjectOptions();
-                    chosenOption=scanner.nextInt();
-                    if(chosenOption==1){
-                        Output.printRiskMatrix(project.riskMatrix);
-                        Output.waitForKeyPress();
-                    }else if(chosenOption==2){
-                        //project progress
-                        LocalDate date = Output.printDateChoice();
-                        System.out.println("project progress");
-                        Output.printProgress(project,date);
-                        Output.waitForKeyPress();
-                    }else if(chosenOption==3){
-                        //project schedule
+                    Output.printManageProjectSubMenu();
+                    int option = scanner.nextInt();
+                    if(option==1){ // project schedule
                         Output.printSchedule(project.tasks);
                         Output.waitForKeyPress();
-                    }else if(chosenOption==4) {
+                    }else if(option==2) {
                         System.out.println("project budget");
                         LocalDate date = Output.printDateChoice();
                         System.out.println("ac "+project.costOfPerformed(date));
@@ -57,14 +47,14 @@ public class ProjectManager {
                         System.out.println("sv "+project.calculateSV(date));
                         System.out.println("pv "+project.calculatePV(date));
                         Output.waitForKeyPress();
-                    }else if(chosenOption!=10){
+                    }else if(option!=10){
                         Output.incorrectInput();
                     }
                     break;
                 case HANDLE_MEMBERS:
                     Output.printAllMembers(project.members);
                     Output.printHandleTeamMembersSubMenu();
-                    int option = scanner.nextInt();
+                    option = scanner.nextInt();
 
                     if(option==1){
                         scanner.nextLine();

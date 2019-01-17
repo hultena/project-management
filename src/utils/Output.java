@@ -200,23 +200,7 @@ public class Output {
         }
     }
 
-    public static void printProgress(Project project, LocalDate date){
-        System.out.println("\n");
-        System.out.println("*****************************************");
-        System.out.println("*Earned Value: " + project.calculateEV(date) + " *");
-        System.out.println("*****************************************");
-        System.out.println("*Schedule Variance: " + project.calculateSV(date)	+ " *");
-        System.out.println("*****************************************");
-        System.out.println("*Cost Variance: " + project.calculateCV(date) + " *");
-        System.out.println("*****************************************");
-    }
 
-    public static void printDuration(Project project){
-        System.out.println("\n");
-        System.out.println("***********************");
-        System.out.println("*Project Duration: " + project.calculateDuration() + " *");
-        System.out.println("***********************");
-    }
     public static void printRiskMenu(){
         colorPrinter.println("\n", Ansi.Attribute.NONE, Ansi.FColor.GREEN, Ansi.BColor.NONE);
         System.out.println("*** Manage risks ***");
@@ -234,12 +218,12 @@ public class Output {
     public static void riskProbability(){
         System.out.println("Please enter risk probability.");
     }
-    public static void printProjectOptions(){
-        System.out.println("1.  Print risk matrix");
-        System.out.println("2.  Project progress");
-        System.out.println("3.  Project schedule");
-        System.out.println("4.  Project budget");
+    public static void printManageProjectSubMenu(){
+        colorPrinter.println("\n", Ansi.Attribute.NONE, Ansi.FColor.GREEN, Ansi.BColor.NONE);
+        System.out.println("1.  Project schedule");
+        System.out.println("2.  Project budget");
         System.out.println("10. Back to menu");
+        colorPrinter.clear();
     }
     public static void printLogoAndVersion() {
         colorPrinter.println("  ____         __ _   __  __                  _        ___ ", Ansi.Attribute.NONE, Ansi.FColor.MAGENTA, Ansi.BColor.NONE);
@@ -318,6 +302,19 @@ public class Output {
         return longestTaskName;
     }
     public static void printProjectInformation(Project project){
-        System.out.println("Project name: "+project.getProjectName()+" | Project start date: "+project.getStartDate()+" | Project end date: "+project.getEndDate());
+        String asterisks = new String(new char[project.getProjectName().length() + 50]).replace("\0", "*");
+
+        colorPrinter.println(asterisks, Ansi.Attribute.NONE, Ansi.FColor.CYAN, Ansi.BColor.NONE);
+        System.out.print("Project ");
+        colorPrinter.clear();
+        System.out.print(project.getProjectName());
+        colorPrinter.print(" Start date ", Ansi.Attribute.NONE, Ansi.FColor.CYAN, Ansi.BColor.NONE);
+        colorPrinter.clear();
+        System.out.print(project.getStartDate());
+        colorPrinter.print(" End date ", Ansi.Attribute.NONE, Ansi.FColor.CYAN, Ansi.BColor.NONE);
+        colorPrinter.clear();
+        System.out.println(project.getEndDate());
+
+        colorPrinter.print(asterisks, Ansi.Attribute.NONE, Ansi.FColor.CYAN, Ansi.BColor.NONE);
     }
 }
