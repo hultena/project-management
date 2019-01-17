@@ -14,6 +14,8 @@ public class ProjectManager {
     private static final int QUIT_AND_SAVE = 11;
 
     public static void main(String[] args) throws Exception {
+        Parser.setWorkingDirectory();
+
         Scanner scanner = new Scanner(System.in);
         int chosenOption;
         Output.printLogoAndVersion();

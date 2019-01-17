@@ -16,12 +16,12 @@ public class Parser {
 
     private static String FILENAME;
     private static JsonNode JSON;
+    private static String WORKING_DIRECTORY;
 
     public static Project loadData(String fileName) throws Exception {
         FILENAME = fileName;
-        System.out.println(FILENAME);
 
-        byte[] jsonData = Files.readAllBytes(Paths.get(Parser.getPathToJsonFile(FILENAME)));
+        byte[] jsonData = Files.readAllBytes(Paths.get(Parser.getPathToJsonFolder() + FILENAME));
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         JSON = objectMapper.readTree(jsonData);
@@ -29,8 +29,13 @@ public class Parser {
         return objectMapper.readValue(JSON.toString(), Project.class);
     }
 
+    public static void setWorkingDirectory() {
+        WORKING_DIRECTORY = System.getProperty("user.dir");
+    }
+
     public static List<String> getProjects() {
-        File folder = new File("./.projects");
+        System.out.println(WORKING_DIRECTORY);
+        File folder = new File(getPathToJsonFolder());
         File[] listOfFiles = folder.listFiles();
         List<String> fileNames = new ArrayList<>();
 
@@ -42,10 +47,18 @@ public class Parser {
         return fileNames;
     }
 
-    public static String getPathToJsonFile(String name) {
-        String workingDir = System.getProperty("user.dir");
+    public static String getPathToJsonFolder() {
+        String path = WORKING_DIRECTORY;
 
-        return workingDir + "/.projects/" + name;
+        System.out.println(path.substring(path.length()-1, path.length()));
+
+        if (path.substring(path.length()-1, path.length()).equals("c")) {
+            path += "/.projects/";
+        } else {
+            path += "/src/.projects/";
+        }
+        System.out.println(path);
+        return path;
     }
     public JsonNode getJson() {
         return JSON;
