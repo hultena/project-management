@@ -43,6 +43,8 @@ public class Parser {
         objectMapper.registerModule(new JavaTimeModule());
         ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
         try{
+            if (FILENAME == null) {
+                FILENAME = "./src/template.json";}
             objectWriter.writeValue(new File(FILENAME), project);
         }catch (IOException e) {
             e.printStackTrace();

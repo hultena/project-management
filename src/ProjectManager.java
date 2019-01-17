@@ -17,11 +17,32 @@ public class ProjectManager {
         if (args.length > 0) {
             Parser.setPathToJsonFile(args[0]);
         }
-        Project project = Parser.loadData();
-
         Scanner scanner = new Scanner(System.in);
         int chosenOption;
         Output.printLogoAndVersion();
+        System.out.println("Welcome to SoftMan 1.0");
+        System.out.println("1. Load project");
+        System.out.println("2. Create new project");
+        chosenOption=scanner.nextInt();
+        Project project=null;
+        if(chosenOption==1) {
+             project = Parser.loadData();
+        }else if(chosenOption==2){
+            scanner.nextLine();
+            System.out.println("Enter project name");
+            String name = scanner.nextLine();
+            System.out.println("Enter project start date in the format YYYYMMDD");
+            String startDate = scanner.nextLine();
+            System.out.println("Enter project end date in the format YYYYMMDD");
+            String endDate = scanner.nextLine();
+            System.out.println("Enter engineer salary");
+            int salary = scanner.nextInt();
+            project=new Project();
+            project.setEngineerSalary(salary);
+            project.setProjectName(name);
+            project.setStartDate(Project.createDate(startDate));
+            project.setEndDate(Project.createDate(endDate));
+        }
 
         do {
             Output.printMenu();
