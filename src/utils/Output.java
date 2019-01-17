@@ -317,4 +317,7 @@ public class Output {
         }
         return longestTaskName;
     }
+    public static void printProjectInformation(Project project){
+        System.out.println("Project name: "+project.getProjectName()+" | Project start date: "+project.getStartDate()+" | Project end date: "+project.getEndDate());
+    }
 }

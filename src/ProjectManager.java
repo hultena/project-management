@@ -32,6 +32,7 @@ public class ProjectManager {
 
                 case HANDLE_PROJECT:
                     scanner.nextLine();
+                    Output.printProjectInformation(project);
                     Output.printProjectOptions();
                     chosenOption=scanner.nextInt();
                     if(chosenOption==1){
