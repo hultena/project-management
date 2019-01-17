@@ -272,8 +272,8 @@ public class Output {
     }
     public static LocalDate printDateChoice(){
         LocalDate date = null;
-        System.out.println("Choose current date or specify date");
-        System.out.println("1. Current date");
+        System.out.println("What date should the budget be based on?");
+        System.out.println("1. Current date (" + LocalDate.now().toString() + ")");
         System.out.println("2. Specify date");
         int chosenOption = scanner.nextInt();
         if(chosenOption==1){
@@ -319,12 +319,12 @@ public class Output {
 
         colorPrinter.print(asterisks, Ansi.Attribute.NONE, Ansi.FColor.CYAN, Ansi.BColor.NONE);
     }
-    public static void printProjectBudgetInformation(Project project,LocalDate date){
+    public static void printProjectMetrics(Project project,LocalDate date){
         DecimalFormat decimalFormat = new DecimalFormat("#");
-        System.out.println("Actual Cost: "+decimalFormat.format(project.costOfPerformed(date)));
-        System.out.println("Earned Value: "+decimalFormat.format(project.calculateEV(date)));
-        System.out.println("Cost Variance: "+decimalFormat.format(project.calculateCV(date)));
+        System.out.println("\nActual Cost:       "+decimalFormat.format(project.costOfPerformed(date)));
+        System.out.println("Earned Value:      "+decimalFormat.format(project.calculateEV(date)));
+        System.out.println("Cost Variance:     "+decimalFormat.format(project.calculateCV(date)));
         System.out.println("Schedule Variance: "+decimalFormat.format(project.calculateSV(date)));
-        System.out.println("Planned Value: "+decimalFormat.format(project.calculatePV(date)));
+        System.out.println("Planned Value:     "+decimalFormat.format(project.calculatePV(date)));
     }
 }

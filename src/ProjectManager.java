@@ -39,9 +39,8 @@ public class ProjectManager {
                         Output.printSchedule(project.tasks);
                         Output.waitForKeyPress();
                     }else if(option==2) {
-                        System.out.println("project budget");
                         LocalDate date = Output.printDateChoice();
-                        Output.printProjectBudgetInformation(project,date);
+                        Output.printProjectMetrics(project,date);
                         Output.waitForKeyPress();
                     }else if(option!=10){
                         Output.incorrectInput();
