@@ -19,7 +19,7 @@ public class Parser {
     public static Project loadData() throws Exception {
         // Need this when you run project from IDE
         if (FILENAME == null) {
-            FILENAME = "/Users/bartek/gitreps/project-management/src/template.json";
+            FILENAME = "./src/template.json";
             System.out.println("No arguments received, using hardcoded path to json file");
         }
 

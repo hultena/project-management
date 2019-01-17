@@ -36,7 +36,7 @@
     "name" : "Implement project functionality",
     "budgetedHours" : 20,
     "startDate" : [ 2018, 12, 20 ],
-    "endDate" : [ 2019, 1, 18 ],
+    "endDate" : [ 2019, 1, 15],
     "contributions" : [ {
       "id" : "#001",
       "timeSpent" : 10,
