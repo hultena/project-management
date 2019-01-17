@@ -39,11 +39,7 @@ public class ProjectManager {
             String endDate = scanner.nextLine();
             System.out.println("Enter engineer salary");
             int salary = scanner.nextInt();
-            project=new Project();
-            project.setEngineerSalary(salary);
-            project.setProjectName(name);
-            project.setStartDate(Project.createDate(startDate));
-            project.setEndDate(Project.createDate(endDate));
+            project = new Project(name, Project.createDate(startDate), Project.createDate(endDate), salary);
         }
 
         do {

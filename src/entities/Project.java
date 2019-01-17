@@ -14,7 +14,17 @@ public class Project {
     private int engineerSalary;
     private int budget;
 
-    public Project() {
+    public Project(String projectName, LocalDate startDate, LocalDate endDate, int engineerSalary) {
+        this.projectName = projectName;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.engineerSalary = engineerSalary;
+        this.riskMatrix = new ArrayList<Risk>();
+        this.tasks = new ArrayList<Task>();
+        this.members = new ArrayList<Member>();
+    }
+
+    public Project() { // jackson constructor
         this.riskMatrix = new ArrayList<Risk>();
         this.tasks = new ArrayList<Task>();
         this.members = new ArrayList<Member>();
