@@ -135,11 +135,11 @@ public class ProjectManager {
                     if(option==1){
                         //add risk
                         scanner.nextLine();
-                        Output.riskName();
+                        System.out.println("Please enter risk name");
                         String name = scanner.nextLine();
-                        Output.riskSeverity();
+                        System.out.println("Please enter risk severity");
                         int severity = scanner.nextInt();
-                        Output.riskProbability();
+                        System.out.println("Please enter risk probabibility");
                         int probability = scanner.nextInt();
                         project.addRisk(name,severity,probability);
 
