@@ -58,7 +58,7 @@ public class Parser {
         ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
         try{
             if (FILENAME == null) {
-                FILENAME = "./src/template.json";}
+                FILENAME = "./src/.projects/"+project.getProjectName()+".json";}
             objectWriter.writeValue(new File(FILENAME), project);
         }catch (IOException e) {
             e.printStackTrace();
