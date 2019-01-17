@@ -50,11 +50,11 @@ public class Output {
         System.out.println(asterisks);
         int index = 1;
         for (Risk risk : riskMatrix) {
-            String riskName = risk.getName();
+            String riskName =index+": "+risk.getName();
             riskName += new String(new char[(4 + longestNameLength) - riskName.length()]).replace("\0"," ");
             colorPrinter.print(riskName, Ansi.Attribute.NONE, Ansi.FColor.WHITE, Ansi.BColor.NONE);
 
-            String numbers = risk.getProbability() + "               " + risk.getSeverity() + "            " + risk.impact();
+            String numbers =risk.getProbability() + "               " + risk.getSeverity() + "            " + risk.impact();
 
             if (risk.impact() < 6) {
                colorPrinter.println(numbers, Ansi.Attribute.NONE, Ansi.FColor.GREEN, Ansi.BColor.NONE);
@@ -182,18 +182,21 @@ public class Output {
         System.out.println("11. Quit and save");
         colorPrinter.clear();
     }
-
-    public static void printTaskSchedule(Task task) {
-
-        System.out.println(task.getName()+" w:" + convertDateToWeek(task.getStartDate())+" w:"+convertDateToWeek(task.getEndDate()));
-    }
-
     public static void printSchedule(List<Task> tasks) {
-        int longestTaskName=findLongestTaskName(tasks);
-        System.out.println("\n");
-        System.out.println("Task       Start Week          End Week");
+        int longestNameLength=findLongestTaskName(tasks);
+        String asterisks = new String(new char[longestNameLength + 30]).replace("\0", "*");
+        String header = "Task name";
+        header += new String(new char[longestNameLength]).replace("\0", " ");
+        header += "Start week   End week";
+        System.out.println("Project Schedule");
+        System.out.println(asterisks);
+        System.out.println(header);
+        System.out.println(asterisks);
         for (Task task : tasks) {
-            printTaskSchedule(task);
+            String row = task.getName();
+            row += new String(new char[(longestNameLength+9) - row.length()]).replace("\0"," ")+convertDateToWeek(task.getStartDate());
+            row += new String(new char[(longestNameLength+22) - row.length()]).replace("\0", " ")+convertDateToWeek(task.getEndDate());
+            System.out.println(row);
         }
     }
 

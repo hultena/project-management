@@ -45,7 +45,6 @@ public class ProjectManager {
                         Output.waitForKeyPress();
                     }else if(chosenOption==3){
                         //project schedule
-                        System.out.println("project schedule");
                         Output.printSchedule(project.tasks);
                         Output.waitForKeyPress();
                     }else if(chosenOption==4) {
