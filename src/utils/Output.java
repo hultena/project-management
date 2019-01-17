@@ -138,7 +138,7 @@ public class Output {
         for (Task task : tasks) {
             boolean shouldIncludeTask = true;
 
-            if (onlyUnfinishedTasks && task.completion() > 100) {
+            if (onlyUnfinishedTasks && task.completion() >= 100) {
                 shouldIncludeTask = false;
             }
 
