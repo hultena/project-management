@@ -1,6 +1,8 @@
 package utils;
 
 import java.time.LocalDate;
+import java.time.temporal.TemporalField;
+import java.time.temporal.WeekFields;
 import java.util.*;
 import com.diogonunes.jcdp.color.*;
 import com.diogonunes.jcdp.color.api.Ansi;
@@ -145,8 +147,8 @@ public class Output {
 
                 row += new String(new char[(4 + longestNameLength) - row.length()]).replace("\0"," ");
                 row += task.getBudgetedHours();
-                row += new String(new char[(longestNameLength + 23) - row.length()]).replace("\0", " ") + task.getStartDate();
-                row += new String(new char[(longestNameLength + 23 + 15) - row.length()]).replace("\0", " ") + task.getEndDate();
+                row += new String(new char[(longestNameLength + 23) - row.length()]).replace("\0", " ") + convertDateToWeek(task.getStartDate());
+                row += new String(new char[(longestNameLength + 23 + 15) - row.length()]).replace("\0", " ") + convertDateToWeek(task.getEndDate());
                 row += new String(new char[(longestNameLength + 23 + 15 + 13) - row.length()]).replace("\0", " ") + task.completion();
                 row += new String(new char[(longestNameLength + 23 + 15 + 13 + 18) - row.length()]).replace("\0", " ") + task.timeSpent(LocalDate.now());
 
@@ -182,12 +184,12 @@ public class Output {
     }
 
     public static void printTaskSchedule(Task task) {
-        System.out.println("\n");
-        System.out.println(task.getName() +
-                "			w:" + task.getStartDate() + "		w:" + task.getEndDate());
+
+        System.out.println(task.getName()+" w:" + convertDateToWeek(task.getStartDate())+" w:"+convertDateToWeek(task.getEndDate()));
     }
 
     public static void printSchedule(List<Task> tasks) {
+        int longestTaskName=findLongestTaskName(tasks);
         System.out.println("\n");
         System.out.println("Task       Start Week          End Week");
         for (Task task : tasks) {
@@ -236,11 +238,6 @@ public class Output {
         System.out.println("4.  Project budget");
         System.out.println("10. Back to menu");
     }
-
-    public static void testPrint(Contribution contribution,Task task){
-        System.out.println("Task name: "+task.getName()+" | Week: "+contribution.getDate()+" | Time spent: "+contribution.getTimeSpent()+" hours. | Percentage completed: "+contribution.getPercentageCompleted()+"%");
-    }
-
     public static void printLogoAndVersion() {
         colorPrinter.println("  ____         __ _   __  __                  _        ___ ", Ansi.Attribute.NONE, Ansi.FColor.MAGENTA, Ansi.BColor.NONE);
         colorPrinter.println(" / ___|  ___  / _| |_|  \\/  | __ _ _ __      / |      / _ \\ ", Ansi.Attribute.NONE, Ansi.FColor.MAGENTA, Ansi.BColor.NONE);
@@ -251,13 +248,7 @@ public class Output {
         System.out.println("              Software project management tool              ");
     }
     public static void printAllContributions(List<Contribution> contributions, List<Task> tasks, String memberName){
-        int longestNameLength = 0;
-
-        for (Task task : tasks) {
-            if (task.getName().length() > longestNameLength) {
-                longestNameLength = task.getName().length();
-            }
-        }
+        int longestNameLength = findLongestTaskName(tasks);
 
         String header = "Name";
         header += new String(new char[longestNameLength]).replace("\0", " ");
@@ -309,5 +300,18 @@ public class Output {
             Output.waitForKeyPress();
         }
         return date;
+    }
+    public static int convertDateToWeek(LocalDate date){
+        TemporalField week = WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear();
+        return date.get(week);
+    }
+    public static int findLongestTaskName(List<Task> tasks){
+        int longestTaskName=0;
+        for (Task task:tasks){
+            if(task.getName().length()>longestTaskName){
+                longestTaskName=task.getName().length();
+            }
+        }
+        return longestTaskName;
     }
 }
