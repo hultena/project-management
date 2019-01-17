@@ -8,12 +8,10 @@ public class Risk {
     public Risk() {
 
     }
-
-    public String toString() {
-        return "| Name: "+this.name+" | Probability: "+this.probability+
-                " | Severity :"+this.severity+" | Impact : "+this.probability*this.severity+" | "+System.lineSeparator();
+    public int impact(){
+        int impact = severity*probability;
+        return impact;
     }
-
     public String getName() {
         return name;
     }
@@ -23,10 +21,7 @@ public class Risk {
     public int getSeverity() {
         return severity;
     }
-    public int impact(){
-        int impact = severity*probability;
-        return impact;
-    }
+
     public void setName(String name){
         this.name = name;
     }
