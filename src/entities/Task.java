@@ -75,19 +75,19 @@ public class Task {
         return "| Name: "+name+" | Budgeted hours: "+budgetedHours+" | Start week: "+startDate
                 +" | End week: "+endDate+" | Completion: " +completion()+"% | Time spent: "+timeSpent(LocalDate.now())+" hours. | "+System.lineSeparator();
     }
-    public long calculateDuration(){
+    public double calculateDuration(){
         return ChronoUnit.DAYS.between(startDate,endDate);
     }
     public double calculateTaskBudget(int salary){
         return this.budgetedHours*salary;
     }
     public double actualPercentageCompleted(LocalDate date){
-        int percentageCompleted = 0;
+        double percentageCompleted = 0;
         for(Contribution contribution: contributions){
             if(contribution.getDate().isBefore(date)){
                 percentageCompleted+=contribution.getPercentageCompleted();
             }
-        }return percentageCompleted;
+        }return percentageCompleted/100;
     }
     public double calculateSvTask(LocalDate date,int salary){
         return calculateEvTask(date,salary)-calculatePvTask(date,salary);

@@ -100,7 +100,7 @@ public class Project {
         }
         return totalPV;
     }
-    public long calculateDuration(){
+    public double calculateDuration(){
         return ChronoUnit.DAYS.between(startDate,endDate);
     }
 
