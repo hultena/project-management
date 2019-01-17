@@ -73,50 +73,32 @@ public class Project {
         return foundMember;
     }
 
-    public double meanPercentage(){
-        double totalPercent = 0;
-        int numberOfTasks = 0;
-        double meanPercentage = 0;
-
-        for (Task task : tasks) {
-            totalPercent = totalPercent + task.completion();
-            numberOfTasks += 1;
-        }
-
-        if (numberOfTasks != 0) {
-            meanPercentage = totalPercent/numberOfTasks;
-        }
-
-        return meanPercentage;
-    }
-
     public double calculateEV(LocalDate date){
-        double EV = 0;
-        double completedPercent = meanPercentage();
-        double BAC = costOfPerformed(date);
-
-        if(BAC != 0){
-            EV = completedPercent/BAC;
+        double totalEV=0;
+        for (Task task : tasks){
+            totalEV+=task.calculateEvTask(date,engineerSalary);
         }
-        return EV;
+        return totalEV;
     }
-
     public double costOfPerformed(LocalDate date){
-        int hoursSpent = 0;
-
+        int actualCost = 0;
         for(Task task : this.tasks) {
-            hoursSpent += task.timeSpent(date);
+            actualCost+=task.calculateAcTask(date,engineerSalary);
         }
-        return hoursSpent * engineerSalary;
+        return actualCost;
     }
     public double calculateSV(LocalDate date){
-        double totalSV = 0;
-        for(Task task : tasks){
-            totalSV+=task.calculateSvTask(date);
-        }return totalSV;
+        return calculateEV(date)-calculatePV(date);
     }
     public double calculateCV(LocalDate date){
         return calculateEV(date)-costOfPerformed(date);
+    }
+    public double calculatePV(LocalDate date){
+        double totalPV = 0;
+        for(Task task : tasks){
+            totalPV+=task.calculatePvTask(date,engineerSalary);
+        }
+        return totalPV;
     }
     public long calculateDuration(){
         return ChronoUnit.DAYS.between(startDate,endDate);

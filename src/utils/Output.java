@@ -230,10 +230,11 @@ public class Output {
         System.out.println("Please enter risk probability.");
     }
     public static void printProjectOptions(){
-        System.out.println("1. Print risk matrix");
-        System.out.println("2. Project progress");
-        System.out.println("3. Project schedule");
-        System.out.println("4. Project budget");
+        System.out.println("1.  Print risk matrix");
+        System.out.println("2.  Project progress");
+        System.out.println("3.  Project schedule");
+        System.out.println("4.  Project budget");
+        System.out.println("10. Back to menu");
     }
 
     public static void testPrint(Contribution contribution,Task task){

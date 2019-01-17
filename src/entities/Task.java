@@ -78,9 +78,8 @@ public class Task {
     public long calculateDuration(){
         return ChronoUnit.DAYS.between(startDate,endDate);
     }
-    public double plannedPercentage(LocalDate date){
-        long span = ChronoUnit.DAYS.between(startDate,date);
-        return 100.0/span;
+    public double calculateTaskBudget(int salary){
+        return this.budgetedHours*salary;
     }
     public double actualPercentageCompleted(LocalDate date){
         int percentageCompleted = 0;
@@ -90,11 +89,26 @@ public class Task {
             }
         }return percentageCompleted;
     }
-    public double calculateSvTask(LocalDate date){
-        return actualPercentageCompleted(date)-plannedPercentage(date);
+    public double calculateSvTask(LocalDate date,int salary){
+        return calculateEvTask(date,salary)-calculatePvTask(date,salary);
     }
-    public double calculateEvTask(LocalDate date){
-        return calculateDuration()*actualPercentageCompleted(date);
+    public double calculateEvTask(LocalDate date,int salary){
+        return calculateTaskBudget(salary)*actualPercentageCompleted(date);
+    }
+    public double calculateAcTask(LocalDate date,int salary){
+        return timeSpent(date)*salary;
+    }
+    public double calculateCvTask(LocalDate date,int salary){
+        return calculateEvTask(date,salary)-calculateAcTask(date,salary);
+    }
+    public double calculatePvTask(LocalDate date,int salary){
+        double duration = calculateDuration();
+        double span = ChronoUnit.DAYS.between(startDate,date);
+        if(span>duration){
+            span=duration;
+        }
+        double ratio = span/duration;
+        return calculateTaskBudget(salary)*ratio;
     }
 
 }

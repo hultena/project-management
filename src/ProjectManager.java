@@ -51,9 +51,13 @@ public class ProjectManager {
                     }else if(chosenOption==4) {
                         System.out.println("project budget");
                         LocalDate date = Output.printDateChoice();
-                        System.out.println(project.moneySpent(date));
+                        System.out.println("ac "+project.costOfPerformed(date));
+                        System.out.println("ev "+project.calculateEV(date));
+                        System.out.println("cv "+project.calculateCV(date));
+                        System.out.println("sv "+project.calculateSV(date));
+                        System.out.println("pv "+project.calculatePV(date));
                         Output.waitForKeyPress();
-                    }else{
+                    }else if(chosenOption!=10){
                         Output.incorrectInput();
                     }
                     break;
@@ -102,10 +106,10 @@ public class ProjectManager {
                         scanner.nextLine();
                         System.out.println("Enter the start date of the task in the format YYYYMMDD");
                         String input = scanner.nextLine();
-                        LocalDate startDate = project.createDate(input);
+                        LocalDate startDate = Project.createDate(input);
                         System.out.println("Enter the end date of the task in the format YYYYMMDD");
                         input = scanner.nextLine();
-                        LocalDate endDate = project.createDate(input);
+                        LocalDate endDate = Project.createDate(input);
                         project.addTask(name, budgetedHours, startDate, endDate);
                     }else if(option==2){
                         scanner.nextLine();
