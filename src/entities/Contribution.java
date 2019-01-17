@@ -9,42 +9,38 @@ public class Contribution {
     private int percentageCompleted;
     private LocalDate date;
 
-    public Contribution(){
-
-    }
-    public String getId(){
-        return id;
-    }
-
-    public int getPercentageCompleted(){
-        return percentageCompleted;
+    public Contribution(String id, int timeSpent, int percentageCompleted, LocalDate date) {
+        this.id = id;
+        this.timeSpent = timeSpent;
+        this.percentageCompleted = percentageCompleted;
+        this.date = date;
     }
 
-    public String toString() {
-        return "ID: "+id+" | Time: "+ timeSpent+" | Percent completed: "+percentageCompleted+"% | Week added: "+date;
-    }
-
-    public int getTimeSpent() {
-        return timeSpent;
-    }
+    public Contribution(){} // empty constructor for jackson
 
     public void setId(String id) {
         this.id = id;
     }
-
     public void setPercentageCompleted(int percentageCompleted) {
         this.percentageCompleted = percentageCompleted;
     }
-
     public void setTimeSpent(int timeSpent) {
         this.timeSpent = timeSpent;
     }
-
     public void setDate(LocalDate date){
         this.date = date;
     }
     public LocalDate getDate(){
         return date;
+    }
+    public String getId(){
+        return id;
+    }
+    public int getTimeSpent() {
+        return timeSpent;
+    }
+    public int getPercentageCompleted(){
+        return percentageCompleted;
     }
 
 }

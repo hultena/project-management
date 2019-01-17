@@ -14,38 +14,32 @@ public class Project {
     private int engineerSalary;
     private int budget;
 
-    public Project() {
+    public Project(String projectName, LocalDate startDate, LocalDate endDate, int engineerSalary) {
+        this.projectName = projectName;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.engineerSalary = engineerSalary;
         this.riskMatrix = new ArrayList<Risk>();
         this.tasks = new ArrayList<Task>();
         this.members = new ArrayList<Member>();
     }
 
+    public Project() { // jackson constructor
+        this.riskMatrix = new ArrayList<Risk>();
+        this.tasks = new ArrayList<Task>();
+        this.members = new ArrayList<Member>();
+    }
     public void addTask(String name, int budgetedHours, LocalDate startDate, LocalDate endDate){
-        Task newTask = new Task();
-        newTask.setName(name);
-        newTask.setBudgetedHours(budgetedHours);
-        newTask.setStartDate(startDate);
-        newTask.setEndDate(endDate);
+        Task newTask = new Task(name, budgetedHours, startDate, endDate);
         tasks.add(newTask);
     }
-
     public void addRisk(String name,int severity,int probability){
-        Risk newRisk = new Risk();
-        newRisk.setName(name);
-        newRisk.setSeverity(severity);
-        newRisk.setProbability(probability);
+        Risk newRisk = new Risk(name, severity, probability);
         riskMatrix.add(newRisk);
     }
-
-    public List<Member> getMembers() {
-        return this.members;
-    }
-
     public void addMember(String name, String id) {
         if (this.findMember(id) == null) {
-            Member newMember = new Member();
-            newMember.setId(id);
-            newMember.setName(name);
+            Member newMember = new Member(name, id);
             this.members.add(newMember);
             System.out.println("Member successfully added.");
         } else {
@@ -104,42 +98,6 @@ public class Project {
         return ChronoUnit.DAYS.between(startDate,endDate);
     }
 
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-    public void setStartDate(LocalDate startDate){
-        this.startDate = startDate;
-    }
-    public void setProjectName(String projectName){
-        this.projectName = projectName;
-    }
-
-    public LocalDate getStartDate(){
-        return startDate;
-    }
-    public LocalDate getEndDate(){
-        return endDate;
-    }
-    public String getProjectName(){
-        return projectName;
-    }
-    public int getEngineerSalary(){
-        return engineerSalary;
-    }
-    public void setEngineerSalary(int engineerSalary) {
-        this.engineerSalary = engineerSalary;
-    }
-    public int totalTimeWorked(String id){
-        int time = 0;
-        for (Task i : tasks){
-            List<Contribution> contributions = i.getContributions();
-            for(Contribution j : contributions){
-                if(j.getId().equalsIgnoreCase(id)){
-                    time+=j.getTimeSpent();
-                }
-            }
-        }return time;
-    }
     public void printAllContributionsByMember(String id){
         List<Contribution> memberContributions = new ArrayList<Contribution>();
         List<Task> memberTasks = new ArrayList<Task>();
@@ -154,29 +112,52 @@ public class Project {
         }
         Output.printAllContributions(memberContributions, memberTasks, this.findMember(id).getName());
     }
-
-    public int getBudget(){
-        return budget;
-    }
-    public void setBudget(int budget){
-        this.budget=budget;
-    }
-    public int moneySpent(LocalDate date){
-        int time = 0;
-        for(Task task : tasks){
-            List<Contribution> contributions = task.getContributions();
-            for(Contribution contribution : contributions){
-                if(contribution.getDate().isBefore(date)) {
-                    time += contribution.getTimeSpent();
-                }
-            }
-        }
-        return time*engineerSalary;
-    }
     public static LocalDate createDate(String input){
         int year = Integer.parseInt(input.substring(0,4));
         int month = Integer.parseInt(input.substring(4,6));
         int day = Integer.parseInt(input.substring(6,8));
         return LocalDate.of(year,month,day);
     }
+
+    public void setBudget(int budget){
+        this.budget=budget;
+    }
+    public void setEngineerSalary(int engineerSalary) {
+        this.engineerSalary = engineerSalary;
+    }
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+    public void setStartDate(LocalDate startDate){
+        this.startDate = startDate;
+    }
+    public void setProjectName(String projectName){
+        this.projectName = projectName;
+    }
+    public int getBudget(){
+        return budget;
+    }
+    public LocalDate getStartDate(){
+        return startDate;
+    }
+    public LocalDate getEndDate(){
+        return endDate;
+    }
+    public String getProjectName(){
+        return projectName;
+    }
+    public int getEngineerSalary(){
+        return engineerSalary;
+    }
+    public List<Member> getMembers() {
+        return this.members;
+    }
+    public List<Task> getTasks(){
+        return tasks;
+    }
+    public List<Risk> getRiskMatrix(){
+        return riskMatrix;
+    }
+
+
 }

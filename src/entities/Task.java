@@ -10,51 +10,22 @@ public class Task {
     private LocalDate endDate;
     private List<Contribution> contributions;
 
-    public Task() {
-        contributions = new ArrayList<Contribution>();
+    public Task(String name, int budgetedHours, LocalDate startDate, LocalDate endDate) {
+        this.name = name;
+        this.budgetedHours = budgetedHours;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.contributions = new ArrayList<Contribution>();
     }
 
-    public String getName() {
-        return this.name;
+    public Task() {
+       this.contributions = new ArrayList<Contribution>();
     }
-    public int getBudgetedHours() {
-        return this.budgetedHours;
-    }
+
     public void addContribution(String id, int time, int percentageCompleted, LocalDate date){
-        Contribution newContribution = new Contribution();
-        newContribution.setId(id);
-        newContribution.setTimeSpent(time);
-        newContribution.setPercentageCompleted(percentageCompleted);
-        newContribution.setDate(date);
+        Contribution newContribution = new Contribution(id, time, percentageCompleted, date);
         contributions.add(newContribution);
 
-    }
-    public List<Contribution> getContributions(){
-        return contributions;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
-    public void setBudgetedHours(int budgetedHours) {
-        this.budgetedHours = budgetedHours;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
     }
     public int completion(){
         int completion = 0;
@@ -70,10 +41,6 @@ public class Task {
                 timeSpent+=i.getTimeSpent();
         }
         return timeSpent;
-    }
-    public String toString(){
-        return "| Name: "+name+" | Budgeted hours: "+budgetedHours+" | Start week: "+startDate
-                +" | End week: "+endDate+" | Completion: " +completion()+"% | Time spent: "+timeSpent(LocalDate.now())+" hours. | "+System.lineSeparator();
     }
     public double calculateDuration(){
         return ChronoUnit.DAYS.between(startDate,endDate);
@@ -110,4 +77,32 @@ public class Task {
         double ratio = span/duration;
         return calculateTaskBudget(salary)*ratio;
     }
+    public String getName() {
+        return this.name;
+    }
+    public int getBudgetedHours() {
+        return this.budgetedHours;
+    }
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+    public List<Contribution> getContributions(){
+        return contributions;
+    }
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+    public void setBudgetedHours(int budgetedHours) {
+        this.budgetedHours = budgetedHours;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
 }

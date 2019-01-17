@@ -5,15 +5,18 @@ public class Risk {
     private int probability;
     private int severity;
 
-    public Risk() {
-
+    public Risk(String name, int probability, int severity) {
+        this.name = name;
+        this.probability = probability;
+        this.severity = severity;
     }
 
-    public String toString() {
-        return "| Name: "+this.name+" | Probability: "+this.probability+
-                " | Severity :"+this.severity+" | Impact : "+this.probability*this.severity+" | "+System.lineSeparator();
-    }
+    public Risk() {} // empty constructor for jackson
 
+    public int impact(){
+        int impact = severity*probability;
+        return impact;
+    }
     public String getName() {
         return name;
     }
@@ -23,10 +26,7 @@ public class Risk {
     public int getSeverity() {
         return severity;
     }
-   public int impact(){
-        int impact = severity*probability;
-        return impact;
-    }
+
     public void setName(String name){
         this.name = name;
     }

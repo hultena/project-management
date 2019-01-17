@@ -36,7 +36,7 @@
     "name" : "Implement project functionality",
     "budgetedHours" : 20,
     "startDate" : [ 2018, 12, 20 ],
-    "endDate" : [ 2019, 1, 15],
+    "endDate" : [ 2019, 1, 15 ],
     "contributions" : [ {
       "id" : "#001",
       "timeSpent" : 10,
@@ -114,9 +114,9 @@
     "name" : "Shomitro",
     "id" : "#006"
   } ],
-  "projectName" : "Next facebook",
-  "startDate" : [ 1970, 2, 6 ],
-  "endDate" : [ 1970, 2, 22 ],
+  "projectName" : "SoftMan 1.0",
+  "startDate" : [ 2018, 11, 25 ],
+  "endDate" : [ 2019, 1, 18 ],
   "engineerSalary" : 250,
   "budget" : 12000
 }

@@ -5,12 +5,13 @@ public class Member {
     private String name;
     private String id;
 
-    public Member() {
+    public Member(String name, String id) {
+        this.name = name;
+        this.id = id;
+    }
 
-    }
-    public String toString(){
-        return "| ID: "+id+" | Name: "+name+" | "+System.lineSeparator();
-    }
+    public Member() {} // Empty constructor for jackson
+
 
     public String getName() {
         return this.name;

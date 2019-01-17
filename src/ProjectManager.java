@@ -3,7 +3,7 @@ import utils.*;
 import entities.Project;
 import java.time.LocalDate;
 import java.util.Scanner;
-
+import java.io.File;
 
 public class ProjectManager {
     private static final int HANDLE_PROJECT = 1;
@@ -14,14 +14,36 @@ public class ProjectManager {
     private static final int QUIT_AND_SAVE = 11;
 
     public static void main(String[] args) throws Exception {
-        if (args.length > 0) {
-            Parser.setPathToJsonFile(args[0]);
-        }
-        Project project = Parser.loadData();
+        Parser.setWorkingDirectory();
 
         Scanner scanner = new Scanner(System.in);
         int chosenOption;
         Output.printLogoAndVersion();
+        Output.printIntroMenu();
+
+        chosenOption=scanner.nextInt();
+        Project project = null;
+
+        if(chosenOption==1) {
+            Output.printAllProjects(Parser.getProjects());
+
+            int option = scanner.nextInt();
+
+            String chosenProject = Parser.getProjects().get(option - 1);
+            project = Parser.loadData(chosenProject);
+        }else if(chosenOption==2){
+            scanner.nextLine();
+            System.out.println("Enter project name");
+            String name = scanner.nextLine();
+            System.out.println("Enter project start date in the format YYYYMMDD");
+            String startDate = scanner.nextLine();
+            System.out.println("Enter project end date in the format YYYYMMDD");
+            String endDate = scanner.nextLine();
+            System.out.println("Enter engineer salary");
+            int salary = scanner.nextInt();
+            project = new Project(name, Project.createDate(startDate), Project.createDate(endDate), salary);
+            Parser.setFILENAME(project.getProjectName() + ".json");
+        }
 
         do {
             Output.printMenu();
@@ -32,38 +54,24 @@ public class ProjectManager {
 
                 case HANDLE_PROJECT:
                     scanner.nextLine();
-                    Output.printProjectOptions();
-                    chosenOption=scanner.nextInt();
-                    if(chosenOption==1){
-                        Output.printRiskMatrix(project.riskMatrix);
-                        Output.waitForKeyPress();
-                    }else if(chosenOption==2){
-                        //project progress
-                        LocalDate date = Output.printDateChoice();
-                        System.out.println("project progress");
-                        Output.printProgress(project,date);
-                        Output.waitForKeyPress();
-                    }else if(chosenOption==3){
-                        //project schedule
+                    Output.printProjectInformation(project);
+                    Output.printManageProjectSubMenu();
+                    int option = scanner.nextInt();
+                    if(option==1){ // project schedule
                         Output.printSchedule(project.tasks);
                         Output.waitForKeyPress();
-                    }else if(chosenOption==4) {
-                        System.out.println("project budget");
+                    }else if(option==2) {
                         LocalDate date = Output.printDateChoice();
-                        System.out.println("ac "+project.costOfPerformed(date));
-                        System.out.println("ev "+project.calculateEV(date));
-                        System.out.println("cv "+project.calculateCV(date));
-                        System.out.println("sv "+project.calculateSV(date));
-                        System.out.println("pv "+project.calculatePV(date));
+                        Output.printProjectMetrics(project,date);
                         Output.waitForKeyPress();
-                    }else if(chosenOption!=10){
+                    }else if(option!=10){
                         Output.incorrectInput();
                     }
                     break;
                 case HANDLE_MEMBERS:
                     Output.printAllMembers(project.members);
                     Output.printHandleTeamMembersSubMenu();
-                    int option = scanner.nextInt();
+                    option = scanner.nextInt();
 
                     if(option==1){
                         scanner.nextLine();
@@ -117,15 +125,14 @@ public class ProjectManager {
                         chosenOption = scanner.nextInt()-1;
                         Task chosenTask = project.tasks.get(chosenOption);
                         scanner.nextLine();
-                        System.out.println("Enter id");
+                        System.out.println("Enter task id");
                         String id = scanner.nextLine();
-                        System.out.println("Enter time");
+                        System.out.println("Enter time (hours)");
                         int time = scanner.nextInt();
-                        System.out.println("Enter percentage");
+                        System.out.println("Enter percentage completed");
                         int percentageCompleted = scanner.nextInt();
                         LocalDate date = LocalDate.now();
                         chosenTask.addContribution(id,time,percentageCompleted,date);
-                        System.out.println(chosenTask);
                     }else if(option==3){
                         Output.printTasks(project.tasks, false);
                     }else if(option==4){
@@ -149,11 +156,11 @@ public class ProjectManager {
                     if(option==1){
                         //add risk
                         scanner.nextLine();
-                        Output.riskName();
+                        System.out.println("Please enter risk name");
                         String name = scanner.nextLine();
-                        Output.riskSeverity();
+                        System.out.println("Please enter risk severity");
                         int severity = scanner.nextInt();
-                        Output.riskProbability();
+                        System.out.println("Please enter risk probabibility");
                         int probability = scanner.nextInt();
                         project.addRisk(name,severity,probability);
 
