@@ -117,6 +117,6 @@
   "projectName" : "SoftMan 1.0",
   "startDate" : [ 2018, 11, 25 ],
   "endDate" : [ 2019, 1, 18 ],
-  "engineerSalary" : 250,
-  "budget" : 12000
+  "engineerSalary" : 250
+  
 }

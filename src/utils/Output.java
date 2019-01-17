@@ -21,10 +21,14 @@ public class Output {
 
     public static void printAllProjects(List<String> fileNames) {
         System.out.println("\n");
+        colorPrinter.println("\n", Ansi.Attribute.NONE, Ansi.FColor.GREEN, Ansi.BColor.NONE);
+        System.out.println("Available Projects");
         for (int i=1; i <= fileNames.size(); i++) {
             String file = fileNames.get(i-1);
-            System.out.println(i + ". " + file.substring(0, file.length() - 5));
+            System.out.println(i + ": " + file.substring(0, file.length() - 5));
         }
+        System.out.println("Please select project.");
+        colorPrinter.clear();
     }
 
     public static void printIntroMenu() {
@@ -135,6 +139,7 @@ public class Output {
     }
     public static LocalDate printDateChoice(){
         LocalDate date = null;
+        colorPrinter.println("\n", Ansi.Attribute.NONE, Ansi.FColor.GREEN, Ansi.BColor.NONE);
         System.out.println("What date should the budget be based on?");
         System.out.println("1. Current date (" + LocalDate.now().toString() + ")");
         System.out.println("2. Specify date");
@@ -151,7 +156,9 @@ public class Output {
             Output.incorrectInput();
             Output.waitForKeyPress();
         }
+        colorPrinter.clear();
         return date;
+
     }
     public static int convertDateToWeek(LocalDate date){
         TemporalField week = WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear();
@@ -184,12 +191,15 @@ public class Output {
         colorPrinter.print(asterisks, Ansi.Attribute.NONE, Ansi.FColor.CYAN, Ansi.BColor.NONE);
     }
     public static void printProjectMetrics(Project project,LocalDate date){
+
         DecimalFormat decimalFormat = new DecimalFormat("#");
+        decimalFormat.setNegativePrefix("-");
         System.out.println("\nActual Cost:       "+decimalFormat.format(project.costOfPerformed(date)));
         System.out.println("Earned Value:      "+decimalFormat.format(project.calculateEV(date)));
         System.out.println("Cost Variance:     "+decimalFormat.format(project.calculateCV(date)));
         System.out.println("Schedule Variance: "+decimalFormat.format(project.calculateSV(date)));
         System.out.println("Planned Value:     "+decimalFormat.format(project.calculatePV(date)));
+
     }
     public static void printLogoAndVersion() {
         colorPrinter.println("  ____         __ _   __  __                  _        ___ ", Ansi.Attribute.NONE, Ansi.FColor.MAGENTA, Ansi.BColor.NONE);

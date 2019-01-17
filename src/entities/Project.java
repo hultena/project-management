@@ -12,7 +12,7 @@ public class Project {
     private LocalDate startDate;
     private LocalDate endDate;
     private int engineerSalary;
-    private int budget;
+
 
     public Project(String projectName, LocalDate startDate, LocalDate endDate, int engineerSalary) {
         this.projectName = projectName;
@@ -119,9 +119,7 @@ public class Project {
         return LocalDate.of(year,month,day);
     }
 
-    public void setBudget(int budget){
-        this.budget=budget;
-    }
+
     public void setEngineerSalary(int engineerSalary) {
         this.engineerSalary = engineerSalary;
     }
@@ -134,9 +132,7 @@ public class Project {
     public void setProjectName(String projectName){
         this.projectName = projectName;
     }
-    public int getBudget(){
-        return budget;
-    }
+
     public LocalDate getStartDate(){
         return startDate;
     }

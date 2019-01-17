@@ -31,6 +31,7 @@ public class ProjectManager {
 
             String chosenProject = Parser.getProjects().get(option - 1);
             project = Parser.loadData(chosenProject);
+            System.out.println(project.getProjectName()+" : Successfully loaded!");
         }else if(chosenOption==2){
             scanner.nextLine();
             System.out.println("Enter project name");
@@ -59,11 +60,11 @@ public class ProjectManager {
                     int option = scanner.nextInt();
                     if(option==1){ // project schedule
                         Output.printSchedule(project.tasks);
-                        Output.waitForKeyPress();
+
                     }else if(option==2) {
                         LocalDate date = Output.printDateChoice();
                         Output.printProjectMetrics(project,date);
-                        Output.waitForKeyPress();
+
                     }else if(option!=10){
                         Output.incorrectInput();
                     }
