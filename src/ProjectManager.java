@@ -14,10 +14,6 @@ public class ProjectManager {
     private static final int QUIT_AND_SAVE = 11;
 
     public static void main(String[] args) throws Exception {
-        if (args.length > 0) {
-            Parser.setPathToJsonFile(args[0]);
-        }
-
         Scanner scanner = new Scanner(System.in);
         int chosenOption;
         Output.printLogoAndVersion();
@@ -28,7 +24,11 @@ public class ProjectManager {
         Project project=null;
         if(chosenOption==1) {
             Output.printAllProjects(Parser.getProjects());
-             project = Parser.loadData();
+
+            int option = scanner.nextInt();
+
+            String chosenProject = Parser.getProjects().get(option - 1);
+            project = Parser.loadData(chosenProject);
         }else if(chosenOption==2){
             scanner.nextLine();
             System.out.println("Enter project name");

@@ -17,14 +17,11 @@ public class Parser {
     private static String FILENAME;
     private static JsonNode JSON;
 
-    public static Project loadData() throws Exception {
-        // Need this when you run project from IDE
-        if (FILENAME == null) {
-            FILENAME = "./src/template.json";
-            System.out.println("No arguments received, using hardcoded path to json file");
-        }
+    public static Project loadData(String fileName) throws Exception {
+        FILENAME = fileName;
+        System.out.println(FILENAME);
 
-        byte[] jsonData = Files.readAllBytes(Paths.get(FILENAME));
+        byte[] jsonData = Files.readAllBytes(Paths.get(Parser.getPathToJsonFile(FILENAME)));
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         JSON = objectMapper.readTree(jsonData);
@@ -45,9 +42,10 @@ public class Parser {
         return fileNames;
     }
 
-    public static void setPathToJsonFile(String name) {
+    public static String getPathToJsonFile(String name) {
         String workingDir = System.getProperty("user.dir");
-        FILENAME = workingDir + "/" + name;
+
+        return workingDir + "/.projects/" + name;
     }
     public JsonNode getJson() {
         return JSON;
