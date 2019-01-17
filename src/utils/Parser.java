@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,12 +18,13 @@ public class Parser {
     public static Project loadData() throws Exception {
         // Need this when you run project from IDE
         if (FILENAME == null) {
-            FILENAME = "/home/maikzy/gitreps/project-management/src/template.json";
+            FILENAME = "./src/template.json";
             System.out.println("No arguments received, using hardcoded path to json file");
         }
 
         byte[] jsonData = Files.readAllBytes(Paths.get(FILENAME));
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
         JSON = objectMapper.readTree(jsonData);
 
         return objectMapper.readValue(JSON.toString(), Project.class);
@@ -39,6 +40,7 @@ public class Parser {
     }
     public static void saveJson(Project project){
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
         ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
         try{
             objectWriter.writeValue(new File(FILENAME), project);

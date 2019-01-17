@@ -1,0 +1,3 @@
+round numbers on metrics
+fix manage project submenu
+refactor code (careful!!!)
