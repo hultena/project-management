@@ -3,7 +3,7 @@ import utils.*;
 import entities.Project;
 import java.time.LocalDate;
 import java.util.Scanner;
-
+import java.io.File;
 
 public class ProjectManager {
     private static final int HANDLE_PROJECT = 1;
@@ -17,6 +17,7 @@ public class ProjectManager {
         if (args.length > 0) {
             Parser.setPathToJsonFile(args[0]);
         }
+
         Scanner scanner = new Scanner(System.in);
         int chosenOption;
         Output.printLogoAndVersion();
@@ -26,6 +27,7 @@ public class ProjectManager {
         chosenOption=scanner.nextInt();
         Project project=null;
         if(chosenOption==1) {
+            Output.printAllProjects(Parser.getProjects());
              project = Parser.loadData();
         }else if(chosenOption==2){
             scanner.nextLine();

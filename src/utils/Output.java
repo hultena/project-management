@@ -19,6 +19,14 @@ public class Output {
         colorPrinter = new ColoredPrinter.Builder(1, false).foreground(Ansi.FColor.WHITE).background(Ansi.BColor.BLUE).build();
     }
 
+    public static void printAllProjects(List<String> fileNames) {
+        System.out.println("\n");
+        for (int i=1; i <= fileNames.size(); i++) {
+            String file = fileNames.get(i-1);
+            System.out.println(i + ". " + file.substring(0, file.length() - 5));
+        }
+    }
+
     public static void printMenu() {
         System.out.println("\n");
         colorPrinter.println("1.  Manage project", Ansi.Attribute.BOLD, Ansi.FColor.GREEN, Ansi.BColor.NONE);

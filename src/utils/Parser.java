@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import entities.Project;
+import java.util.*;
 
 public class Parser {
 
@@ -29,6 +30,19 @@ public class Parser {
         JSON = objectMapper.readTree(jsonData);
 
         return objectMapper.readValue(JSON.toString(), Project.class);
+    }
+
+    public static List<String> getProjects() {
+        File folder = new File("./.projects");
+        File[] listOfFiles = folder.listFiles();
+        List<String> fileNames = new ArrayList<>();
+
+        for (int i = 0; i < listOfFiles.length; i++) {
+            if (listOfFiles[i].isFile()) {
+                fileNames.add(listOfFiles[i].getName());
+            }
+        }
+        return fileNames;
     }
 
     public static void setPathToJsonFile(String name) {
