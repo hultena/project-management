@@ -27,9 +27,16 @@ public class Output {
         }
     }
 
+    public static void printIntroMenu() {
+        colorPrinter.println("\n", Ansi.Attribute.NONE, Ansi.FColor.GREEN, Ansi.BColor.NONE);
+        System.out.println("1. Load project");
+        System.out.println("2. Create new project");
+        colorPrinter.clear();
+    }
+
     public static void printMenu() {
         System.out.println("\n");
-        colorPrinter.println("1.  Manage project", Ansi.Attribute.BOLD, Ansi.FColor.GREEN, Ansi.BColor.NONE);
+        colorPrinter.println("1.  Manage project", Ansi.Attribute.NONE, Ansi.FColor.GREEN, Ansi.BColor.NONE);
         System.out.println("2.  Manage team members");
         System.out.println("3.  Manage tasks");
         System.out.println("4.  Manage risks");
@@ -192,6 +199,7 @@ public class Output {
         colorPrinter.println(" |____/ \\___/|_|  \\__|_|  |_|\\__,_|_| |_|    |_| (_)  \\___/ ", Ansi.Attribute.NONE, Ansi.FColor.MAGENTA, Ansi.BColor.NONE);
         System.out.println("____________________________________________________________");
         System.out.println("              Software project management tool              ");
+        colorPrinter.clear();
     }
 
     public static void printRiskMatrix(List<Risk> riskMatrix) {

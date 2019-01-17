@@ -19,11 +19,11 @@ public class ProjectManager {
         Scanner scanner = new Scanner(System.in);
         int chosenOption;
         Output.printLogoAndVersion();
-        System.out.println("Welcome to SoftMan 1.0");
-        System.out.println("1. Load project");
-        System.out.println("2. Create new project");
+        Output.printIntroMenu();
+
         chosenOption=scanner.nextInt();
-        Project project=null;
+        Project project = null;
+
         if(chosenOption==1) {
             Output.printAllProjects(Parser.getProjects());
 
