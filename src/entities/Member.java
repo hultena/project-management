@@ -5,9 +5,12 @@ public class Member {
     private String name;
     private String id;
 
-    public Member() {
-
+    public Member(String name, String id) {
+        this.name = name;
+        this.id = id;
     }
+
+    public Member() {} // Empty constructor for jackson
 
 
     public String getName() {

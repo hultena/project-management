@@ -8,9 +8,15 @@ public class Contribution {
     private int percentageCompleted;
     private LocalDate date;
 
-    public Contribution(){
-
+    public Contribution(String id, int timeSpent, int percentageCompleted, LocalDate date) {
+        this.id = id;
+        this.timeSpent = timeSpent;
+        this.percentageCompleted = percentageCompleted;
+        this.date = date;
     }
+
+    public Contribution(){} // empty constructor for jackson
+
     public void setId(String id) {
         this.id = id;
     }

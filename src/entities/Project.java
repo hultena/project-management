@@ -20,25 +20,16 @@ public class Project {
         this.members = new ArrayList<Member>();
     }
     public void addTask(String name, int budgetedHours, LocalDate startDate, LocalDate endDate){
-        Task newTask = new Task();
-        newTask.setName(name);
-        newTask.setBudgetedHours(budgetedHours);
-        newTask.setStartDate(startDate);
-        newTask.setEndDate(endDate);
+        Task newTask = new Task(name, budgetedHours, startDate, endDate);
         tasks.add(newTask);
     }
     public void addRisk(String name,int severity,int probability){
-        Risk newRisk = new Risk();
-        newRisk.setName(name);
-        newRisk.setSeverity(severity);
-        newRisk.setProbability(probability);
+        Risk newRisk = new Risk(name, severity, probability);
         riskMatrix.add(newRisk);
     }
     public void addMember(String name, String id) {
         if (this.findMember(id) == null) {
-            Member newMember = new Member();
-            newMember.setId(id);
-            newMember.setName(name);
+            Member newMember = new Member(name, id);
             this.members.add(newMember);
             System.out.println("Member successfully added.");
         } else {

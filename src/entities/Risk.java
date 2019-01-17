@@ -5,9 +5,14 @@ public class Risk {
     private int probability;
     private int severity;
 
-    public Risk() {
-
+    public Risk(String name, int probability, int severity) {
+        this.name = name;
+        this.probability = probability;
+        this.severity = severity;
     }
+
+    public Risk() {} // empty constructor for jackson
+
     public int impact(){
         int impact = severity*probability;
         return impact;

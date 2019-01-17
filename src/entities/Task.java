@@ -10,15 +10,20 @@ public class Task {
     private LocalDate endDate;
     private List<Contribution> contributions;
 
-    public Task() {
-        contributions = new ArrayList<Contribution>();
+    public Task(String name, int budgetedHours, LocalDate startDate, LocalDate endDate) {
+        this.name = name;
+        this.budgetedHours = budgetedHours;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.contributions = new ArrayList<Contribution>();
     }
+
+    public Task() {
+       this.contributions = new ArrayList<Contribution>();
+    }
+
     public void addContribution(String id, int time, int percentageCompleted, LocalDate date){
-        Contribution newContribution = new Contribution();
-        newContribution.setId(id);
-        newContribution.setTimeSpent(time);
-        newContribution.setPercentageCompleted(percentageCompleted);
-        newContribution.setDate(date);
+        Contribution newContribution = new Contribution(id, time, percentageCompleted, date);
         contributions.add(newContribution);
 
     }

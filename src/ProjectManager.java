@@ -124,15 +124,14 @@ public class ProjectManager {
                         chosenOption = scanner.nextInt()-1;
                         Task chosenTask = project.tasks.get(chosenOption);
                         scanner.nextLine();
-                        System.out.println("Enter id");
+                        System.out.println("Enter task id");
                         String id = scanner.nextLine();
-                        System.out.println("Enter time");
+                        System.out.println("Enter time (hours)");
                         int time = scanner.nextInt();
-                        System.out.println("Enter percentage");
+                        System.out.println("Enter percentage completed");
                         int percentageCompleted = scanner.nextInt();
                         LocalDate date = LocalDate.now();
                         chosenTask.addContribution(id,time,percentageCompleted,date);
-                        System.out.println(chosenTask);
                     }else if(option==3){
                         Output.printTasks(project.tasks, false);
                     }else if(option==4){
