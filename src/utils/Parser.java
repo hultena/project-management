@@ -29,12 +29,15 @@ public class Parser {
         return objectMapper.readValue(JSON.toString(), Project.class);
     }
 
+    public static void setFILENAME(String name) {
+        FILENAME = name;
+    }
+
     public static void setWorkingDirectory() {
         WORKING_DIRECTORY = System.getProperty("user.dir");
     }
 
     public static List<String> getProjects() {
-        System.out.println(WORKING_DIRECTORY);
         File folder = new File(getPathToJsonFolder());
         File[] listOfFiles = folder.listFiles();
         List<String> fileNames = new ArrayList<>();
@@ -50,27 +53,21 @@ public class Parser {
     public static String getPathToJsonFolder() {
         String path = WORKING_DIRECTORY;
 
-        System.out.println(path.substring(path.length()-1, path.length()));
-
         if (path.substring(path.length()-1, path.length()).equals("c")) {
             path += "/.projects/";
         } else {
             path += "/src/.projects/";
         }
-        System.out.println(path);
         return path;
     }
-    public JsonNode getJson() {
-        return JSON;
-    }
+
     public static void saveJson(Project project){
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
         try{
-            if (FILENAME == null) {
-                FILENAME = "./src/.projects/"+project.getProjectName()+".json";}
-            objectWriter.writeValue(new File(FILENAME), project);
+            String pathToFile = getPathToJsonFolder() + FILENAME;
+            objectWriter.writeValue(new File(pathToFile), project);
         }catch (IOException e) {
             e.printStackTrace();
         }

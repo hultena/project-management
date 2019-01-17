@@ -42,6 +42,7 @@ public class ProjectManager {
             System.out.println("Enter engineer salary");
             int salary = scanner.nextInt();
             project = new Project(name, Project.createDate(startDate), Project.createDate(endDate), salary);
+            Parser.setFILENAME(project.getProjectName() + ".json");
         }
 
         do {
